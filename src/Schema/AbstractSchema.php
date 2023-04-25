@@ -16,8 +16,7 @@ use Youshido\GraphQL\Type\SchemaDirectivesList;
 abstract class AbstractSchema
 {
 
-    /** @var SchemaConfig */
-    protected $config;
+    protected SchemaConfig $config;
 
     public function __construct($config = [])
     {
@@ -38,12 +37,12 @@ abstract class AbstractSchema
 
     abstract public function build(SchemaConfig $config);
 
-    public function addQueryField($field, $fieldInfo = null)
+    public function addQueryField($field, $fieldInfo = null): void
     {
         $this->getQueryType()->addField($field, $fieldInfo);
     }
 
-    public function addMutationField($field, $fieldInfo = null)
+    public function addMutationField($field, $fieldInfo = null): void
     {
         $this->getMutationType()->addField($field, $fieldInfo);
     }
@@ -78,6 +77,6 @@ abstract class AbstractSchema
     {
         $defaultName = 'RootSchema';
 
-        return isset($config["name"])? $config["name"] : $defaultName;
+        return $config["name"] ?? $defaultName;
     }
 }

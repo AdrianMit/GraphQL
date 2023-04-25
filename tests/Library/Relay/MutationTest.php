@@ -9,22 +9,23 @@
 namespace Youshido\Tests\Library\Relay;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Relay\RelayMutation;
 use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class MutationTest extends \PHPUnit_Framework_TestCase
+class MutationTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testCreation()
+    public function testCreation(): void
     {
         $mutation = RelayMutation::buildMutation('ship', [
             'name' => new StringType()
         ],[
             'id' => new IdType(),
             'name' => new StringType()
-        ], function($source, $args, $info) {
+        ], function($source, $args, $info): void {
 
         });
         $this->assertEquals('ship', $mutation->getName());
@@ -33,11 +34,11 @@ class MutationTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \Exception
      */
-    public function testInvalidType()
+    public function testInvalidType(): void
     {
         RelayMutation::buildMutation('ship', [
             'name' => new StringType()
-        ], new IntType(), function($source, $args, $info) {});
+        ], new IntType(), function($source, $args, $info): void {});
 
     }
 

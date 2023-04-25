@@ -16,15 +16,6 @@ use Youshido\GraphQL\Type\AbstractType;
 
 class ResolveInfo
 {
-    /** @var  FieldInterface */
-    protected $field;
-
-    /** @var Field[] */
-    protected $fieldASTList;
-
-    /** @var ExecutionContextInterface */
-    protected $executionContext;
-
     /**
      * This property is to be used for DI in various scenario
      * Added to original class to keep backward compatibility
@@ -34,11 +25,11 @@ class ResolveInfo
      */
     protected $container;
 
-    public function __construct(FieldInterface $field, array $fieldASTList, ExecutionContextInterface $executionContext)
+    /**
+     * @param \Youshido\GraphQL\Parser\Ast\Field[] $fieldASTList
+     */
+    public function __construct(protected FieldInterface $field, protected array $fieldASTList, protected ExecutionContextInterface $executionContext)
     {
-        $this->field            = $field;
-        $this->fieldASTList     = $fieldASTList;
-        $this->executionContext = $executionContext;
     }
 
     /**
@@ -59,10 +50,8 @@ class ResolveInfo
 
     /**
      * @param string $fieldName
-     *
-     * @return null|Query|Field
      */
-    public function getFieldAST($fieldName)
+    public function getFieldAST($fieldName): null|Query|Field
     {
         $field = null;
         foreach ($this->getFieldASTList() as $fieldAST) {

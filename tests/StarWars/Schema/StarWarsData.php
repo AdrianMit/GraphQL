@@ -144,8 +144,8 @@ class StarWarsData
     /**
      * Allows us to query for a character's friends.
      */
-    static function getFriends($character)
+    static function getFriends($character): array
     {
-        return array_map([__CLASS__, 'getCharacter'], $character['friends']);
+        return array_map([self::class, 'getCharacter'], $character['friends']);
     }
 }

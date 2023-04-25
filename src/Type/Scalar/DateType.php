@@ -8,6 +8,7 @@
 
 namespace Youshido\GraphQL\Type\Scalar;
 
+use DateTime;
 /**
  * @deprecated USE DateTime type instead. To be removed in 1.4.
  *
@@ -24,9 +25,8 @@ class DateType extends AbstractScalarType
 
     /**
      * @param $value \DateTime
-     * @return null|string
      */
-    public function serialize($value)
+    public function serialize($value): ?string
     {
         if ($value === null) {
             return null;
@@ -41,7 +41,7 @@ class DateType extends AbstractScalarType
             return true;
         }
 
-        $d = \DateTime::createFromFormat('Y-m-d', $value);
+        $d = DateTime::createFromFormat('Y-m-d', $value);
 
         return $d && $d->format('Y-m-d') == $value;
     }

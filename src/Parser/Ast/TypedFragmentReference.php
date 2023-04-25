@@ -15,24 +15,15 @@ class TypedFragmentReference extends AbstractAst implements FragmentInterface
 {
     use AstDirectivesTrait;
 
-    /** @var Field[]|Query[] */
-    protected $fields;
-
-    /** @var string */
-    protected $typeName;
-
     /**
      * @param string          $typeName
      * @param Field[]|Query[] $fields
      * @param Directive[]     $directives
      * @param Location        $location
      */
-    public function __construct($typeName, array $fields, array $directives, Location $location)
+    public function __construct(protected $typeName, protected array $fields, array $directives, Location $location)
     {
         parent::__construct($location);
-
-        $this->typeName = $typeName;
-        $this->fields   = $fields;
         $this->setDirectives($directives);
     }
 
@@ -47,7 +38,7 @@ class TypedFragmentReference extends AbstractAst implements FragmentInterface
     /**
      * @param Field[]|Query[] $fields
      */
-    public function setFields($fields)
+    public function setFields($fields): void
     {
         $this->fields = $fields;
     }
@@ -63,7 +54,7 @@ class TypedFragmentReference extends AbstractAst implements FragmentInterface
     /**
      * @param string $typeName
      */
-    public function setTypeName($typeName)
+    public function setTypeName($typeName): void
     {
         $this->typeName = $typeName;
     }

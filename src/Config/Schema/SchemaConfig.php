@@ -9,6 +9,7 @@
 namespace Youshido\GraphQL\Config\Schema;
 
 
+use Exception;
 use Youshido\GraphQL\Config\AbstractConfig;
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
 use Youshido\GraphQL\Type\Object\ObjectType;
@@ -19,16 +20,10 @@ use Youshido\GraphQL\Type\TypeService;
 class SchemaConfig extends AbstractConfig
 {
 
-    /**
-     * @var SchemaTypesList
-     */
-    private $typesList;
-    /**
-     * @var SchemaDirectivesList;
-     */
-    private $directiveList;
+    private SchemaTypesList $typesList;
+    private SchemaDirectivesList $directiveList;
 
-    public function __construct(array $configData, $contextObject = null, $finalClass = false)
+    public function __construct(array $configData, ?object $contextObject = null, ?bool $finalClass = false)
     {
         $this->typesList = new SchemaTypesList();
         $this->directiveList = new SchemaDirectivesList();
@@ -36,7 +31,7 @@ class SchemaConfig extends AbstractConfig
     }
 
 
-    public function getRules()
+    public function getRules(): array
     {
         return [
             'query'      => ['type' => TypeService::TYPE_OBJECT_TYPE, 'required' => true],
@@ -46,8 +41,11 @@ class SchemaConfig extends AbstractConfig
             'name'       => ['type' => TypeService::TYPE_STRING],
         ];
     }
-
-    protected function build()
+    
+    /**
+     * @throws Exception
+     */
+    protected function build(): void
     {
         parent::build();
         if (!empty($this->data['types'])) {
@@ -57,59 +55,42 @@ class SchemaConfig extends AbstractConfig
             $this->directiveList->addDirectives($this->data['directives']);
         }
     }
-
-
-    /**
-     * @return AbstractObjectType
-     */
-    public function getQuery()
+    
+    public function getQuery(): AbstractObjectType
     {
         return $this->data['query'];
     }
 
-    /**
-     * @param $query AbstractObjectType
-     *
-     * @return SchemaConfig
-     */
-    public function setQuery($query)
+    public function setQuery($query): static
     {
         $this->data['query'] = $query;
 
         return $this;
     }
 
-    /**
-     * @return ObjectType
-     */
     public function getMutation()
     {
         return $this->get('mutation');
     }
 
-    /**
-     * @param $query AbstractObjectType
-     *
-     * @return SchemaConfig
-     */
-    public function setMutation($query)
+    public function setMutation($query): static
     {
         $this->data['mutation'] = $query;
 
         return $this;
     }
 
-    public function getName()
+    public function getName(): mixed
     {
         return $this->get('name', 'RootSchema');
     }
 
-    public function getTypesList()
+    public function getTypesList(): SchemaTypesList
     {
         return $this->typesList;
     }
 
-    public function getDirectiveList()
+    public function getDirectiveList(): SchemaDirectivesList
     {
         return $this->directiveList;
     }

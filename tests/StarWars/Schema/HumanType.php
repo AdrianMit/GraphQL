@@ -18,16 +18,14 @@ use Youshido\GraphQL\Type\TypeMap;
 class HumanType extends AbstractObjectType
 {
 
-    public function build($config)
+    public function build($config): void
     {
         $config
             ->addField('id', new NonNullType(new IdType()))
             ->addField('name', new NonNullType(new StringType()))
             ->addField('friends', [
                 'type'    => new ListType(new CharacterInterface()),
-                'resolve' => function ($droid) {
-                    return StarWarsData::getFriends($droid);
-                },
+                'resolve' => fn($droid) => StarWarsData::getFriends($droid),
             ])
             ->addField('appearsIn', new ListType(new EpisodeEnum()))
             ->addField('homePlanet', TypeMap::TYPE_STRING);

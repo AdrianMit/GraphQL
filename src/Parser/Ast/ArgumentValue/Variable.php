@@ -7,6 +7,7 @@
 
 namespace Youshido\GraphQL\Parser\Ast\ArgumentValue;
 
+use LogicException;
 use Youshido\GraphQL\Parser\Ast\AbstractAst;
 use Youshido\GraphQL\Parser\Ast\Interfaces\ValueInterface;
 use Youshido\GraphQL\Parser\Location;
@@ -14,29 +15,12 @@ use Youshido\GraphQL\Parser\Location;
 class Variable extends AbstractAst implements ValueInterface
 {
 
-    /** @var  string */
-    private $name;
-
     /** @var  mixed */
     private $value;
 
-    /** @var string */
-    private $type;
+    private bool $used = false;
 
-    /** @var bool */
-    private $nullable = false;
-
-    /** @var bool */
-    private $isArray = false;
-
-    /** @var bool */
-    private $used = false;
-
-    /** @var bool */
-    private $arrayElementNullable = true;
-
-    /** @var bool */
-    private $hasDefaultValue = false;
+    private bool $hasDefaultValue = false;
 
     /** @var mixed */
     private $defaultValue = null;
@@ -49,15 +33,9 @@ class Variable extends AbstractAst implements ValueInterface
      * @param bool     $arrayElementNullable
      * @param Location $location
      */
-    public function __construct($name, $type, $nullable, $isArray, $arrayElementNullable = true, Location $location)
+    public function __construct(private $name, private $type, private $nullable, private $isArray, Location $location, private $arrayElementNullable = true)
     {
         parent::__construct($location);
-
-        $this->name                 = $name;
-        $this->type                 = $type;
-        $this->isArray              = $isArray;
-        $this->nullable             = $nullable;
-        $this->arrayElementNullable = $arrayElementNullable;
     }
 
     /**
@@ -71,7 +49,7 @@ class Variable extends AbstractAst implements ValueInterface
             if ($this->hasDefaultValue()) {
                 return $this->defaultValue;
             }
-            throw new \LogicException('Value is not set for variable "' . $this->name . '"');
+            throw new LogicException('Value is not set for variable "' . $this->name . '"');
         }
 
         return $this->value;
@@ -80,7 +58,7 @@ class Variable extends AbstractAst implements ValueInterface
     /**
      * @param mixed $value
      */
-    public function setValue($value)
+    public function setValue($value): void
     {
         $this->value = $value;
     }
@@ -96,7 +74,7 @@ class Variable extends AbstractAst implements ValueInterface
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName($name): void
     {
         $this->name = $name;
     }
@@ -112,7 +90,7 @@ class Variable extends AbstractAst implements ValueInterface
     /**
      * @param string $type
      */
-    public function setTypeName($type)
+    public function setTypeName($type): void
     {
         $this->type = $type;
     }
@@ -128,7 +106,7 @@ class Variable extends AbstractAst implements ValueInterface
     /**
      * @param boolean $isArray
      */
-    public function setIsArray($isArray)
+    public function setIsArray($isArray): void
     {
         $this->isArray = $isArray;
     }
@@ -144,7 +122,7 @@ class Variable extends AbstractAst implements ValueInterface
     /**
      * @param boolean $nullable
      */
-    public function setNullable($nullable)
+    public function setNullable($nullable): void
     {
         $this->nullable = $nullable;
     }
@@ -165,10 +143,7 @@ class Variable extends AbstractAst implements ValueInterface
         return $this->defaultValue;
     }
 
-    /**
-     * @param mixed $defaultValue
-     */
-    public function setDefaultValue($defaultValue)
+    public function setDefaultValue(mixed $defaultValue): void
     {
         $this->hasDefaultValue = true;
 
@@ -206,7 +181,7 @@ class Variable extends AbstractAst implements ValueInterface
     /**
      * @param bool $arrayElementNullable
      */
-    public function setArrayElementNullable($arrayElementNullable)
+    public function setArrayElementNullable($arrayElementNullable): void
     {
         $this->arrayElementNullable = $arrayElementNullable;
     }

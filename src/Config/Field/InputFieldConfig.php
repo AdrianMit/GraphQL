@@ -20,7 +20,7 @@ use Youshido\GraphQL\Type\TypeService;
 class InputFieldConfig extends AbstractConfig
 {
 
-    public function getRules()
+    public function getRules(): array
     {
         return [
             'name'              => ['type' => TypeService::TYPE_STRING, 'final' => true],
@@ -32,7 +32,7 @@ class InputFieldConfig extends AbstractConfig
         ];
     }
 
-    public function getDefaultValue()
+    public function getDefaultValue(): mixed
     {
         return $this->get('defaultValue');
     }

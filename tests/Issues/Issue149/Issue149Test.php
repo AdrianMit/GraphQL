@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Issues\Issue116Test;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\ListType\ListType;
@@ -11,9 +12,9 @@ use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class Issue149Test extends \PHPUnit_Framework_TestCase
+class Issue149Test extends PHPUnit_Framework_TestCase
 {
-    public function testInternalVariableArgument()
+    public function testInternalVariableArgument(): void
     {
         $schema    = new Schema([
             'query' => new ObjectType([
@@ -36,25 +37,23 @@ class Issue149Test extends \PHPUnit_Framework_TestCase
                                 ])),
                             ],
                         ]),
-                        'resolve' => function () {
-                            return [
-                                'id'      => 1,
-                                'name'    => 'John',
-                                'age'     => 30,
-                                'friends' => [
-                                    [
-                                        'id'   => 2,
-                                        'name' => 'Friend 1',
-                                        'age'  => 31,
-                                    ],
-                                    [
-                                        'id'   => 3,
-                                        'name' => 'Friend 2',
-                                        'age'  => 32,
-                                    ],
+                        'resolve' => fn(): array => [
+                            'id'      => 1,
+                            'name'    => 'John',
+                            'age'     => 30,
+                            'friends' => [
+                                [
+                                    'id'   => 2,
+                                    'name' => 'Friend 1',
+                                    'age'  => 31,
                                 ],
-                            ];
-                        },
+                                [
+                                    'id'   => 3,
+                                    'name' => 'Friend 2',
+                                    'age'  => 32,
+                                ],
+                            ],
+                        ],
                     ],
                 ],
             ]),

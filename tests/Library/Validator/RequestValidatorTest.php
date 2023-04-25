@@ -8,6 +8,7 @@
 namespace Youshido\Tests\Library\Validator;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Request;
 use Youshido\GraphQL\Parser\Ast\Argument;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
@@ -19,16 +20,14 @@ use Youshido\GraphQL\Parser\Ast\Query;
 use Youshido\GraphQL\Parser\Location;
 use Youshido\GraphQL\Validator\RequestValidator\RequestValidator;
 
-class RequestValidatorTest extends \PHPUnit_Framework_TestCase
+class RequestValidatorTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      * @expectedException \Youshido\GraphQL\Exception\Parser\InvalidRequestException
      * @dataProvider invalidRequestProvider
-     *
-     * @param Request $request
      */
-    public function testInvalidRequests(Request $request)
+    public function testInvalidRequests(Request $request): void
     {
         (new RequestValidator())->validate($request);
     }

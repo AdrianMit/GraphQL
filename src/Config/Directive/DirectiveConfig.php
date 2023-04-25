@@ -22,9 +22,9 @@ class DirectiveConfig extends AbstractConfig
 
     use ArgumentsAwareConfigTrait;
 
-    protected $locations = [];
+    protected array $locations = [];
 
-    public function getRules()
+    public function getRules(): array
     {
         return [
             'name'        => ['type' => TypeService::TYPE_STRING, 'final' => true],
@@ -34,12 +34,12 @@ class DirectiveConfig extends AbstractConfig
         ];
     }
 
-    public function getLocations()
+    public function getLocations(): array
     {
         return $this->locations;
     }
 
-    public function build()
+    public function build(): void
     {
         $this->buildArguments();
 

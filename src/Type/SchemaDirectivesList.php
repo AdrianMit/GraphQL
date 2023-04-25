@@ -7,13 +7,14 @@
 
 namespace Youshido\GraphQL\Type;
 
+use Exception;
 use Youshido\GraphQL\Directive\DirectiveInterface;
 
 
 class SchemaDirectivesList
 {
 
-    private $directivesList = [];
+    private array $directivesList = [];
 
     /**
      * @param array $directives
@@ -24,7 +25,7 @@ class SchemaDirectivesList
     public function addDirectives($directives)
     {
         if (!is_array($directives)) {
-            throw new \Exception('addDirectives accept only array of directives');
+            throw new Exception('addDirectives accept only array of directives');
         }
         foreach ($directives as $directive) {
             $this->addDirective($directive);
@@ -34,8 +35,6 @@ class SchemaDirectivesList
     }
 
     /**
-     * @param DirectiveInterface $directive
-     *
      * @return $this
      */
     public function addDirective(DirectiveInterface $directive)
@@ -48,13 +47,13 @@ class SchemaDirectivesList
         return $this;
     }
 
-    private function getDirectiveName($directive)
+    private function getDirectiveName(DirectiveInterface $directive)
     {
         if (is_string($directive)) return $directive;
         if (is_object($directive) && $directive instanceof DirectiveInterface) {
             return $directive->getName();
         }
-        throw new \Exception('Invalid directive passed to Schema');
+        throw new Exception('Invalid directive passed to Schema');
     }
 
     public function isDirectiveNameRegistered($directiveName)

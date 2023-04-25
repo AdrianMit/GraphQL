@@ -25,7 +25,7 @@ class InterfaceTypeConfig extends AbstractConfig implements TypeConfigInterface
 {
     use FieldsAwareConfigTrait, ArgumentsAwareConfigTrait;
 
-    public function getRules()
+    public function getRules(): array
     {
         return [
             'name'        => ['type' => TypeService::TYPE_STRING, 'final' => true],
@@ -35,12 +35,15 @@ class InterfaceTypeConfig extends AbstractConfig implements TypeConfigInterface
         ];
     }
 
-    protected function build()
+    protected function build(): void
     {
         $this->buildFields();
     }
-
-    public function resolveType($object)
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function resolveType(mixed $object)
     {
         $callable = $this->get('resolveType');
 

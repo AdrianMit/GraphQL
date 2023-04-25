@@ -22,9 +22,9 @@ use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
  */
 trait FieldsAwareConfigTrait
 {
-    protected $fields = [];
+    protected array $fields = [];
 
-    public function buildFields()
+    public function buildFields(): void
     {
         if (!empty($this->data['fields'])) {
             $this->addFields($this->data['fields']);
@@ -33,21 +33,19 @@ trait FieldsAwareConfigTrait
 
     /**
      * Add fields from passed interface
-     * @param AbstractInterfaceType $interfaceType
      * @return $this
      */
-    public function applyInterface(AbstractInterfaceType $interfaceType)
+    public function applyInterface(AbstractInterfaceType $interfaceType): static
     {
         $this->addFields($interfaceType->getFields());
 
         return $this;
     }
-
+    
     /**
-     * @param array $fieldsList
-     * @return $this
+     * @throws ConfigurationException
      */
-    public function addFields($fieldsList)
+    public function addFields(array $fieldsList): static
     {
         foreach ($fieldsList as $fieldName => $fieldConfig) {
 
@@ -64,16 +62,11 @@ trait FieldsAwareConfigTrait
 
         return $this;
     }
-
+    
     /**
-     * @param FieldInterface|string $field     Field name or Field Object
-     * @param mixed                 $fieldInfo Field Type or Field Config array
-     *
-     * @return $this
-     *
      * @throws ConfigurationException
      */
-    public function addField($field, $fieldInfo = null)
+    public function addField(Field|string $field, array $fieldInfo = null): static
     {
         if (!($field instanceof FieldInterface)) {
             $field = new Field($this->buildFieldConfig($field, $fieldInfo));
@@ -88,7 +81,7 @@ trait FieldsAwareConfigTrait
         return $this;
     }
 
-    protected function buildFieldConfig($name, $info = null)
+    protected function buildFieldConfig(string $name, mixed $info = null)
     {
         if (!is_array($info)) {
             $info = [
@@ -101,41 +94,28 @@ trait FieldsAwareConfigTrait
 
         return $info;
     }
-
-    /**
-     * @param $name
-     *
-     * @return Field
-     */
-    public function getField($name)
+    
+    public function getField(string $name): ?Field
     {
         return $this->hasField($name) ? $this->fields[$name] : null;
     }
 
-    /**
-     * @param $name
-     *
-     * @return bool
-     */
-    public function hasField($name)
+    public function hasField(string $name): bool
     {
         return array_key_exists($name, $this->fields);
     }
 
-    public function hasFields()
+    public function hasFields(): bool
     {
         return !empty($this->fields);
     }
 
-    /**
-     * @return Field[]
-     */
-    public function getFields()
+    public function getFields(): array
     {
         return $this->fields;
     }
 
-    public function removeField($name)
+    public function removeField(string $name): static
     {
         if ($this->hasField($name)) {
             unset($this->fields[$name]);

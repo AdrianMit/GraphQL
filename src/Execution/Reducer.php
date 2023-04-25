@@ -24,17 +24,15 @@ use Youshido\GraphQL\Type\Union\AbstractUnionType;
 class Reducer
 {
 
-    /** @var  ExecutionContextInterface */
-    private $executionContext;
+    private ?ExecutionContextInterface $executionContext = null;
 
     /**
      * Apply all of $reducers to this query.  Example reducer operations: checking for maximum query complexity,
      * performing look-ahead query planning, etc.
      *
-     * @param ExecutionContextInterface $executionContext
      * @param AbstractQueryVisitor[]    $reducers
      */
-    public function reduceQuery(ExecutionContextInterface $executionContext, array $reducers)
+    public function reduceQuery(ExecutionContextInterface $executionContext, array $reducers): void
     {
         $this->executionContext = $executionContext;
         $schema                 = $executionContext->getSchema();
@@ -50,7 +48,6 @@ class Reducer
      * Entry point for the `walkQuery` routine.  Execution bounces between here, where the reducer's ->visit() method
      * is invoked, and `walkQuery` where we send in the scores from the `visit` call.
      *
-     * @param Query                $query
      * @param AbstractType         $currentLevelSchema
      * @param AbstractQueryVisitor $reducer
      */
@@ -68,7 +65,7 @@ class Reducer
                 $queryCost = 0;
                 while ($results) {
                     // initial values come from advancing the generator via ->current, subsequent values come from ->send()
-                    list($queryField, $astField, $childCost) = $results;
+                    [$queryField, $astField, $childCost] = $results;
 
                     /**
                      * @var Query|FieldAst $queryField
@@ -97,7 +94,7 @@ class Reducer
      *
      * @return \Generator
      */
-    protected function walkQuery($queryNode, FieldInterface $currentLevelAST)
+    protected function walkQuery(Query|\Youshido\GraphQL\Field\Field|FragmentInterface $queryNode, FieldInterface $currentLevelAST)
     {
         $childrenScore = 0;
         if (!($queryNode instanceof FieldAst)) {

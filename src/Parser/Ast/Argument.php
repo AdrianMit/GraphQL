@@ -14,23 +14,14 @@ use Youshido\GraphQL\Parser\Location;
 class Argument extends AbstractAst
 {
 
-    /** @var string */
-    private $name;
-
-    /** @var ValueInterface */
-    private $value;
-
     /**
      * @param string         $name
      * @param ValueInterface $value
      * @param Location       $location
      */
-    public function __construct($name, ValueInterface $value, Location $location)
+    public function __construct(private $name, private ValueInterface $value, Location $location)
     {
         parent::__construct($location);
-
-        $this->name  = $name;
-        $this->value = $value;
     }
 
     /**
@@ -41,10 +32,7 @@ class Argument extends AbstractAst
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
+    public function setName(mixed $name): void
     {
         $this->name = $name;
     }
@@ -57,10 +45,7 @@ class Argument extends AbstractAst
         return $this->value;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function setValue($value)
+    public function setValue(mixed $value): void
     {
         $this->value = $value;
     }

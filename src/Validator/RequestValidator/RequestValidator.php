@@ -14,7 +14,7 @@ use Youshido\GraphQL\Execution\Request;
 class RequestValidator implements RequestValidatorInterface
 {
 
-    public function validate(Request $request)
+    public function validate(Request $request): void
     {
         $this->assertFragmentReferencesValid($request);
         $this->assetFragmentsUsed($request);

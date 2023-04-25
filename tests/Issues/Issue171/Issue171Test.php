@@ -1,11 +1,12 @@
 <?php
 namespace Youshido\Tests\Issues\Issue171;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 
-class Issue171Test extends \PHPUnit_Framework_TestCase
+class Issue171Test extends PHPUnit_Framework_TestCase
 {
-    public function testItSetsDeprecationReasonToNullByDefault()
+    public function testItSetsDeprecationReasonToNullByDefault(): void
     {
         $schema = new Issue171Schema();
         $processor = new Processor($schema);
@@ -13,9 +14,7 @@ class Issue171Test extends \PHPUnit_Framework_TestCase
         $processor->processPayload($this->getIntrospectionQuery(), []);
         $resp = $processor->getResponseData();
 
-        $enumTypes = array_filter($resp['data']['__schema']['types'], function($type){
-            return ($type['kind'] === 'ENUM');
-        });
+        $enumTypes = array_filter($resp['data']['__schema']['types'], fn($type): bool => $type['kind'] === 'ENUM');
 
         foreach ($enumTypes as $enumType) {
             foreach ($enumType['enumValues'] as $value) {

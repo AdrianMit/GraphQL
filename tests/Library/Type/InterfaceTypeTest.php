@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Type;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Field\Field;
 use Youshido\GraphQL\Type\InterfaceType\InterfaceType;
 use Youshido\GraphQL\Type\Object\ObjectType;
@@ -16,10 +17,10 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\Tests\DataProvider\TestExtendedType;
 use Youshido\Tests\DataProvider\TestInterfaceType;
 
-class InterfaceTypeTest extends \PHPUnit_Framework_TestCase
+class InterfaceTypeTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testInterfaceMethods()
+    public function testInterfaceMethods(): void
     {
         $interface = new TestInterfaceType();
         $this->assertEquals($interface->getNamedType(), $interface->getType());
@@ -47,9 +48,7 @@ class InterfaceTypeTest extends \PHPUnit_Framework_TestCase
             'fields'      => [
                 'name' => new StringType()
             ],
-            'resolveType' => function ($object) {
-                return $object;
-            }
+            'resolveType' => fn($object) => $object
         ]);
         $this->assertEquals('UserInterface', $interfaceType->getName());
 
@@ -59,7 +58,7 @@ class InterfaceTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($interfaceType->isValidValue('invalid object'));
     }
 
-    public function testApplyInterface()
+    public function testApplyInterface(): void
     {
         $extendedType = new TestExtendedType();
 

@@ -15,7 +15,7 @@ use Youshido\GraphQL\Type\TypeService;
 class TestConfigExtraFields extends AbstractConfig
 {
 
-    protected $extraFieldsAllowed = true;
+    protected ?bool $extraFieldsAllowed = true;
 
     public function getRules()
     {

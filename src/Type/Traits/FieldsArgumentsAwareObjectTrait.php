@@ -47,6 +47,6 @@ trait FieldsArgumentsAwareObjectTrait
 
     public function hasArguments()
     {
-        return $this->hasArgumentCache === null ? ($this->hasArgumentCache = $this->getConfig()->hasArguments()) : $this->hasArgumentCache;
+        return $this->hasArgumentCache ?? ($this->hasArgumentCache = $this->getConfig()->hasArguments());
     }
 }

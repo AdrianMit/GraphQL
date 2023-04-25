@@ -13,10 +13,10 @@ use Youshido\GraphQL\Field\InputField;
 
 trait ArgumentsAwareConfigTrait
 {
-    protected $arguments = [];
-    protected $_isArgumentsBuilt;
+    protected array $arguments = [];
+    protected bool $_isArgumentsBuilt;
 
-    public function buildArguments()
+    public function buildArguments(): void
     {
         if ($this->_isArgumentsBuilt) {
             return;
@@ -28,7 +28,7 @@ trait ArgumentsAwareConfigTrait
         $this->_isArgumentsBuilt = true;
     }
 
-    public function addArguments($argsList)
+    public function addArguments(array $argsList): static
     {
         foreach ($argsList as $argumentName => $argumentInfo) {
             if ($argumentInfo instanceof InputField) {
@@ -42,7 +42,7 @@ trait ArgumentsAwareConfigTrait
         return $this;
     }
 
-    public function addArgument($argument, $argumentInfo = null)
+    public function addArgument(object $argument, mixed $argumentInfo = null): static
     {
         if (!($argument instanceof InputField)) {
             $argument = new InputField($this->buildConfig($argument, $argumentInfo));
@@ -52,7 +52,7 @@ trait ArgumentsAwareConfigTrait
         return $this;
     }
 
-    protected function buildConfig($name, $info = null)
+    protected function buildConfig(mixed $name, mixed $info = null): array
     {
         if (!is_array($info)) {
             return [
@@ -67,40 +67,27 @@ trait ArgumentsAwareConfigTrait
         return $info;
     }
 
-    /**
-     * @param $name
-     *
-     * @return InputField
-     */
-    public function getArgument($name)
+    public function getArgument(string $name): ?InputField
     {
         return $this->hasArgument($name) ? $this->arguments[$name] : null;
     }
 
-    /**
-     * @param $name
-     *
-     * @return bool
-     */
-    public function hasArgument($name)
+    public function hasArgument(string $name): bool
     {
         return array_key_exists($name, $this->arguments);
     }
 
-    public function hasArguments()
+    public function hasArguments(): bool
     {
         return !empty($this->arguments);
     }
 
-    /**
-     * @return InputField[]
-     */
-    public function getArguments()
+    public function getArguments(): array
     {
         return $this->arguments;
     }
 
-    public function removeArgument($name)
+    public function removeArgument(string $name): static
     {
         if ($this->hasArgument($name)) {
             unset($this->arguments[$name]);
@@ -108,5 +95,4 @@ trait ArgumentsAwareConfigTrait
 
         return $this;
     }
-
 }

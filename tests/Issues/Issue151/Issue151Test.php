@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Issues\Issue116Test;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\ListType\ListType;
@@ -10,9 +11,9 @@ use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\Union\UnionType;
 
-class Issue151Test extends \PHPUnit_Framework_TestCase
+class Issue151Test extends PHPUnit_Framework_TestCase
 {
-    public function testInternalVariableArgument()
+    public function testInternalVariableArgument(): void
     {
         $type1 = new ObjectType([
             'name'   => 'Type1',
@@ -47,18 +48,16 @@ class Issue151Test extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'list' => [
                         'type'    => new ListType($unionType),
-                        'resolve' => function () {
-                            return [
-                                [
-                                    'id'   => 1,
-                                    'name' => 'name',
-                                ],
-                                [
-                                    'id'    => 2,
-                                    'title' => 'title',
-                                ],
-                            ];
-                        },
+                        'resolve' => fn(): array => [
+                            [
+                                'id'   => 1,
+                                'name' => 'name',
+                            ],
+                            [
+                                'id'    => 2,
+                                'title' => 'title',
+                            ],
+                        ],
                     ],
                 ],
             ]),

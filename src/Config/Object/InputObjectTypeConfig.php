@@ -13,7 +13,7 @@ use Youshido\GraphQL\Type\TypeService;
 
 class InputObjectTypeConfig extends ObjectTypeConfig
 {
-    public function getRules()
+    public function getRules(): array
     {
         return [
             'name'        => ['type' => TypeService::TYPE_STRING, 'required' => true],

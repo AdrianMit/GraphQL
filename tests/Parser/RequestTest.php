@@ -9,14 +9,15 @@
 namespace Youshido\Tests\Parser;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Request;
 use Youshido\GraphQL\Parser\Ast\Fragment;
 use Youshido\GraphQL\Parser\Location;
 
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testMethods()
+    public function testMethods(): void
     {
         $fragment1     = new Fragment('fragmentName1', 'test', [], [], new Location(1,1));
         $fragment2     = new Fragment('fragmentName2', 'test', [], [], new Location(1,1));
@@ -51,7 +52,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($request->getFragment('unknown fragment'));
     }
 
-    public function testSetVariableParseJson()
+    public function testSetVariableParseJson(): void
     {
         $variables = '{"foo": "bar"}';
         $expectedVariableArray = [ 'foo' => 'bar' ];

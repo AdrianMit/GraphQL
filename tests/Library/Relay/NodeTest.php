@@ -9,12 +9,13 @@
 namespace Youshido\Tests\Library\Relay;
 
 
+use PHPUnit_Framework_TestCase;
 use InvalidArgumentException;
 use Youshido\GraphQL\Relay\Node;
 
-class NodeTest extends \PHPUnit_Framework_TestCase
+class NodeTest extends PHPUnit_Framework_TestCase
 {
-    public function testMethods()
+    public function testMethods(): void
     {
         $global     = Node::toGlobalId('user', 1);
         $fromGlobal = Node::fromGlobalId($global);
@@ -35,7 +36,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider malformedIdProvider
      */
-    public function testFromGlobalIdThrowsExceptionIfGivenMalformedId($idToCheck)
+    public function testFromGlobalIdThrowsExceptionIfGivenMalformedId($idToCheck): void
     {
         $this->setExpectedException(InvalidArgumentException::class);
         Node::fromGlobalId($idToCheck);

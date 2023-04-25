@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Schema;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Container\Container;
 use Youshido\GraphQL\Execution\Context\ExecutionContext;
 use Youshido\GraphQL\Execution\Processor;
@@ -31,18 +32,18 @@ use Youshido\Tests\DataProvider\TestInterfaceType;
 use Youshido\Tests\DataProvider\TestObjectType;
 use Youshido\Tests\DataProvider\TestSchema;
 
-class ProcessorTest extends \PHPUnit_Framework_TestCase
+class ProcessorTest extends PHPUnit_Framework_TestCase
 {
 
-    private $_counter = 0;
+    private int $_counter = 0;
 
-    public function testInit()
+    public function testInit(): void
     {
         $processor = new Processor(new TestEmptySchema());
         $this->assertEquals([['message' => 'Schema has to have fields']], $processor->getExecutionContext()->getErrorsArray());
     }
 
-    public function testEmptyQueries()
+    public function testEmptyQueries(): void
     {
         $processor = new Processor(new TestSchema());
         $processor->processPayload('');
@@ -58,7 +59,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function testNestedVariables()
+    public function testNestedVariables(): void
     {
         $processor    = new Processor(new TestSchema());
         $noArgsQuery  = '{ me { echo(value:"foo") } }';
@@ -88,7 +89,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayNotHasKey('errors', $processor->getResponseData());
     }
 
-    public function testNullListVariable()
+    public function testNullListVariable(): void
     {
         $processor = new Processor(new TestSchema());
         $processor->processPayload(
@@ -102,7 +103,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayNotHasKey('errors', $processor->getResponseData());
     }
 
-    public function testListNullResponse()
+    public function testListNullResponse(): void
     {
         $processor = new Processor(new Schema([
             'query' => new ObjectType([
@@ -110,9 +111,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'list' => [
                         'type'    => new ListType(new StringType()),
-                        'resolve' => function () {
-                            return null;
-                        }
+                        'resolve' => fn() => null
                     ]
                 ]
             ])
@@ -122,7 +121,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function testSubscriptionNullResponse()
+    public function testSubscriptionNullResponse(): void
     {
         $processor = new Processor(new Schema([
             'query' => new ObjectType([
@@ -130,9 +129,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'list' => [
                         'type'    => new ListType(new StringType()),
-                        'resolve' => function () {
-                            return null;
-                        }
+                        'resolve' => fn() => null
                     ]
                 ]
             ])
@@ -141,7 +138,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['data' => ['__schema' => ['subscriptionType' => null]]], $data);
     }
 
-    public function testSchemaOperations()
+    public function testSchemaOperations(): void
     {
         $schema    = new Schema([
             'query' => new ObjectType([
@@ -156,15 +153,11 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                                     'args'    => [
                                         'shorten' => new BooleanType()
                                     ],
-                                    'resolve' => function ($value, $args) {
-                                        return empty($args['shorten']) ? $value['firstName'] : $value['firstName'];
-                                    }
+                                    'resolve' => fn($value, $args) => empty($args['shorten']) ? $value['firstName'] : $value['firstName']
                                 ],
                                 'id_alias'  => [
                                     'type'    => new IdType(),
-                                    'resolve' => function ($value) {
-                                        return $value['id'];
-                                    }
+                                    'resolve' => fn($value) => $value['id']
                                 ],
                                 'lastName'  => new StringType(),
                                 'code'      => new StringType(),
@@ -189,21 +182,15 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                     ],
                     'randomUser'        => [
                         'type'    => new TestObjectType(),
-                        'resolve' => function () {
-                            return ['invalidField' => 'John'];
-                        }
+                        'resolve' => fn(): array => ['invalidField' => 'John']
                     ],
                     'invalidValueQuery' => [
                         'type'    => new TestObjectType(),
-                        'resolve' => function () {
-                            return 'stringValue';
-                        }
+                        'resolve' => fn(): string => 'stringValue'
                     ],
                     'labels'            => [
                         'type'    => new ListType(new StringType()),
-                        'resolve' => function () {
-                            return ['one', 'two'];
-                        }
+                        'resolve' => fn(): array => ['one', 'two']
                     ]
                 ],
             ])
@@ -238,9 +225,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
             ->addField(new Field([
                 'name'    => 'increaseCounter',
                 'type'    => new IntType(),
-                'resolve' => function ($value, $args, ResolveInfo $info) {
-                    return $this->_counter += $args['amount'];
-                },
+                'resolve' => fn($value, $args, ResolveInfo $info): float|int|array => $this->_counter += $args['amount'],
                 'args'    => [
                     'amount' => [
                         'type'    => new IntType(),
@@ -250,15 +235,11 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
             ]))->addField(new Field([
                 'name'    => 'invalidResolveTypeMutation',
                 'type'    => new NonNullType(new IntType()),
-                'resolve' => function () {
-                    return null;
-                }
+                'resolve' => fn() => null
             ]))->addField(new Field([
                 'name'    => 'interfacedMutation',
                 'type'    => new TestInterfaceType(),
-                'resolve' => function () {
-                    return ['name' => 'John'];
-                }
+                'resolve' => fn(): array => ['name' => 'John']
             ]));
         $processor->processPayload('mutation { increaseCounter }');
         $this->assertEquals(['data' => ['increaseCounter' => 1]], $processor->getResponseData());
@@ -362,7 +343,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['data' => ['user' => ['name' => 'John']]], $processor->getResponseData());
     }
 
-    public function testEnumType()
+    public function testEnumType(): void
     {
         $processor = new Processor(new Schema([
             'query' => new ObjectType([
@@ -385,9 +366,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                             ]))
                         ],
                         'type'    => new StringType(),
-                        'resolve' => function ($value, $args) {
-                            return $args['argument1'];
-                        }
+                        'resolve' => fn($value, $args) => $args['argument1']
                     ]
                 ]
             ])
@@ -430,7 +409,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['data' => ['alias' => 'val1']], $response);
     }
 
-    public function testListEnumsSchemaOperations()
+    public function testListEnumsSchemaOperations(): void
     {
         $processor = new Processor(new Schema([
             'query' => new ObjectType([
@@ -438,45 +417,31 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'listQuery'                 => [
                         'type'    => new ListType(new TestEnumType()),
-                        'resolve' => function () {
-                            return 'invalid list';
-                        }
+                        'resolve' => fn(): string => 'invalid list'
                     ],
                     'listEnumQuery'             => [
                         'type'    => new ListType(new TestEnumType()),
-                        'resolve' => function () {
-                            return ['invalid enum'];
-                        }
+                        'resolve' => fn(): array => ['invalid enum']
                     ],
                     'invalidEnumQuery'          => [
                         'type'    => new TestEnumType(),
-                        'resolve' => function () {
-                            return 'invalid enum';
-                        }
+                        'resolve' => fn(): string => 'invalid enum'
                     ],
                     'enumQuery'                 => [
                         'type'    => new TestEnumType(),
-                        'resolve' => function () {
-                            return 1;
-                        }
+                        'resolve' => fn(): int => 1
                     ],
                     'invalidNonNullQuery'       => [
                         'type'    => new NonNullType(new IntType()),
-                        'resolve' => function () {
-                            return null;
-                        }
+                        'resolve' => fn() => null
                     ],
                     'invalidNonNullInsideQuery' => [
                         'type'    => new NonNullType(new IntType()),
-                        'resolve' => function () {
-                            return 'hello';
-                        }
+                        'resolve' => fn(): string => 'hello'
                     ],
                     'objectQuery'               => [
                         'type'    => new TestObjectType(),
-                        'resolve' => function () {
-                            return ['name' => 'John'];
-                        }
+                        'resolve' => fn(): array => ['name' => 'John']
                     ],
                     'deepObjectQuery'           => [
                         'type'    => new ObjectType([
@@ -486,14 +451,12 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                                 'enum'   => new TestEnumType(),
                             ],
                         ]),
-                        'resolve' => function () {
-                            return [
-                                'object' => [
-                                    'name' => 'John'
-                                ],
-                                'enum'   => 1
-                            ];
-                        },
+                        'resolve' => fn(): array => [
+                            'object' => [
+                                'name' => 'John'
+                            ],
+                            'enum'   => 1
+                        ],
                     ],
                 ]
             ])
@@ -541,7 +504,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['data' => ['test' => ['object' => ['name' => 'John']]]], $processor->getResponseData());
     }
 
-    public function testTypedFragment()
+    public function testTypedFragment(): void
     {
 
         $object1 = new ObjectType([
@@ -579,9 +542,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $invalidUnion = new UnionType([
             'name'        => 'TestUnion',
             'types'       => [$object1, $object2],
-            'resolveType' => function ($object) use ($object3) {
-                return $object3;
-            }
+            'resolveType' => fn($object): ObjectType => $object3
         ]);
         $processor    = new Processor(new Schema([
             'query' => new ObjectType([
@@ -607,9 +568,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                     ],
                     'invalidUnion' => [
                         'type'    => $invalidUnion,
-                        'resolve' => function () {
-                            return ['name' => 'name resolved'];
-                        }
+                        'resolve' => fn(): array => ['name' => 'name resolved']
                     ],
                 ]
             ])
@@ -666,7 +625,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(10 + 13 + 1, $visitor->getMemo());
     }
 
-    public function testContainer()
+    public function testContainer(): void
     {
         $container = new Container();
         $container->set('user', ['name' => 'Alex']);
@@ -677,9 +636,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'currentUser' => [
                         'type'    => new StringType(),
-                        'resolve' => function ($source, $args, ResolveInfo $info) {
-                            return $info->getContainer()->get('user')['name'];
-                        }
+                        'resolve' => fn($source, $args, ResolveInfo $info) => $info->getContainer()->get('user')['name']
                     ]
                 ]
             ])
@@ -692,7 +649,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['data' => ['currentUser' => 'Alex']], $processor->processPayload('{ currentUser }')->getResponseData());
     }
 
-    public function testComplexityReducer()
+    public function testComplexityReducer(): void
     {
         $schema    = new Schema(
             [
@@ -710,24 +667,20 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                                                 'args'    => [
                                                     'shorten' => new BooleanType()
                                                 ],
-                                                'resolve' => function ($value, $args) {
-                                                    return empty($args['shorten']) ? $value['firstName'] : $value['firstName'];
-                                                }
+                                                'resolve' => fn($value, $args) => empty($args['shorten']) ? $value['firstName'] : $value['firstName']
                                             ],
                                             'lastName'  => new StringType(),
                                             'code'      => new StringType(),
                                             'likes'     => [
                                                 'type'    => new IntType(),
                                                 'cost'    => 10,
-                                                'resolve' => function () {
-                                                    return 42;
-                                                }
+                                                'resolve' => fn(): int => 42
                                             ]
                                         ]
                                     ]
                                 ),
                                 'cost'    => function ($args, $context, $childCost) {
-                                    $argsCost = isset($args['cost']) ? $args['cost'] : 1;
+                                    $argsCost = $args['cost'] ?? 1;
 
                                     return 1 + $argsCost * $childCost;
                                 },

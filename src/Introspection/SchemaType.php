@@ -48,7 +48,7 @@ class SchemaType extends AbstractObjectType
         return $dirs;
     }
 
-    public function build($config)
+    public function build($config): void
     {
         $config
             ->addField(new Field([

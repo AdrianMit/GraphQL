@@ -9,18 +9,16 @@
 namespace Youshido\GraphQL\Type;
 
 
+use Stringable;
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
 
-abstract class AbstractType implements TypeInterface
+abstract class AbstractType implements TypeInterface, Stringable
 {
-
     protected $lastValidationError = null;
-
     public function isCompositeType()
     {
         return false;
     }
-
     /**
      * @return AbstractType
      */
@@ -28,7 +26,6 @@ abstract class AbstractType implements TypeInterface
     {
         return $this;
     }
-
     /**
      * @return AbstractType
      */
@@ -36,7 +33,6 @@ abstract class AbstractType implements TypeInterface
     {
         return $this->getType();
     }
-
     /**
      * @return AbstractType|AbstractObjectType
      */
@@ -44,38 +40,31 @@ abstract class AbstractType implements TypeInterface
     {
         return $this;
     }
-
     public function getValidationError($value = null)
     {
         return $this->lastValidationError;
     }
-
     public function isValidValue($value)
     {
         return true;
     }
-
     public function parseValue($value)
     {
         return $value;
     }
-
     public function parseInputValue($value)
     {
         return $this->parseValue($value);
     }
-
     public function serialize($value)
     {
         return $value;
     }
-
     public function isInputType()
     {
         return false;
     }
-
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }

@@ -9,16 +9,17 @@
 namespace Youshido\Tests\Library\Type;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\Object\ObjectType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\Tests\DataProvider\TestTimeType;
 
-class ScalarExtendTypeTest extends \PHPUnit_Framework_TestCase
+class ScalarExtendTypeTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testType()
+    public function testType(): void
     {
         $reportType = new ObjectType([
             'name'   => 'Report',
@@ -33,12 +34,10 @@ class ScalarExtendTypeTest extends \PHPUnit_Framework_TestCase
                     'fields' => [
                         'latestReport' => [
                             'type'    => $reportType,
-                            'resolve' => function () {
-                                return [
-                                    'title' => 'Accident #1',
-                                    'time'  => '13:30:12',
-                                ];
-                            }
+                            'resolve' => fn(): array => [
+                                'title' => 'Accident #1',
+                                'time'  => '13:30:12',
+                            ]
                         ],
                     ]
                 ])

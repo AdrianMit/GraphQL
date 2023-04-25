@@ -20,6 +20,6 @@ interface DeferredResolverInterface {
    * @return mixed
    *   The actual result value.
    */
-  public function resolve();
+  public function resolve(): mixed;
 
 }

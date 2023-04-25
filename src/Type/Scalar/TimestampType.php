@@ -24,9 +24,8 @@ class TimestampType extends AbstractScalarType
 
     /**
      * @param $value \DateTime
-     * @return null|string
      */
-    public function serialize($value)
+    public function serialize($value): ?string
     {
         if ($value === null || !is_object($value)) {
             return null;

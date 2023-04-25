@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Schema;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Directive\Directive;
 use Youshido\GraphQL\Directive\DirectiveLocation;
 use Youshido\GraphQL\Execution\Processor;
@@ -25,9 +26,9 @@ use Youshido\GraphQL\Type\Union\UnionType;
 use Youshido\Tests\DataProvider\TestEmptySchema;
 use Youshido\Tests\DataProvider\TestSchema;
 
-class IntrospectionTest extends \PHPUnit_Framework_TestCase
+class IntrospectionTest extends PHPUnit_Framework_TestCase
 {
-    private $introspectionQuery = <<<TEXT
+    private string $introspectionQuery = <<<TEXT
 query IntrospectionQuery {
                 __schema {
                     queryType { name }
@@ -105,7 +106,7 @@ query IntrospectionQuery {
 TEXT;
 
 
-    public function testIntrospectionDirectiveRequest()
+    public function testIntrospectionDirectiveRequest(): void
     {
         $processor = new Processor(new TestSchema());
 
@@ -120,7 +121,7 @@ TEXT;
      *
      * @dataProvider predefinedSchemaProvider
      */
-    public function testPredefinedQueries($query, $expectedResponse)
+    public function testPredefinedQueries($query, $expectedResponse): void
     {
         $schema = new TestEmptySchema();
         $schema->addQueryField(new Field([
@@ -139,12 +140,10 @@ TEXT;
             'description'       => 'latest description',
             'deprecationReason' => 'for test',
             'isDeprecated'      => true,
-            'resolve'           => function () {
-                return [
-                    'id'   => 1,
-                    'name' => 'Alex'
-                ];
-            }
+            'resolve'           => fn(): array => [
+                'id'   => 1,
+                'name' => 'Alex'
+            ]
         ]));
 
         $processor = new Processor($schema);
@@ -285,7 +284,7 @@ TEXT;
         ];
     }
 
-    public function testCombinedFields()
+    public function testCombinedFields(): void
     {
         $schema = new TestEmptySchema();
 
@@ -295,7 +294,7 @@ TEXT;
                 'id'   => ['type' => new IntType()],
                 'name' => ['type' => new IntType()],
             ],
-            'resolveType' => function ($type) {
+            'resolveType' => function ($type): void {
 
             }
         ]);
@@ -323,7 +322,7 @@ TEXT;
         $unionType = new UnionType([
             'name'        => 'UnionType',
             'types'       => [$object1, $object2],
-            'resolveType' => function () {
+            'resolveType' => function (): void {
 
             }
         ]);
@@ -334,12 +333,10 @@ TEXT;
             'args'    => [
                 'id' => ['type' => TypeMap::TYPE_INT]
             ],
-            'resolve' => function () {
-                return [
-                    'id'   => 1,
-                    'name' => 'Alex'
-                ];
-            }
+            'resolve' => fn(): array => [
+                'id'   => 1,
+                'name' => 'Alex'
+            ]
         ]));
 
         $schema->addMutationField(new Field([
@@ -360,9 +357,7 @@ TEXT;
                     ]
                 ])
             ],
-            'resolve' => function () {
-                return null;
-            }
+            'resolve' => fn() => null
         ]));
 
         $processor = new Processor($schema);
@@ -374,7 +369,7 @@ TEXT;
         $this->assertArrayNotHasKey('errors', $responseData);
     }
 
-    public function testCanIntrospectDirectives()
+    public function testCanIntrospectDirectives(): void
     {
         $schema = new TestSchema();
         $schema->getDirectiveList()->addDirectives([

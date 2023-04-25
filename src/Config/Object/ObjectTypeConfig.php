@@ -25,7 +25,7 @@ class ObjectTypeConfig extends AbstractConfig implements TypeConfigInterface
 
     use FieldsAwareConfigTrait;
 
-    public function getRules()
+    public function getRules(): array
     {
         return [
             'name'        => ['type' => TypeService::TYPE_STRING, 'required' => true],
@@ -35,15 +35,12 @@ class ObjectTypeConfig extends AbstractConfig implements TypeConfigInterface
         ];
     }
 
-    protected function build()
+    protected function build(): void
     {
         $this->buildFields();
     }
 
-    /**
-     * @return AbstractInterfaceType[]
-     */
-    public function getInterfaces()
+    public function getInterfaces(): array
     {
         return $this->get('interfaces', []);
     }

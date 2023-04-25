@@ -27,12 +27,12 @@ final class Field extends AbstractField
      */
     public function getType()
     {
-        return $this->_typeCache ? $this->_typeCache : ($this->_typeCache = $this->getConfigValue('type'));
+        return $this->_typeCache ?: ($this->_typeCache = $this->getConfigValue('type'));
     }
 
     public function getName()
     {
-        return $this->_nameCache ? $this->_nameCache : ($this->_nameCache = $this->getConfigValue('name'));
+        return $this->_nameCache ?: ($this->_nameCache = $this->getConfigValue('name'));
     }
 
 }

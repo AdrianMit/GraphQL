@@ -22,14 +22,14 @@ trait AutoNameTrait
             return $this->config->getName();
         }
 
-        $className = get_called_class();
+        $className = static::class;
 
         if ($prevPos = strrpos($className, '\\')) {
             $className = substr($className, $prevPos + 1);
         }
-        if (substr($className, -5) == 'Field') {
+        if (str_ends_with($className, 'Field')) {
             $className = lcfirst(substr($className, 0, -5));
-        } elseif (substr($className, -4) == 'Type') {
+        } elseif (str_ends_with($className, 'Type')) {
             $className = substr($className, 0, -4);
         }
 

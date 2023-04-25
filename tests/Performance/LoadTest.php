@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Performance;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\ListType\ListType;
@@ -16,7 +17,7 @@ use Youshido\GraphQL\Type\Object\ObjectType;
 use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class LoadTest extends \PHPUnit_Framework_TestCase
+class LoadTest extends PHPUnit_Framework_TestCase
 {
 
     public function testLoad10k()
@@ -41,7 +42,7 @@ class LoadTest extends \PHPUnit_Framework_TestCase
         $data = [];
         for ($i = 1; $i <= 10000; ++$i) {
             $authors = [];
-            while (count($authors) < rand(1, 4)) {
+            while (count($authors) < random_int(1, 4)) {
                 $authors[] = [
                     'name' => 'Author ' . substr(md5(time()), 0, 4)
                 ];
@@ -59,9 +60,7 @@ class LoadTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'posts' => [
                         'type' => new ListType($postType),
-                        'resolve' => function() use ($data) {
-                            return $data;
-                        }
+                        'resolve' => fn(): array => $data
                     ]
                 ],
             ]),
@@ -69,7 +68,7 @@ class LoadTest extends \PHPUnit_Framework_TestCase
         return true;
         $p->processPayload('{ posts { id, title, authors { name } } }');
         $res = $p->getResponseData();
-        echo "Count: " . count($res['data']['posts']) . "\n";
+        echo "Count: " . (is_countable($res['data']['posts']) ? count($res['data']['posts']) : 0) . "\n";
         var_dump($res['data']['posts'][0]);
         printf("Test Time: %04f\n", microtime(true) - $time);
     }

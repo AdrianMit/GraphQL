@@ -8,27 +8,19 @@
 namespace Youshido\GraphQL\Exception;
 
 
+use Exception;
 use Youshido\GraphQL\Exception\Interfaces\LocationableExceptionInterface;
 use Youshido\GraphQL\Parser\Location;
 
-class ResolveException extends \Exception implements LocationableExceptionInterface
+class ResolveException extends Exception implements LocationableExceptionInterface
 {
 
-    /** @var  Location */
-    private $location;
-
-    public function __construct($message, Location $location = null)
+    public function __construct(string $message, private ?Location $location = null)
     {
         parent::__construct($message);
-
-        $this->location = $location;
     }
 
-
-    /**
-     * @return Location
-     */
-    public function getLocation()
+    public function getLocation(): Location
     {
         return $this->location;
     }

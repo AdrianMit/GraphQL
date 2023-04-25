@@ -12,10 +12,6 @@ use Youshido\GraphQL\Parser\Location;
 
 interface LocationableExceptionInterface
 {
-
-    /**
-     * @return Location
-     */
-    public function getLocation();
+    public function getLocation(): Location;
 
 }

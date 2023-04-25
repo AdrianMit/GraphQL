@@ -2,17 +2,18 @@
 
 namespace Youshido\Tests\Parser;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
 use Youshido\GraphQL\Parser\Location;
 
-class VariableTest extends \PHPUnit_Framework_TestCase
+class VariableTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Test if variable value equals expected value
      *
      * @dataProvider variableProvider
      */
-    public function testGetValue($actual, $expected)
+    public function testGetValue($actual, $expected): void
     {
         $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
         $var->setValue($actual);
@@ -23,13 +24,13 @@ class VariableTest extends \PHPUnit_Framework_TestCase
      * @expectedException \LogicException
      * @expectedExceptionMessage Value is not set for variable "foo"
      */
-    public function testGetNullValueException()
+    public function testGetNullValueException(): void
     {
         $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
         $var->getValue();
     }
 
-    public function testGetValueReturnsDefaultValueIfNoValueSet()
+    public function testGetValueReturnsDefaultValueIfNoValueSet(): void
     {
         $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
         $var->setDefaultValue('default-value');
@@ -40,7 +41,7 @@ class VariableTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testGetValueReturnsSetValueEvenWithDefaultValue()
+    public function testGetValueReturnsSetValueEvenWithDefaultValue(): void
     {
         $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
         $var->setValue('real-value');
@@ -52,7 +53,7 @@ class VariableTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testIndicatesDefaultValuePresent()
+    public function testIndicatesDefaultValuePresent(): void
     {
         $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
         $var->setDefaultValue('default-value');
@@ -62,7 +63,7 @@ class VariableTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testHasNoDefaultValue()
+    public function testHasNoDefaultValue(): void
     {
         $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
 

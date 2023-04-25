@@ -41,7 +41,7 @@ class TypeDefinitionField extends AbstractField
         return null;
     }
 
-    public function build(FieldConfig $config)
+    public function build(FieldConfig $config): void
     {
         $config->addArgument(new InputField([
             'name' => 'name',
@@ -61,7 +61,7 @@ class TypeDefinitionField extends AbstractField
     /**
      * @return AbstractObjectType
      */
-    public function getType()
+    public function getType(): QueryType
     {
         return new QueryType();
     }

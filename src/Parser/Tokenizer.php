@@ -174,7 +174,7 @@ class Tokenizer
         return false;
     }
 
-    protected function scanWord()
+    protected function scanWord(): Token
     {
         $start = $this->pos;
         $this->pos++;
@@ -196,30 +196,16 @@ class Tokenizer
 
     protected function getKeyword($name)
     {
-        switch ($name) {
-            case 'null':
-                return Token::TYPE_NULL;
-
-            case 'true':
-                return Token::TYPE_TRUE;
-
-            case 'false':
-                return Token::TYPE_FALSE;
-
-            case 'query':
-                return Token::TYPE_QUERY;
-
-            case 'fragment':
-                return Token::TYPE_FRAGMENT;
-
-            case 'mutation':
-                return Token::TYPE_MUTATION;
-
-            case 'on':
-                return Token::TYPE_ON;
-        }
-
-        return Token::TYPE_IDENTIFIER;
+        return match ($name) {
+            'null' => Token::TYPE_NULL,
+            'true' => Token::TYPE_TRUE,
+            'false' => Token::TYPE_FALSE,
+            'query' => Token::TYPE_QUERY,
+            'fragment' => Token::TYPE_FRAGMENT,
+            'mutation' => Token::TYPE_MUTATION,
+            'on' => Token::TYPE_ON,
+            default => Token::TYPE_IDENTIFIER,
+        };
     }
 
     protected function expect($type)
@@ -236,7 +222,7 @@ class Tokenizer
         return $this->peek()->getType() === $type;
     }
 
-    protected function scanNumber()
+    protected function scanNumber(): Token
     {
         $start = $this->pos;
         if ($this->source[$this->pos] === '-') {
@@ -252,7 +238,7 @@ class Tokenizer
 
         $value = substr($this->source, $start, $this->pos - $start);
 
-        if (strpos($value, '.') === false) {
+        if (!str_contains($value, '.')) {
             $value = (int) $value;
         } else {
             $value = (float) $value;
@@ -273,12 +259,12 @@ class Tokenizer
         }
     }
 
-    protected function createException($message)
+    protected function createException($message): SyntaxErrorException
     {
         return new SyntaxErrorException(sprintf('%s', $message), $this->getLocation());
     }
 
-    protected function getLocation()
+    protected function getLocation(): Location
     {
         return new Location($this->getLine(), $this->getColumn());
     }

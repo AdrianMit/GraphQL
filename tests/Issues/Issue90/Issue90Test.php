@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Issues\Issue90;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\Tests\Issues\Issue90\Issue90Schema;
 
@@ -10,10 +11,10 @@ use Youshido\Tests\Issues\Issue90\Issue90Schema;
  * Date: 25/11/16
  * Time: 9.39
  */
-class Issue90Test extends \PHPUnit_Framework_TestCase
+class Issue90Test extends PHPUnit_Framework_TestCase
 {
 
-    public function testQueryDateTimeTypeWithDateParameter()
+    public function testQueryDateTimeTypeWithDateParameter(): void
     {
         $schema = new Issue90Schema();
         $processor = new Processor($schema);
@@ -27,7 +28,7 @@ class Issue90Test extends \PHPUnit_Framework_TestCase
         self::assertEquals("2016-11-25 09:53am", $res['data']['echo']);
     }
 
-    public function testQueryDateTimeTypeWithoutParameter()
+    public function testQueryDateTimeTypeWithoutParameter(): void
     {
         $processor = new Processor(new Issue90Schema());
         $processor->processPayload("query{ echo }");
@@ -38,7 +39,7 @@ class Issue90Test extends \PHPUnit_Framework_TestCase
         self::assertNull($res['data']['echo']);
     }
 
-    public function testQueryDateTimeTypeWithNullParameter()
+    public function testQueryDateTimeTypeWithNullParameter(): void
     {
         $processor = new Processor(new Issue90Schema());
         $processor->processPayload("query{ echo(date: null) }");
@@ -49,7 +50,7 @@ class Issue90Test extends \PHPUnit_Framework_TestCase
         self::assertNull($res['data']['echo'], "Error Quering with explicit date null parameter ");
     }
 
-    public function testMutatingDateTimeWithParameter()
+    public function testMutatingDateTimeWithParameter(): void
     {
         $schema = new Issue90Schema();
         $processor = new Processor($schema);
@@ -63,7 +64,7 @@ class Issue90Test extends \PHPUnit_Framework_TestCase
         self::assertEquals("2016-11-25 09:53am", $res['data']['echo']);
     }
 
-    public function testMutatingDateTimeWithExplicitNullParameter()
+    public function testMutatingDateTimeWithExplicitNullParameter(): void
     {
         $schema = new Issue90Schema();
         $processor = new Processor($schema);

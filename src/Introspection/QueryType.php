@@ -155,7 +155,7 @@ class QueryType extends AbstractObjectType
         return null;
     }
 
-    public function build($config)
+    public function build($config): void
     {
         $config
             ->addField('name', TypeMap::TYPE_STRING)

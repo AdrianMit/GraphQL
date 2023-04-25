@@ -9,7 +9,7 @@ use Youshido\GraphQL\Type\Scalar\DateTimeType;
 class Issue90Schema extends AbstractSchema
 {
 
-    public function build(SchemaConfig $config)
+    public function build(SchemaConfig $config): void
     {
         $config->setQuery(
             new ObjectType([

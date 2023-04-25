@@ -19,7 +19,7 @@ class UnionTypeConfig extends AbstractConfig implements TypeConfigInterface
 {
     use FieldsAwareConfigTrait, ArgumentsAwareConfigTrait;
 
-    public function getRules()
+    public function getRules(): array
     {
         return [
             'name'        => ['type' => TypeService::TYPE_STRING, 'required' => true],

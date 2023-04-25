@@ -15,7 +15,7 @@ use Youshido\GraphQL\Type\TypeMap;
 class EnumValueType extends AbstractObjectType
 {
 
-    public function build($config)
+    public function build($config): void
     {
         $config
             ->addField('name', new NonNullType(TypeMap::TYPE_STRING))

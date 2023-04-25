@@ -9,16 +9,17 @@
 namespace Youshido\Tests\Library\Relay;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Relay\Connection\Connection;
 use Youshido\GraphQL\Relay\Type\PageInfoType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\TypeMap;
 use Youshido\Tests\DataProvider\TestObjectType;
 
-class ConnectionTest extends \PHPUnit_Framework_TestCase
+class ConnectionTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testConnectionArgs()
+    public function testConnectionArgs(): void
     {
         $this->assertEquals([
             'after'  => ['type' => TypeMap::TYPE_STRING],
@@ -29,7 +30,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         ], Connection::connectionArgs());
     }
 
-    public function testPageInfoType()
+    public function testPageInfoType(): void
     {
         $type = new PageInfoType();
         $this->assertEquals('PageInfo', $type->getName());
@@ -40,7 +41,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($type->hasField('endCursor'));
     }
 
-    public function testEdgeDefinition()
+    public function testEdgeDefinition(): void
     {
         $edgeType = Connection::edgeDefinition(new StringType(), 'user');
         $this->assertEquals('userEdge', $edgeType->getName());
@@ -48,7 +49,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($edgeType->hasField('cursor'));
     }
 
-    public function testConnectionDefinition()
+    public function testConnectionDefinition(): void
     {
         $connection = Connection::connectionDefinition(new TestObjectType(), 'user');
         $this->assertEquals($connection->getName(), 'userConnection');

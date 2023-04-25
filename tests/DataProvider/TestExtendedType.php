@@ -15,7 +15,7 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 
 class TestExtendedType extends AbstractObjectType
 {
-    public function build($config)
+    public function build($config): void
     {
         $config->applyInterface(new TestInterfaceType())
             ->addField('ownField', new StringType());

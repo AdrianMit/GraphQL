@@ -18,7 +18,7 @@ class TestInputField extends AbstractInputField
     /**
      * @return InputTypeInterface
      */
-    public function getType()
+    public function getType(): IntType
     {
         return new IntType();
     }

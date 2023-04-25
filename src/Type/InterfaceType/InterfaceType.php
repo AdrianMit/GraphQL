@@ -23,7 +23,7 @@ final class InterfaceType extends AbstractInterfaceType
      * 
      * @codeCoverageIgnore
      */
-    public function build($config)
+    public function build($config): void
     {
     }
 

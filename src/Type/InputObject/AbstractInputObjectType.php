@@ -9,6 +9,7 @@
 namespace Youshido\GraphQL\Type\InputObject;
 
 
+use Exception;
 use Youshido\GraphQL\Config\Object\InputObjectTypeConfig;
 use Youshido\GraphQL\Field\InputFieldInterface;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
@@ -65,9 +66,7 @@ abstract class AbstractInputObjectType extends AbstractType
         }
 
         $typeConfig     = $this->getConfig();
-        $requiredFields = array_filter($typeConfig->getFields(), function (InputFieldInterface $field) {
-            return $field->getType()->getKind() == TypeMap::KIND_NON_NULL;
-        });
+        $requiredFields = array_filter($typeConfig->getFields(), fn(InputFieldInterface $field): bool => $field->getType()->getKind() == TypeMap::KIND_NON_NULL);
 
         foreach ($value as $valueKey => $valueItem) {
             if (!$typeConfig->hasField($valueKey)) {
@@ -86,11 +85,11 @@ abstract class AbstractInputObjectType extends AbstractType
                 unset($requiredFields[$valueKey]);
             }
         }
-        if (count($requiredFields)) {
-            $this->lastValidationError = sprintf('%s %s required on %s', implode(', ', array_keys($requiredFields)), count($requiredFields) > 1 ? 'are' : 'is', $typeConfig->getName());
+        if (count((array) $requiredFields)) {
+            $this->lastValidationError = sprintf('%s %s required on %s', implode(', ', array_keys($requiredFields)), count((array) $requiredFields) > 1 ? 'are' : 'is', $typeConfig->getName());
         }
 
-        return !(count($requiredFields) > 0);
+        return !(count((array) $requiredFields) > 0);
     }
 
     public function getKind()
@@ -117,7 +116,7 @@ abstract class AbstractInputObjectType extends AbstractType
             }
 
             if (!($inputField = $typeConfig->getField($valueKey))) {
-                throw new \Exception(sprintf('Invalid field "%s" on %s', $valueKey, $typeConfig->getName()));
+                throw new Exception(sprintf('Invalid field "%s" on %s', $valueKey, $typeConfig->getName()));
             }
             $value[$valueKey] = $inputField->getType()->parseValue($item);
         }

@@ -16,39 +16,16 @@ use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerInterface;
 interface ExecutionContextInterface extends ErrorContainerInterface
 {
 
-    /**
-     * @return AbstractSchema
-     */
-    public function getSchema();
+    public function getSchema(): AbstractSchema;
 
-    /**
-     * @param AbstractSchema $schema
-     *
-     * @return $this
-     */
-    public function setSchema(AbstractSchema $schema);
+    public function setSchema(AbstractSchema $schema): static;
 
-    /**
-     * @return Request
-     */
-    public function getRequest();
+    public function getRequest(): Request;
 
-    /**
-     * @param Request $request
-     *
-     * @return $this
-     */
-    public function setRequest(Request $request);
+    public function setRequest(Request $request): static;
 
-    /**
-     * @return ContainerInterface
-     */
-    public function getContainer();
+    public function getContainer(): ContainerInterface;
 
-    /**
-     * @param ContainerInterface $container
-     * @return mixed
-     */
-    public function setContainer(ContainerInterface $container);
+    public function setContainer(ContainerInterface $container): mixed;
 
 }

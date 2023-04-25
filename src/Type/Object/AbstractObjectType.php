@@ -9,6 +9,7 @@
 namespace Youshido\GraphQL\Type\Object;
 
 
+use InvalidArgumentException;
 use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
 use Youshido\GraphQL\Type\AbstractType;
 use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
@@ -52,7 +53,7 @@ abstract class AbstractObjectType extends AbstractType
 
     final public function serialize($value)
     {
-        throw new \InvalidArgumentException('You can not serialize object value directly');
+        throw new InvalidArgumentException('You can not serialize object value directly');
     }
 
     public function getKind()

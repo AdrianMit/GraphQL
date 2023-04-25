@@ -8,6 +8,7 @@
 
 namespace Youshido\Tests\Schema;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Config\Schema\SchemaConfig;
 use Youshido\GraphQL\Execution\DeferredResolver;
 use Youshido\GraphQL\Execution\Processor;
@@ -42,15 +43,12 @@ interface DeferredDatabase
 class DeferredQueryBuffer
 {
 
-    protected $database;
-
     protected $buffer = [];
 
     protected $results = [];
 
-    public function __construct(DeferredDatabase $database)
+    public function __construct(protected DeferredDatabase $database)
     {
-        $this->database = $database;
     }
 
     public function add(array $ids)
@@ -58,9 +56,7 @@ class DeferredQueryBuffer
         $key = md5(serialize($ids));
         $this->buffer[$key] = $ids;
 
-        return function () use ($key) {
-            return $this->fetch($key);
-        };
+        return fn() => $this->fetch($key);
     }
 
     protected function fetch($resultId)
@@ -86,28 +82,20 @@ class DeferredQueryBuffer
 class DeferredUserType extends AbstractObjectType
 {
 
-    /**
-     * @var \Youshido\Tests\Schema\DeferredQueryBuffer
-     */
-    protected $database;
-
-    public function __construct(DeferredQueryBuffer $database)
+    public function __construct(protected DeferredQueryBuffer $database)
     {
-        $this->database = $database;
         parent::__construct();
     }
 
 
-    public function build($config)
+    public function build($config): void
     {
         $config->addField(
           new Field(
             [
               'name' => 'name',
               'type' => new StringType(),
-              'resolve' => function ($value) {
-                  return $value['name'];
-              },
+              'resolve' => fn($value) => $value['name'],
             ]
           )
         );
@@ -117,11 +105,9 @@ class DeferredUserType extends AbstractObjectType
             [
               'name' => 'friends',
               'type' => new ListType(new DeferredUserType($this->database)),
-              'resolve' => function ($value) {
-                  return new DeferredResolver(
-                    $this->database->add($value['friends'])
-                  );
-              },
+              'resolve' => fn($value): DeferredResolver => new DeferredResolver(
+                $this->database->add($value['friends'])
+              ),
             ]
           )
         );
@@ -131,11 +117,9 @@ class DeferredUserType extends AbstractObjectType
             [
               'name' => 'foes',
               'type' => new ListType(new DeferredUserType($this->database)),
-              'resolve' => function ($value) {
-                  return new DeferredResolver(
-                    $this->database->add($value['foes'])
-                  );
-              },
+              'resolve' => fn($value): DeferredResolver => new DeferredResolver(
+                $this->database->add($value['foes'])
+              ),
             ]
           )
         );
@@ -151,9 +135,7 @@ class DeferredSchema extends AbstractSchema
           [
             'name' => 'users',
             'type' => new ListType(new DeferredUserType($buffer)),
-            'resolve' => function ($value, $args) use ($buffer) {
-                return new DeferredResolver($buffer->add($args['ids']));
-            },
+            'resolve' => fn($value, $args): DeferredResolver => new DeferredResolver($buffer->add($args['ids'])),
           ]
         );
 
@@ -176,7 +158,7 @@ class DeferredSchema extends AbstractSchema
     }
 
 
-    public function build(SchemaConfig $config)
+    public function build(SchemaConfig $config): void
     {
     }
 
@@ -186,7 +168,7 @@ class DeferredSchema extends AbstractSchema
 /**
  * Test the deferred resolving under different circumstances.
  */
-class DeferredTest extends \PHPUnit_Framework_TestCase
+class DeferredTest extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -206,7 +188,7 @@ class DeferredTest extends \PHPUnit_Framework_TestCase
     /**
      * Test a simple single deferred field.
      */
-    public function testSingleResolve()
+    public function testSingleResolve(): void
     {
         $query = 'query {
           users(ids: ["a", "b"]) {
@@ -244,7 +226,7 @@ class DeferredTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if multiple calls to the same field result in a single query.
      */
-    public function testMultiResolve()
+    public function testMultiResolve(): void
     {
 
         $query = 'query {
@@ -290,7 +272,7 @@ class DeferredTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if recursive deferred resolvers work properly.
      */
-    public function testRecursiveResolve()
+    public function testRecursiveResolve(): void
     {
 
         $query = 'query {
@@ -344,7 +326,7 @@ class DeferredTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if multiple deferred resolvers are optimized into two queries.
      */
-    public function testMultiRecursiveResolve()
+    public function testMultiRecursiveResolve(): void
     {
 
         $query = 'query {

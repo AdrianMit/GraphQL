@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Issues\Issue116Test;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\ListType\ListType;
@@ -10,10 +11,10 @@ use Youshido\GraphQL\Type\Object\ObjectType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class Issue116Test extends \PHPUnit_Framework_TestCase
+class Issue116Test extends PHPUnit_Framework_TestCase
 {
 
-    public function testInternalVariableArgument()
+    public function testInternalVariableArgument(): void
     {
         $schema    = new Schema([
             'query' => new ObjectType([
@@ -48,14 +49,12 @@ class Issue116Test extends \PHPUnit_Framework_TestCase
                         'args'    => [
                             'first' => new IntType(),
                         ],
-                        'resolve' => function () {
-                            return [
-                                'pageInfo' => [
-                                    'totalEdges' => 10,
-                                    'cursors'    => []
-                                ]
-                            ];
-                        }
+                        'resolve' => fn(): array => [
+                            'pageInfo' => [
+                                'totalEdges' => 10,
+                                'cursors'    => []
+                            ]
+                        ]
                     ]
                 ]
             ])

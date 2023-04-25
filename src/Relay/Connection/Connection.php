@@ -19,7 +19,7 @@ use Youshido\GraphQL\Type\TypeMap;
 class Connection
 {
 
-    public static function connectionArgs()
+    public static function connectionArgs(): array
     {
         return array_merge(self::forwardArgs(), self::backwardArgs());
     }
@@ -41,14 +41,11 @@ class Connection
     }
 
     /**
-     * @param AbstractType $type
-     * @param null|string  $name
      * @param array        $config
      * @option string  edgeFields
      *
-     * @return ObjectType
      */
-    public static function edgeDefinition(AbstractType $type, $name = null, $config = [])
+    public static function edgeDefinition(AbstractType $type, ?string $name = null, $config = []): ObjectType
     {
         $name       = $name ?: $type->getName();
         $edgeFields = !empty($config['edgeFields']) ? $config['edgeFields'] : [];
@@ -60,7 +57,7 @@ class Connection
                 'node'   => [
                     'type'        => $type,
                     'description' => 'The item at the end of the edge',
-                    'resolve'     => [__CLASS__, 'getNode'],
+                    'resolve'     => [self::class, 'getNode'],
                 ],
                 'cursor' => [
                     'type'        => TypeMap::TYPE_STRING,
@@ -73,14 +70,11 @@ class Connection
     }
 
     /**
-     * @param AbstractType $type
-     * @param null|string  $name
      * @param array        $config
      * @option string  connectionFields
      *
-     * @return ObjectType
      */
-    public static function connectionDefinition(AbstractType $type, $name = null, $config = [])
+    public static function connectionDefinition(AbstractType $type, ?string $name = null, $config = []): ObjectType
     {
         $name             = $name ?: $type->getName();
         $connectionFields = !empty($config['connectionFields']) ? $config['connectionFields'] : [];
@@ -92,17 +86,17 @@ class Connection
                 'totalCount' => [
                     'type'        => new NonNullType(new IntType()),
                     'description' => 'How many nodes.',
-                    'resolve'     => [__CLASS__, 'getTotalCount'],
+                    'resolve'     => [self::class, 'getTotalCount'],
                 ],
                 'pageInfo' => [
                     'type'        => new NonNullType(new PageInfoType()),
                     'description' => 'Information to aid in pagination.',
-                    'resolve'     => [__CLASS__, 'getPageInfo'],
+                    'resolve'     => [self::class, 'getPageInfo'],
                 ],
                 'edges'    => [
                     'type'        => new ListType(self::edgeDefinition($type, $name, $config)),
                     'description' => 'A list of edges.',
-                    'resolve'     => [__CLASS__, 'getEdges'],
+                    'resolve'     => [self::class, 'getEdges'],
                 ]
             ], $connectionFields)
         ]);
@@ -112,21 +106,21 @@ class Connection
 
     public static function getTotalCount($value)
     {
-        return isset($value['totalCount']) ? $value['totalCount'] : -1;
+        return $value['totalCount'] ?? -1;
     }
 
     public static function getEdges($value)
     {
-        return isset($value['edges']) ? $value['edges'] : null;
+        return $value['edges'] ?? null;
     }
 
     public static function getPageInfo($value)
     {
-        return isset($value['pageInfo']) ? $value['pageInfo'] : null;
+        return $value['pageInfo'] ?? null;
     }
 
     public static function getNode($value)
     {
-        return isset($value['node']) ? $value['node'] : null;
+        return $value['node'] ?? null;
     }
 }

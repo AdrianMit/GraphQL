@@ -17,7 +17,7 @@ use Youshido\GraphQL\Type\NonNullType;
 class TestObjectType extends AbstractObjectType
 {
 
-    public function build($config)
+    public function build($config): void
     {
         $config
             ->addField('id', new IntType())
@@ -41,9 +41,7 @@ class TestObjectType extends AbstractObjectType
                  'args'    => [
                      'noop' => new IntType()
                  ],
-                 'resolve' => function ($value, $args, $info) {
-                   return ['address' => '1234 Street'];
-                 }
+                 'resolve' => fn($value, $args, $info): array => ['address' => '1234 Street']
              ]
             )
             ->addField(
@@ -52,9 +50,7 @@ class TestObjectType extends AbstractObjectType
                     'args'    => [
                         'value' => new NonNullType(new StringType())
                     ],
-                    'resolve' => function ($value, $args, $info) {
-                        return $args['value'];
-                    }
+                    'resolve' => fn($value, $args, $info) => $args['value']
                 ]
             );
     }

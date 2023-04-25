@@ -7,6 +7,8 @@
 
 namespace Youshido\Tests\Schema;
 
+use Stringable;
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\ListType\ListType;
@@ -16,22 +18,19 @@ use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class uid
+class uid implements Stringable
 {
-    private $uid;
-
-    public function __construct($uid)
+    public function __construct(private $uid)
     {
-        $this->uid = $uid;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->uid;
+        return (string) $this->uid;
     }
 }
 
-class NonNullableTest extends \PHPUnit_Framework_TestCase
+class NonNullableTest extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -40,7 +39,7 @@ class NonNullableTest extends \PHPUnit_Framework_TestCase
      * @param $query
      * @param $expected
      */
-    public function testNullableResolving($query, $expected)
+    public function testNullableResolving($query, $expected): void
     {
         $schema = new Schema([
             'query' => new ObjectType([
@@ -48,15 +47,11 @@ class NonNullableTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'nonNullScalar'        => [
                         'type'    => new NonNullType(new IntType()),
-                        'resolve' => function () {
-                            return null;
-                        },
+                        'resolve' => fn() => null,
                     ],
                     'nonNullList'          => [
                         'type'    => new NonNullType(new ListType(new IntType())),
-                        'resolve' => function () {
-                            return null;
-                        }
+                        'resolve' => fn() => null
                     ],
                     'user'                 => [
                         'type'    => new NonNullType(new ObjectType([
@@ -66,36 +61,28 @@ class NonNullableTest extends \PHPUnit_Framework_TestCase
                                 'name' => new StringType(),
                             ]
                         ])),
-                        'resolve' => function () {
-                            return [
-                                'id'   => new uid('6cfb044c-9c0a-4ddd-9ef8-a0b940818db3'),
-                                'name' => 'Alex'
-                            ];
-                        }
+                        'resolve' => fn(): array => [
+                            'id'   => new uid('6cfb044c-9c0a-4ddd-9ef8-a0b940818db3'),
+                            'name' => 'Alex'
+                        ]
                     ],
                     'nonNullListOfNpnNull' => [
                         'type'    => new NonNullType(new ListType(new NonNullType(new IntType()))),
-                        'resolve' => function () {
-                            return [1, null];
-                        }
+                        'resolve' => fn(): array => [1, null]
                     ],
                     'nonNullArgument'     => [
                         'args'    => [
                             'ids' => new NonNullType(new ListType(new IntType()))
                         ],
                         'type'    => new IntType(),
-                        'resolve' => function () {
-                            return 1;
-                        }
+                        'resolve' => fn(): int => 1
                     ],
                     'nonNullArgument2'     => [
                         'args'    => [
                             'ids' => new NonNullType(new ListType(new NonNullType(new IntType())))
                         ],
                         'type'    => new IntType(),
-                        'resolve' => function () {
-                            return 1;
-                        }
+                        'resolve' => fn(): int => 1
                     ],
                 ]
             ])

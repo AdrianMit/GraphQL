@@ -27,8 +27,7 @@ use Youshido\GraphQL\Parser\Ast\TypedFragmentReference;
 class Parser extends Tokenizer
 {
 
-    /** @var array */
-    private $data = [];
+    private array $data = [];
 
     public function parse($source = null)
     {
@@ -72,7 +71,7 @@ class Parser extends Tokenizer
         return $this->data;
     }
 
-    private function init($source = null)
+    private function init($source = null): void
     {
         $this->initTokenizer($source);
 
@@ -192,8 +191,8 @@ class Parser extends Tokenizer
                 $type,
                 $required,
                 $isArray,
-                $arrayElementNullable,
-                new Location($variableToken->getLine(), $variableToken->getColumn())
+                new Location($variableToken->getLine(), $variableToken->getColumn()),
+                $arrayElementNullable
             );
 
             if ($this->match(Token::TYPE_EQUAL)) {
@@ -228,7 +227,7 @@ class Parser extends Tokenizer
                 $variable->setUsed(true);
             }
 
-            $variableReference = new VariableReference($name, $variable, new Location($startToken->getLine(), $startToken->getColumn()));
+            $variableReference = new VariableReference($name, new Location($startToken->getLine(), $startToken->getColumn()), $variable);
 
             $this->data['variableReferences'][] = $variableReference;
 
@@ -250,7 +249,7 @@ class Parser extends Tokenizer
         return null;
     }
 
-    protected function parseFragmentReference()
+    protected function parseFragmentReference(): FragmentReference
     {
         $nameToken         = $this->eatIdentifierToken();
         $fragmentReference = new FragmentReference($nameToken->getData(), new Location($nameToken->getLine(), $nameToken->getColumn()));
@@ -270,7 +269,7 @@ class Parser extends Tokenizer
         ]);
     }
 
-    protected function parseBodyItem($type = Token::TYPE_QUERY, $highLevel = true)
+    protected function parseBodyItem($type = Token::TYPE_QUERY, $highLevel = true): Query|TypedFragmentReference|Mutation|Field
     {
         $nameToken = $this->eatIdentifierToken();
         $alias     = null;
@@ -325,7 +324,7 @@ class Parser extends Tokenizer
         return $args;
     }
 
-    protected function parseArgument()
+    protected function parseArgument(): Argument
     {
         $nameToken = $this->eatIdentifierToken();
         $this->expect(Token::TYPE_COLON);
@@ -346,7 +345,7 @@ class Parser extends Tokenizer
         return $directives;
     }
 
-    protected function parseDirective()
+    protected function parseDirective(): Directive
     {
         $this->expect(Token::TYPE_AT);
 
@@ -357,11 +356,9 @@ class Parser extends Tokenizer
     }
 
     /**
-     * @return array|InputList|InputObject|Literal|VariableReference
-     *
      * @throws SyntaxErrorException
      */
-    protected function parseValue()
+    protected function parseValue(): array|InputList|InputObject|Literal|VariableReference
     {
         switch ($this->lookAhead->getType()) {
             case Token::TYPE_LSQUARE_BRACE:
@@ -405,26 +402,13 @@ class Parser extends Tokenizer
 
     protected function parseListValue()
     {
-        switch ($this->lookAhead->getType()) {
-            case Token::TYPE_NUMBER:
-            case Token::TYPE_STRING:
-            case Token::TYPE_TRUE:
-            case Token::TYPE_FALSE:
-            case Token::TYPE_NULL:
-            case Token::TYPE_IDENTIFIER:
-                return $this->expect($this->lookAhead->getType())->getData();
-
-            case Token::TYPE_VARIABLE:
-                return $this->parseVariableReference();
-
-            case Token::TYPE_LBRACE:
-                return $this->parseObject(true);
-
-            case Token::TYPE_LSQUARE_BRACE:
-                return $this->parseList(false);
-        }
-
-        throw new SyntaxErrorException('Can\'t parse argument', $this->getLocation());
+        return match ($this->lookAhead->getType()) {
+            Token::TYPE_NUMBER, Token::TYPE_STRING, Token::TYPE_TRUE, Token::TYPE_FALSE, Token::TYPE_NULL, Token::TYPE_IDENTIFIER => $this->expect($this->lookAhead->getType())->getData(),
+            Token::TYPE_VARIABLE => $this->parseVariableReference(),
+            Token::TYPE_LBRACE => $this->parseObject(true),
+            Token::TYPE_LSQUARE_BRACE => $this->parseList(false),
+            default => throw new SyntaxErrorException('Can\'t parse argument', $this->getLocation()),
+        };
     }
 
     protected function parseObject($createType = true)
@@ -447,7 +431,7 @@ class Parser extends Tokenizer
         return $createType ? new InputObject($object, new Location($startToken->getLine(), $startToken->getColumn())) : $object;
     }
 
-    protected function parseFragment()
+    protected function parseFragment(): Fragment
     {
         $this->lex();
         $nameToken = $this->eatIdentifierToken();

@@ -8,6 +8,7 @@
 namespace Youshido\GraphQL\Relay;
 
 
+use Exception;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Field\Field;
 use Youshido\GraphQL\Field\InputField;
@@ -22,18 +23,14 @@ class RelayMutation
 
     /**
      * @param string                   $name
-     * @param array                    $args
-     * @param AbstractObjectType|array $output
-     * @param callable                 $resolveFunction
      *
-     * @return Field
      *
      * @throws \Exception
      */
-    public static function buildMutation($name, array $args, $output, callable $resolveFunction)
+    public static function buildMutation($name, array $args, AbstractObjectType|array $output, callable $resolveFunction): Field
     {
         if (!is_array($output) || (is_object($output) && !($output instanceof AbstractObjectType))) {
-            throw new \Exception('Output can be instance of AbstractObjectType or array of fields');
+            throw new Exception('Output can be instance of AbstractObjectType or array of fields');
         }
 
         return new Field([

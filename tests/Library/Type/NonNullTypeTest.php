@@ -9,23 +9,25 @@
 namespace Youshido\Tests\Library\Type;
 
 
+use PHPUnit_Framework_TestCase;
+use stdClass;
 use Youshido\GraphQL\Type\NonNullType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\TypeMap;
 use Youshido\GraphQL\Type\TypeService;
 
-class NonNullTypeTest extends \PHPUnit_Framework_TestCase
+class NonNullTypeTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      * @expectedException Youshido\GraphQL\Exception\ConfigurationException
      */
-    public function testInvalidParams()
+    public function testInvalidParams(): void
     {
         new NonNullType('invalid param');
     }
 
-    public function testNonNullType()
+    public function testNonNullType(): void
     {
         $stringType      = new StringType();
         $nonNullType     = new NonNullType(new StringType());
@@ -43,7 +45,7 @@ class NonNullTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(TypeService::isAbstractType($nonNullType), false);
         $this->assertFalse($nonNullType->isValidValue(null));
         $this->assertTrue($nonNullType->isValidValue($stringType));
-        $this->assertFalse($nonNullType->isValidValue(new \stdClass()));
+        $this->assertFalse($nonNullType->isValidValue(new stdClass()));
         $this->assertEquals($nonNullType->parseValue($testArray), '');
         $this->assertEquals($nonNullType->resolve($testArray), $testArray);
     }

@@ -8,11 +8,11 @@
 
 namespace Youshido\GraphQL\Type;
 
-
+use Exception;
 class SchemaTypesList
 {
 
-    private $typesList = [];
+    private array $typesList = [];
 
     /**
      * @param array $types
@@ -22,7 +22,7 @@ class SchemaTypesList
     public function addTypes($types)
     {
         if (!is_array($types)) {
-            throw new \Exception('addTypes accept only array of types');
+            throw new Exception('addTypes accept only array of types');
         }
         foreach($types as $type) {
             $this->addType($type);
@@ -36,7 +36,6 @@ class SchemaTypesList
     }
 
     /**
-     * @param TypeInterface $type
      * @return $this
      */
     public function addType(TypeInterface $type)
@@ -53,12 +52,12 @@ class SchemaTypesList
         return (isset($this->typesList[$typeName]));
     }
 
-    private function getTypeName($type) {
+    private function getTypeName(TypeInterface $type) {
         if (is_string($type)) return $type;
         if (is_object($type) && $type instanceof AbstractType) {
             return $type->getName();
         }
-        throw new \Exception('Invalid type passed to Schema');
+        throw new Exception('Invalid type passed to Schema');
     }
 
 }

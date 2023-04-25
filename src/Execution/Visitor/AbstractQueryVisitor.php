@@ -33,12 +33,12 @@ abstract class AbstractQueryVisitor
     /**
      * @var int initial value of $this->memo
      */
-    protected $initialValue = 0;
+    protected int $initialValue = 0;
 
     /**
      * @var mixed the accumulator
      */
-    protected $memo;
+    protected int $memo;
 
     /**
      * AbstractQueryVisitor constructor.
@@ -51,7 +51,7 @@ abstract class AbstractQueryVisitor
     /**
      * @return mixed getter for the memo, in case callers want to inspect it after a process run
      */
-    public function getMemo()
+    public function getMemo(): mixed
     {
         return $this->memo;
     }
@@ -65,5 +65,5 @@ abstract class AbstractQueryVisitor
      *
      * @return int|null
      */
-    abstract public function visit(array $args, FieldConfig $fieldConfig, $childScore = 0);
+    abstract public function visit(array $args, FieldConfig $fieldConfig, int $childScore = 0): ?int;
 }

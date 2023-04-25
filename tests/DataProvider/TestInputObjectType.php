@@ -15,7 +15,7 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 
 class TestInputObjectType extends AbstractInputObjectType
 {
-    public function build($config)
+    public function build($config): void
     {
         $config->addField('name', new NonNullType(new StringType()));
     }

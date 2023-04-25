@@ -40,7 +40,7 @@ class DirectiveType extends AbstractObjectType
      *
      * @return mixed
      */
-    public function resolveLocations(DirectiveInterface $value)
+    public function resolveLocations(DirectiveInterface|Directive $value)
     {
         /** @var DirectiveConfig $directiveConfig */
         $directiveConfig = $value->getConfig();
@@ -50,7 +50,7 @@ class DirectiveType extends AbstractObjectType
         return $locations;
     }
 
-    public function build($config)
+    public function build($config): void
     {
         $config
             ->addField('name', new NonNullType(TypeMap::TYPE_STRING))

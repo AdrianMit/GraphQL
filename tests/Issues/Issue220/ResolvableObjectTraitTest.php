@@ -11,7 +11,7 @@ use Youshido\Tests\DataProvider\TestResolveInfo;
 class Issue220Test extends TestCase
 {
 
-    public function testValueNotFoundInResolveScalarType()
+    public function testValueNotFoundInResolveScalarType(): void
     {
         $fieldWithResolve = new Field([
             'name' => 'scalarField',
@@ -23,7 +23,7 @@ class Issue220Test extends TestCase
         $this->assertEquals(null, $fieldWithResolve->resolve([], [], $resolveInfo));
     }
 
-    public function testValueNotFoundInResolveObjectType()
+    public function testValueNotFoundInResolveObjectType(): void
     {
         $fieldWithResolve = new Field([
             'name' => 'scalarField',
@@ -35,7 +35,7 @@ class Issue220Test extends TestCase
         $this->assertEquals(null, $fieldWithResolve->resolve([], [], $resolveInfo));
     }
 
-    public function testValueFoundInResolve()
+    public function testValueFoundInResolve(): void
     {
         $fieldWithResolve = new Field([
             'name' => 'scalarField',
@@ -50,7 +50,7 @@ class Issue220Test extends TestCase
 
 class ArticleType extends AbstractObjectType
 {
-    public function build($config)
+    public function build($config): void
     {
         $config->addFields([
             'title' => new StringType(),

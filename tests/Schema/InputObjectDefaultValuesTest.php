@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Schema;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\Enum\EnumType;
@@ -13,10 +14,10 @@ use Youshido\GraphQL\Type\Scalar\DateTimeTzType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class InputObjectDefaultValuesTest extends \PHPUnit_Framework_TestCase
+class InputObjectDefaultValuesTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testDefaultEnum()
+    public function testDefaultEnum(): void
     {
         $enumType = new EnumType([
             'name'   => 'InternalStatus',
@@ -49,11 +50,9 @@ class InputObjectDefaultValuesTest extends \PHPUnit_Framework_TestCase
                                 ]
                             ])
                         ],
-                        'resolve'    => function ($source, $args) {
-                            return sprintf('Result with level %s and status %s',
-                                $args['statObject']['level'], $args['statObject']['status']
-                            );
-                        },
+                        'resolve'    => fn($source, $args): string => sprintf('Result with level %s and status %s',
+                            $args['statObject']['level'], $args['statObject']['status']
+                        ),
                     ],
                     'enumObject' => [
                         'type' => new ObjectType([
@@ -62,11 +61,9 @@ class InputObjectDefaultValuesTest extends \PHPUnit_Framework_TestCase
                                 'status' => $enumType
                             ]
                         ]),
-                        'resolve' => function() {
-                            return [
-                                'status' => null
-                            ];
-                        }
+                        'resolve' => fn(): array => [
+                            'status' => null
+                        ]
                     ],
 
                 ]

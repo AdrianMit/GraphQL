@@ -30,7 +30,7 @@ class FieldType extends AbstractObjectType
         return [];
     }
 
-    public function build($config)
+    public function build($config): void
     {
         $config
             ->addField('name', new NonNullType(TypeMap::TYPE_STRING))

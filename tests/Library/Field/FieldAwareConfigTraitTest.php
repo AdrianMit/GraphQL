@@ -9,15 +9,16 @@
 namespace Youshido\Tests\Library\Field;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
 use Youshido\GraphQL\Field\Field;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class FieldAwareConfigTraitTest extends \PHPUnit_Framework_TestCase
+class FieldAwareConfigTraitTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testAddField()
+    public function testAddField(): void
     {
         $fieldsData = [
             'id' => [

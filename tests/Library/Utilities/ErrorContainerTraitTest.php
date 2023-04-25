@@ -8,6 +8,8 @@
 
 namespace Youshido\Tests\Library\Utilities;
 
+use PHPUnit_Framework_TestCase;
+use Exception;
 use Youshido\GraphQL\Exception\Interfaces\ExtendedExceptionInterface;
 use Youshido\GraphQL\Exception\Interfaces\LocationableExceptionInterface;
 use Youshido\GraphQL\Exception\Parser\SyntaxErrorException;
@@ -15,7 +17,7 @@ use Youshido\GraphQL\Parser\Location;
 use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerInterface;
 use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
 
-class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements ErrorContainerInterface
+class ErrorContainerTraitTest extends PHPUnit_Framework_TestCase implements ErrorContainerInterface
 {
 
     use ErrorContainerTrait;
@@ -25,9 +27,9 @@ class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements Err
         $this->clearErrors();
     }
 
-    public function testAddHasClearMergeErrors()
+    public function testAddHasClearMergeErrors(): void
     {
-        $error = new \Exception('Error');
+        $error = new Exception('Error');
         $this->addError($error);
         $this->assertTrue($this->hasErrors());
 
@@ -41,10 +43,10 @@ class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements Err
         $this->assertEquals([$error, $error], $this->getErrors());
     }
 
-    public function testGetErrorsAsArrayGenericExceptionWithoutCode()
+    public function testGetErrorsAsArrayGenericExceptionWithoutCode(): void
     {
         // Code is zero by default
-        $this->addError(new \Exception('Generic exception'));
+        $this->addError(new Exception('Generic exception'));
         $this->assertEquals([
             [
                 'message' => 'Generic exception',
@@ -52,9 +54,9 @@ class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements Err
         ], $this->getErrorsArray());
     }
 
-    public function testGetErrorsAsArrayGenericExceptionWithCode()
+    public function testGetErrorsAsArrayGenericExceptionWithCode(): void
     {
-        $this->addError(new \Exception('Generic exception with code', 4));
+        $this->addError(new Exception('Generic exception with code', 4));
         $this->assertEquals([
             [
                 'message' => 'Generic exception with code',
@@ -63,7 +65,7 @@ class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements Err
         ], $this->getErrorsArray());
     }
 
-    public function testGetErrorsAsArrayLocationableException()
+    public function testGetErrorsAsArrayLocationableException(): void
     {
         $this->addError(new SyntaxErrorException('Syntax error', new Location(5, 88)));
         $this->assertEquals([
@@ -79,7 +81,7 @@ class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements Err
         ], $this->getErrorsArray());
     }
 
-    public function testGetErrorsAsArrayExtendedException()
+    public function testGetErrorsAsArrayExtendedException(): void
     {
         $this->addError(new ExtendedException('Extended exception'));
         $this->assertEquals([
@@ -93,7 +95,7 @@ class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements Err
         ], $this->getErrorsArray());
     }
 
-    public function testGetErrorsAsArrayExceptionWithEverything()
+    public function testGetErrorsAsArrayExceptionWithEverything(): void
     {
         $this->addError(new SuperException('Super exception', 3));
         $this->assertEquals([
@@ -115,7 +117,7 @@ class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements Err
     }
 }
 
-class ExtendedException extends \Exception implements ExtendedExceptionInterface
+class ExtendedException extends Exception implements ExtendedExceptionInterface
 {
     public function getExtensions()
     {
@@ -126,7 +128,7 @@ class ExtendedException extends \Exception implements ExtendedExceptionInterface
     }
 }
 
-class SuperException extends \Exception implements LocationableExceptionInterface, ExtendedExceptionInterface
+class SuperException extends Exception implements LocationableExceptionInterface, ExtendedExceptionInterface
 {
     public function getExtensions()
     {

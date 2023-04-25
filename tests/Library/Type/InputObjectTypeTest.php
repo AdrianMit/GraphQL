@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Type;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
 use Youshido\GraphQL\Schema\Schema;
@@ -22,10 +23,10 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\TypeMap;
 use Youshido\Tests\DataProvider\TestInputObjectType;
 
-class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
+class InputObjectTypeTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testInternal()
+    public function testInternal(): void
     {
         $inputObjectType = new InputObjectType([
             'name'   => 'PostData',
@@ -41,13 +42,13 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($inputObjectType->isValidValue(['title' => null]));
     }
 
-    public function testStandaloneClass()
+    public function testStandaloneClass(): void
     {
         $inputObjectType = new TestInputObjectType();
         $this->assertEquals('TestInputObject', $inputObjectType->getName());
     }
 
-    public function testListOfInputWithNonNull()
+    public function testListOfInputWithNonNull(): void
     {
         $processor = new Processor(new Schema([
             'query'    => new ObjectType([
@@ -55,9 +56,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'empty' => [
                         'type'    => new StringType(),
-                        'resolve' => function () {
-                            return null;
-                        }
+                        'resolve' => fn() => null
                     ]
                 ]
             ]),
@@ -74,9 +73,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
                             ]))
                         ],
                         'type'    => new BooleanType(),
-                        'resolve' => function ($object, $args) {
-                            return true;
-                        }
+                        'resolve' => fn($object, $args): bool => true
                     ]
                 ]
             ])
@@ -100,7 +97,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testNullableInputWithNonNull()
+    public function testNullableInputWithNonNull(): void
     {
         $processor = new Processor(new Schema([
             'query'    => new ObjectType([
@@ -108,9 +105,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'empty' => [
                         'type'    => new StringType(),
-                        'resolve' => function () {
-                            return null;
-                        }
+                        'resolve' => fn() => null
                     ]
                 ]
             ]),
@@ -127,9 +122,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
                             ])
                         ],
                         'type'    => new BooleanType(),
-                        'resolve' => function ($object, $args) {
-                            return true;
-                        }
+                        'resolve' => fn($object, $args): bool => true
                     ]
                 ]
             ])
@@ -143,7 +136,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testListInsideInputObject()
+    public function testListInsideInputObject(): void
     {
         $processor = new Processor(new Schema([
             'query'    => new ObjectType([
@@ -151,7 +144,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'empty' => [
                         'type'    => new StringType(),
-                        'resolve' => function () {
+                        'resolve' => function (): void {
                         }
                     ],
                 ]
@@ -174,9 +167,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
                                 ]
                             ])
                         ],
-                        'resolve' => function () {
-                            return 'success message';
-                        }
+                        'resolve' => fn(): string => 'success message'
                     ]
                 ]
             ])
@@ -200,7 +191,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['data' => ['createList' => 'success message']], $processor->getResponseData());
     }
 
-    public function testInputObjectDefaultValue()
+    public function testInputObjectDefaultValue(): void
     {
         $processor = new Processor(new Schema([
             'query' => new ObjectType([
@@ -223,12 +214,10 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
                                 ],
                             ],
                         ],
-                        'resolve' => function ($source, $args) {
-                            return [
-                                'limit is ' . $args['paging']['limit'],
-                                'offset is ' . $args['paging']['offset'],
-                            ];
-                        }
+                        'resolve' => fn($source, $args): array => [
+                            'limit is ' . $args['paging']['limit'],
+                            'offset is ' . $args['paging']['offset'],
+                        ]
                     ],
 
                 ]
@@ -247,7 +236,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testInvalidTypeErrors()
+    public function testInvalidTypeErrors(): void
     {
         $processor = new Processor(new Schema([
             'query' => new ObjectType([
@@ -270,9 +259,7 @@ class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
                                 ]
                             ]),
                         ],
-                        'resolve' => function ($source, $args) {
-                            return sprintf('%s by %s', $args['title'], $args['userId']);
-                        }
+                        'resolve' => fn($source, $args): string => sprintf('%s by %s', $args['title'], $args['userId'])
                     ],
 
                 ]

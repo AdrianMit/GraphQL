@@ -7,9 +7,5 @@ namespace Youshido\GraphQL\Exception\Interfaces;
  */
 interface ExtendedExceptionInterface
 {
-
-    /**
-     * @return array
-     */
-    public function getExtensions();
+    public function getExtensions(): array;
 }

@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Field;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Config\Field\FieldConfig;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Field\Field;
@@ -21,10 +22,10 @@ use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
 use Youshido\Tests\DataProvider\TestField;
 use Youshido\Tests\DataProvider\TestResolveInfo;
 
-class FieldTest extends \PHPUnit_Framework_TestCase
+class FieldTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testInlineFieldCreation()
+    public function testInlineFieldCreation(): void
     {
         $field = new Field([
             'name' => 'id',
@@ -38,9 +39,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
         $fieldWithResolve = new Field([
             'name'    => 'title',
             'type'    => new StringType(),
-            'resolve' => function ($value, array $args, ResolveInfo $info) {
-                return $info->getReturnType()->serialize($value);
-            }
+            'resolve' => fn($value, array $args, ResolveInfo $info) => $info->getReturnType()->serialize($value)
         ]);
         $resolveInfo = TestResolveInfo::createTestResolveInfo($fieldWithResolve);
         $this->assertEquals('true', $fieldWithResolve->resolve(true, [], $resolveInfo), 'Resolve bool to string');
@@ -50,7 +49,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function testObjectFieldCreation()
+    public function testObjectFieldCreation(): void
     {
         $field = new TestField();
         $resolveInfo = TestResolveInfo::createTestResolveInfo($field);
@@ -61,7 +60,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $field->resolve('test', [], $resolveInfo));
     }
 
-    public function testArgumentsTrait()
+    public function testArgumentsTrait(): void
     {
         $testField = new TestField();
         $this->assertFalse($testField->hasArguments());
@@ -89,7 +88,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
      * @dataProvider invalidFieldProvider
      * @expectedException Youshido\GraphQL\Exception\ConfigurationException
      */
-    public function testInvalidFieldParams($fieldConfig)
+    public function testInvalidFieldParams($fieldConfig): void
     {
         $field = new Field($fieldConfig);
         ConfigValidator::getInstance()->assertValidConfig($field->getConfig());

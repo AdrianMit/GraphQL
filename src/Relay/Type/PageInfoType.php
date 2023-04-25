@@ -16,7 +16,7 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 
 class PageInfoType extends AbstractObjectType
 {
-    public function build($config)
+    public function build($config): void
     {
         $config->addFields([
             'hasNextPage'     => [

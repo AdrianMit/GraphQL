@@ -14,7 +14,7 @@ use Youshido\GraphQL\Execution\ResolveInfo;
 
 class TestResolveInfo
 {
-    public static function createTestResolveInfo($field = null)
+    public static function createTestResolveInfo($field = null): ResolveInfo
     {
         if (empty($field)) {
             $field = new TestField();

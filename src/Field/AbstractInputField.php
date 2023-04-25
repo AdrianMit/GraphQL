@@ -37,7 +37,7 @@ abstract class AbstractInputField implements InputFieldInterface
         $this->build($this->config);
     }
 
-    public function build(InputFieldConfig $config)
+    public function build(InputFieldConfig $config): void
     {
 
     }

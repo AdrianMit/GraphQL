@@ -18,11 +18,8 @@ use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
 class SchemaValidator
 {
 
-    /** @var ConfigValidator */
-    private $configValidator = null;
+    private ?ConfigValidator $configValidator = null;
     /**
-     * @param AbstractSchema $schema
-     *
      * @throws ConfigurationException
      */
     public function validate(AbstractSchema $schema)
@@ -43,8 +40,6 @@ class SchemaValidator
     }
 
     /**
-     * @param AbstractObjectType $type
-     *
      * @throws ConfigurationException
      */
     protected function assertInterfaceImplementationCorrect(AbstractObjectType $type)
@@ -63,7 +58,6 @@ class SchemaValidator
     /**
      * @param Field                 $intField
      * @param Field                 $objField
-     * @param AbstractInterfaceType $interface
      *
      * @throws ConfigurationException
      */

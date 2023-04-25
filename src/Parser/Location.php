@@ -11,16 +11,12 @@ namespace Youshido\GraphQL\Parser;
 class Location
 {
 
-    /** @var  integer */
-    private $line;
-
-    /** @var  integer */
-    private $column;
-
-    public function __construct($line, $column)
+    /**
+     * @param int $line
+     * @param int $column
+     */
+    public function __construct(private $line, private $column)
     {
-        $this->line   = $line;
-        $this->column = $column;
     }
 
     /**

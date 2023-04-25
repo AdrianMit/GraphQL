@@ -9,15 +9,16 @@
 namespace Youshido\Tests\Library\Type;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Type\ListType\ListType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\Tests\DataProvider\TestListType;
 
 
-class ListTypeTest extends \PHPUnit_Framework_TestCase
+class ListTypeTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testInline()
+    public function testInline(): void
     {
         $listType = new ListType(new StringType());
         $this->assertEquals(new StringType(), $listType->getNamedType());
@@ -27,13 +28,13 @@ class ListTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($listType->isValidValue('invalid value'));
     }
 
-    public function testStandaloneClass()
+    public function testStandaloneClass(): void
     {
         $listType = new TestListType();
         $this->assertEquals(new StringType(), $listType->getNamedType());
     }
 
-    public function testListOfInputsWithArguments()
+    public function testListOfInputsWithArguments(): void
     {
 
     }

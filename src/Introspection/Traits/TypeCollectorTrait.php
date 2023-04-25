@@ -61,7 +61,7 @@ trait TypeCollectorTrait
         }
     }
 
-    private function checkAndInsertInterfaces($type)
+    private function checkAndInsertInterfaces($type): void
     {
         foreach ((array)$type->getConfig()->getInterfaces() as $interface) {
             $this->insertType($interface->getName(), $interface);
@@ -77,7 +77,7 @@ trait TypeCollectorTrait
     /**
      * @param $type AbstractObjectType
      */
-    private function collectFieldsArgsTypes($type)
+    private function collectFieldsArgsTypes($type): void
     {
         foreach ($type->getConfig()->getFields() as $field) {
             $arguments = $field->getConfig()->getArguments();

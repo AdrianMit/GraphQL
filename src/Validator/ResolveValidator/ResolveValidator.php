@@ -24,18 +24,11 @@ use Youshido\GraphQL\Type\Union\AbstractUnionType;
 class ResolveValidator implements ResolveValidatorInterface
 {
 
-    /** @var ExecutionContext */
-    private $executionContext;
-
-
     /**
      * ResolveValidator constructor.
-     *
-     * @param ExecutionContext $executionContext
      */
-    public function __construct(ExecutionContext $executionContext)
+    public function __construct(private ExecutionContext $executionContext)
     {
-        $this->executionContext = $executionContext;
     }
     
     public function assetTypeHasField(AbstractType $objectType, AstFieldInterface $ast)
@@ -46,18 +39,14 @@ class ResolveValidator implements ResolveValidatorInterface
         }
         
         if (!(TypeService::isObjectType($objectType) || TypeService::isInputObjectType($objectType)) || !$objectType->hasField($ast->getName())) {
-            $availableFieldNames = implode(', ', array_map(function (FieldInterface $field) {
-                return sprintf('"%s"', $field->getName());
-            }, $objectType->getFields()));
+            $availableFieldNames = implode(', ', array_map(fn(FieldInterface $field): string => sprintf('"%s"', $field->getName()), $objectType->getFields()));
             throw new ResolveException(sprintf('Field "%s" not found in type "%s". Available fields are: %s', $ast->getName(), $objectType->getNamedType()->getName(), $availableFieldNames), $ast->getLocation());
         }
     }
 
     public function assertValidArguments(FieldInterface $field, AstFieldInterface $query, Request $request)
     {
-        $requiredArguments = array_filter($field->getArguments(), function (InputField $argument) {
-            return $argument->getType()->getKind() === TypeMap::KIND_NON_NULL;
-        });
+        $requiredArguments = array_filter($field->getArguments(), fn(InputField $argument): bool => $argument->getType()->getKind() === TypeMap::KIND_NON_NULL);
 
         foreach ($query->getArguments() as $astArgument) {
             if (!$field->hasArgument($astArgument->getName())) {

@@ -8,7 +8,6 @@
 
 namespace Youshido\GraphQL\Config\Traits;
 
-
 use Youshido\GraphQL\Config\AbstractConfig;
 use Youshido\GraphQL\Config\Field\FieldConfig;
 use Youshido\GraphQL\Config\Field\InputFieldConfig;
@@ -16,17 +15,15 @@ use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
 
 trait ConfigAwareTrait
 {
+    protected AbstractConfig $config;
+    protected array $configCache = [];
 
-    /** @var AbstractConfig|ObjectTypeConfig|FieldConfig|InputFieldConfig */
-    protected $config;
-    protected $configCache = [];
-
-    public function getConfig()
+    public function getConfig(): AbstractConfig
     {
         return $this->config;
     }
 
-    protected function getConfigValue($key, $defaultValue = null)
+    protected function getConfigValue(string $key, mixed $defaultValue = null)
     {
         if (array_key_exists($key, $this->configCache)) {
             return $this->configCache[$key];
@@ -35,7 +32,7 @@ trait ConfigAwareTrait
         return $this->configCache[$key];
     }
 
-    public function getDescription()
+    public function getDescription(): mixed
     {
         return $this->getConfigValue('description');
     }

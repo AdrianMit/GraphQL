@@ -16,7 +16,7 @@ class Issue201Test extends TestCase
      * @expectedException \Youshido\GraphQL\Exception\ConfigurationException
      * @expectedExceptionMessage Type "user" was defined more than once
      */
-    public function testExceptionOnDuplicateTypeName()
+    public function testExceptionOnDuplicateTypeName(): void
     {
         $schema = new Schema([
             'query' => new ObjectType([

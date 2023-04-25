@@ -21,25 +21,17 @@ class ConfigValidator implements ConfigValidatorInterface
 
     use ErrorContainerTrait;
 
-    protected $rules = [];
-
-    protected $extraFieldsAllowed = false;
-
-    /** @var ValidationRuleInterface[] */
-    protected $validationRules = [];
-
-    /** @var  ConfigValidator */
-    protected static $instance;
+    protected array $rules = [];
+    protected bool $extraFieldsAllowed = false;
+    protected array $validationRules = [];
+    protected static ConfigValidator $instance;
 
     private function __construct()
     {
         $this->initializeRules();
     }
 
-    /**
-     * @return ConfigValidator
-     */
-    public static function getInstance()
+    public static function getInstance(): ConfigValidator
     {
         if (empty(self::$instance)) {
             self::$instance = new self();
@@ -49,20 +41,23 @@ class ConfigValidator implements ConfigValidatorInterface
 
         return self::$instance;
     }
-
-    public function assertValidConfig(AbstractConfig $config)
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function assertValidConfig(AbstractConfig $config): void
     {
         if (!$this->isValidConfig($config)) {
             throw new ConfigurationException('Config is not valid for ' . ($config->getContextObject() ? get_class($config->getContextObject()) : null) . "\n" . implode("\n", $this->getErrorsArray(false)));
         }
     }
 
-    public function isValidConfig(AbstractConfig $config)
+    public function isValidConfig(AbstractConfig $config): bool
     {
         return $this->validate($config->getData(), $this->getConfigFinalRules($config), $config->isExtraFieldsAllowed());
     }
 
-    protected function getConfigFinalRules(AbstractConfig $config)
+    protected function getConfigFinalRules(AbstractConfig $config): array
     {
         $rules = $config->getRules();
         if ($config->isFinalClass()) {
@@ -77,9 +72,9 @@ class ConfigValidator implements ConfigValidatorInterface
     }
 
 
-    public function validate($data, $rules = [], $extraFieldsAllowed = null)
+    public function validate(array $data, array $rules = [], ?bool $allowExtraFields = null): bool
     {
-        if ($extraFieldsAllowed !== null) $this->setExtraFieldsAllowed($extraFieldsAllowed);
+        if ($allowExtraFields !== null) $this->setExtraFieldsAllowed($allowExtraFields);
 
         $processedFields = [];
         foreach ($rules as $fieldName => $fieldRules) {
@@ -124,36 +119,27 @@ class ConfigValidator implements ConfigValidatorInterface
         return $this->isValid();
     }
 
-    protected function initializeRules()
+    protected function initializeRules(): void
     {
         $this->validationRules['type'] = new TypeValidationRule($this);
     }
 
-    public function addRule($name, ValidationRuleInterface $rule)
+    public function addRule($name, ValidationRuleInterface $rule): void
     {
         $this->validationRules[$name] = $rule;
     }
 
-    public function isValid()
+    public function isValid(): bool
     {
         return !$this->hasErrors();
     }
 
-
-    /**
-     * @return boolean
-     */
-    public function isExtraFieldsAllowed()
+    public function isExtraFieldsAllowed(): bool
     {
         return $this->extraFieldsAllowed;
     }
 
-    /**
-     * @param boolean $extraFieldsAllowed
-     *
-     * @return ConfigValidator
-     */
-    public function setExtraFieldsAllowed($extraFieldsAllowed)
+    public function setExtraFieldsAllowed(bool $extraFieldsAllowed): static
     {
         $this->extraFieldsAllowed = $extraFieldsAllowed;
 

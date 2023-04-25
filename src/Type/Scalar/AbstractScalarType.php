@@ -18,7 +18,7 @@ abstract class AbstractScalarType extends AbstractType
 
     public function getName()
     {
-        $className = get_class($this);
+        $className = static::class;
 
         return substr($className, strrpos($className, '\\') + 1, -4);
     }

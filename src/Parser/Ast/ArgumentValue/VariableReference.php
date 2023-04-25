@@ -15,12 +15,6 @@ use Youshido\GraphQL\Parser\Location;
 class VariableReference extends AbstractAst implements ValueInterface
 {
 
-    /** @var  string */
-    private $name;
-
-    /** @var  Variable */
-    private $variable;
-
     /** @var  mixed */
     private $value;
 
@@ -29,12 +23,9 @@ class VariableReference extends AbstractAst implements ValueInterface
      * @param Variable|null $variable
      * @param Location      $location
      */
-    public function __construct($name, Variable $variable = null, Location $location)
+    public function __construct(private $name, Location $location, private ?Variable $variable = null)
     {
         parent::__construct($location);
-
-        $this->name     = $name;
-        $this->variable = $variable;
     }
 
     public function getVariable()
@@ -47,7 +38,7 @@ class VariableReference extends AbstractAst implements ValueInterface
         return $this->value;
     }
 
-    public function setValue($value)
+    public function setValue($value): void
     {
         $this->value = $value;
     }

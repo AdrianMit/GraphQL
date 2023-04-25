@@ -13,7 +13,7 @@ use Youshido\GraphQL\Type\Object\AbstractObjectType;
 
 class InternalSchemaMutationObject extends AbstractObjectType
 {
-    public function build($config)
+    public function build($config): void
     {
     }
 

@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Field;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Field\InputField;
 use Youshido\GraphQL\Schema\Schema;
@@ -22,10 +23,10 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
 use Youshido\Tests\DataProvider\TestInputField;
 
-class InputFieldTest extends \PHPUnit_Framework_TestCase
+class InputFieldTest extends PHPUnit_Framework_TestCase
 {
 
-    private $introspectionQuery = <<<TEXT
+    private string $introspectionQuery = <<<TEXT
 
 query IntrospectionQuery {
                 __schema {
@@ -105,7 +106,7 @@ query IntrospectionQuery {
             }
 TEXT;
 
-    public function testFieldWithInputFieldArgument()
+    public function testFieldWithInputFieldArgument(): void
     {
         $schema    = new Schema([
             'query' => new ObjectType([
@@ -133,7 +134,7 @@ TEXT;
         $processor->processPayload($this->introspectionQuery);
     }
 
-    public function testInlineInputFieldCreation()
+    public function testInlineInputFieldCreation(): void
     {
         $field = new InputField([
             'name'         => 'id',
@@ -149,7 +150,7 @@ TEXT;
     }
 
 
-    public function testObjectInputFieldCreation()
+    public function testObjectInputFieldCreation(): void
     {
         $field = new TestInputField();
 
@@ -159,7 +160,7 @@ TEXT;
         $this->assertEquals('default', $field->getDefaultValue());
     }
 
-    public function testListAsInputField()
+    public function testListAsInputField(): void
     {
         new InputField([
             'name' => 'test',
@@ -171,7 +172,7 @@ TEXT;
      * @dataProvider invalidInputFieldProvider
      * @expectedException Youshido\GraphQL\Exception\ConfigurationException
      */
-    public function testInvalidInputFieldParams($fieldConfig)
+    public function testInvalidInputFieldParams($fieldConfig): void
     {
         $field = new InputField($fieldConfig);
         ConfigValidator::getInstance()->assertValidConfig($field->getConfig());

@@ -23,7 +23,7 @@ trait AstArgumentsTrait
         return (bool)count($this->arguments);
     }
 
-    public function hasArgument($name)
+    public function hasArgument($name): bool
     {
         return array_key_exists($name, $this->arguments);
     }
@@ -38,10 +38,8 @@ trait AstArgumentsTrait
 
     /**
      * @param $name
-     *
-     * @return null|Argument
      */
-    public function getArgument($name)
+    public function getArgument($name): ?Argument
     {
         $argument = null;
         if (isset($this->arguments[$name])) {
@@ -61,7 +59,7 @@ trait AstArgumentsTrait
     /**
      * @param $arguments Argument[]
      */
-    public function setArguments(array $arguments)
+    public function setArguments(array $arguments): void
     {
         $this->arguments = [];
         $this->argumentsCache = null;
@@ -71,7 +69,7 @@ trait AstArgumentsTrait
         }
     }
 
-    public function addArgument(Argument $argument)
+    public function addArgument(Argument $argument): void
     {
         $this->arguments[$argument->getName()] = $argument;
     }

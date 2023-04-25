@@ -11,7 +11,7 @@ namespace Youshido\GraphQL\Relay\Connection;
 class ArrayConnection
 {
 
-    const PREFIX = 'arrayconnection:';
+    public const PREFIX = 'arrayconnection:';
 
     public static function cursorForObjectInConnection($data, $object)
     {
@@ -32,7 +32,7 @@ class ArrayConnection
       return self::keyToCursor($offset);
     }
 
-    public static function keyToCursor($key)
+    public static function keyToCursor($key): string
     {
       return base64_encode(self::PREFIX . $key);
     }
@@ -40,21 +40,19 @@ class ArrayConnection
     /**
      * @param $cursor string
      *
-     * @return int|null
      * @deprecated Use cursorToKey instead.
      */
-    public static function cursorToOffset($cursor)
+    public static function cursorToOffset($cursor): ?int
     {
         return self::cursorToKey($cursor);
     }
 
   /**
-   * Converts a cursor to its array key.
-   *
-   * @param $cursor
-   * @return null|string
-   */
-    public static function cursorToKey($cursor) {
+     * Converts a cursor to its array key.
+     *
+     * @param $cursor
+     */
+    public static function cursorToKey($cursor): ?string {
       if ($decoded = base64_decode($cursor)) {
         return substr($decoded, strlen(self::PREFIX));
       }
@@ -62,17 +60,16 @@ class ArrayConnection
     }
 
   /**
-   * Converts a cursor to an array offset.
-   *
-   * @param $cursor
-   *   The cursor string.
-   * @param $default
-   *   The default value, in case the cursor is not given.
-   * @param array $array
-   *   The array to use in counting the offset. If empty, assumed to be an indexed array.
-   * @return int|null
-   */
-    public static function cursorToOffsetWithDefault($cursor, $default, $array = [])
+     * Converts a cursor to an array offset.
+     *
+     * @param $cursor
+     *   The cursor string.
+     * @param $default
+     *   The default value, in case the cursor is not given.
+     * @param array $array
+     *   The array to use in counting the offset. If empty, assumed to be an indexed array.
+     */
+    public static function cursorToOffsetWithDefault($cursor, $default, $array = []): ?int
     {
         if (!is_string($cursor)) {
             return $default;
@@ -96,10 +93,10 @@ class ArrayConnection
 
     public static function connectionFromArraySlice(array $data, array $args, $sliceStart, $arrayLength)
     {
-        $after  = isset($args['after']) ? $args['after'] : null;
-        $before = isset($args['before']) ? $args['before'] : null;
-        $first  = isset($args['first']) ? $args['first'] : null;
-        $last   = isset($args['last']) ? $args['last'] : null;
+        $after  = $args['after'] ?? null;
+        $before = $args['before'] ?? null;
+        $first  = $args['first'] ?? null;
+        $last   = $args['last'] ?? null;
 
         $sliceEnd = $sliceStart + count($data);
 

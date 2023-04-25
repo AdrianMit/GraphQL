@@ -14,7 +14,7 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 
 class TestListType extends AbstractListType
 {
-    public function getItemType()
+    public function getItemType(): StringType
     {
         return new StringType();
     }

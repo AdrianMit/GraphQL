@@ -8,6 +8,7 @@
 
 namespace Youshido\Tests\DataProvider;
 
+use DateTime;
 class TestScalarDataProvider
 {
 
@@ -106,7 +107,7 @@ class TestScalarDataProvider
         $time = time();
         return [
             [null, null, true],
-            [(new \DateTime())->setTimestamp($time), date('Y-m-d H:i:s', $time), true],
+            [(new DateTime())->setTimestamp($time), date('Y-m-d H:i:s', $time), true],
         ];
     }
 
@@ -115,7 +116,7 @@ class TestScalarDataProvider
         $time = time();
         return [
             [null, null, true],
-            [(new \DateTime())->setTimestamp($time), date('r', $time), true],
+            [(new DateTime())->setTimestamp($time), date('r', $time), true],
         ];
     }
 
@@ -124,7 +125,7 @@ class TestScalarDataProvider
         $time = time();
         return [
             [null, null, true],
-            [(new \DateTime())->setTimestamp($time), date('Y-m-d', $time), true],
+            [(new DateTime())->setTimestamp($time), date('Y-m-d', $time), true],
         ];
     }
 
@@ -133,7 +134,7 @@ class TestScalarDataProvider
     {
         $time = time();
         return [
-            [(new \DateTime())->setTimestamp($time), $time, true],
+            [(new DateTime())->setTimestamp($time), $time, true],
             [null, null, true],
         ];
     }

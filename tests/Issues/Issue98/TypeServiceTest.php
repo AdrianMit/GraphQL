@@ -7,7 +7,7 @@ use Youshido\GraphQL\Type\TypeService;
 
 class TypeServiceTest extends TestCase
 {
-    public function testPropertGetValueWithMagicGet()
+    public function testPropertGetValueWithMagicGet(): void
     {
         $object = new DummyObjectWithMagicGet();
 
@@ -15,7 +15,7 @@ class TypeServiceTest extends TestCase
         $this->assertEquals('getbar', TypeService::getPropertyValue($object, 'anything'));
     }
 
-    public function testPropertyGetValueWithMagicCall()
+    public function testPropertyGetValueWithMagicCall(): void
     {
         $object = new DummyObjectWithMagicCall();
 

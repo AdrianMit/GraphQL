@@ -8,9 +8,11 @@
 
 namespace Youshido\GraphQL\Type\Scalar;
 
+use DateTimeInterface;
+use DateTime;
 class DateTimeTzType extends AbstractScalarType
 {
-    private $format = 'D, d M Y H:i:s O';
+    private string $format = 'D, d M Y H:i:s O';
 
     public function getName()
     {
@@ -18,7 +20,7 @@ class DateTimeTzType extends AbstractScalarType
     }
     public function isValidValue($value)
     {
-        if ((is_object($value) && $value instanceof \DateTimeInterface) || is_null($value)) {
+        if ((is_object($value) && $value instanceof DateTimeInterface) || is_null($value)) {
             return true;
         } else if (is_string($value)) {
             $date = $this->createFromFormat($value);
@@ -35,7 +37,7 @@ class DateTimeTzType extends AbstractScalarType
 
         if (is_string($value)) {
             $date = $this->createFromFormat($value);
-        } elseif ($value instanceof \DateTimeInterface) {
+        } elseif ($value instanceof DateTimeInterface) {
             $date = $value;
         }
 
@@ -46,7 +48,7 @@ class DateTimeTzType extends AbstractScalarType
     {
         if (is_string($value)) {
             $date = $this->createFromFormat($value);
-        } elseif ($value instanceof \DateTimeInterface) {
+        } elseif ($value instanceof DateTimeInterface) {
             $date = $value;
         } else {
             $date = false;
@@ -55,9 +57,9 @@ class DateTimeTzType extends AbstractScalarType
         return $date ?: null;
     }
 
-    private function createFromFormat($value)
+    private function createFromFormat(string $value)
     {
-        return \DateTime::createFromFormat($this->format, $value);
+        return DateTime::createFromFormat($this->format, $value);
     }
 
     public function getDescription()

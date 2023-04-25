@@ -8,41 +8,17 @@
 namespace Youshido\GraphQL\Directive;
 
 
-use Youshido\GraphQL\Type\AbstractType;
+use Youshido\GraphQL\Field\InputField;
 
 interface DirectiveInterface
 {
-
     public function getName();
-
-    public function addArguments($argumentsList);
-
-    public function removeArgument($argumentName);
-
+    public function addArguments(array $argumentsList);
+    public function removeArgument(string $argumentName);
     public function addArgument($argument, $ArgumentInfo = null);
-
-    /**
-     * @return AbstractType[]
-     */
-    public function getArguments();
-
-    /**
-     * @param string $argumentName
-     *
-     * @return AbstractType
-     */
-    public function getArgument($argumentName);
-
-    /**
-     * @param string $argumentName
-     *
-     * @return bool
-     */
-    public function hasArgument($argumentName);
-
-    /**
-     * @return boolean
-     */
-    public function hasArguments();
+    public function getArguments(): array;
+    public function getArgument(string $argumentName): ?InputField;
+    public function hasArgument(string $argumentName): bool;
+    public function hasArguments(): bool;
 
 }

@@ -22,10 +22,9 @@ use Youshido\GraphQL\Type\TypeService;
  */
 class FieldConfig extends AbstractConfig
 {
-
     use ArgumentsAwareConfigTrait;
 
-    public function getRules()
+    public function getRules(): array
     {
         return [
             'name'              => ['type' => TypeService::TYPE_STRING, 'final' => true],
@@ -39,7 +38,7 @@ class FieldConfig extends AbstractConfig
         ];
     }
 
-    protected function build()
+    protected function build(): void
     {
         $this->buildArguments();
     }
@@ -47,7 +46,7 @@ class FieldConfig extends AbstractConfig
     /**
      * @return TypeInterface|AbstractObjectType
      */
-    public function getType()
+    public function getType(): TypeInterface|AbstractObjectType
     {
         return $this->data['type'];
     }

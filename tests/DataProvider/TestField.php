@@ -18,7 +18,7 @@ class TestField extends AbstractField
     /**
      * @return AbstractObjectType
      */
-    public function getType()
+    public function getType(): IntType
     {
         return new IntType();
     }

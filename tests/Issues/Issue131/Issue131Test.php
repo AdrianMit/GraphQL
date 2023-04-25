@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Issues\Issue116Test;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\InputObject\InputObjectType;
@@ -12,10 +13,10 @@ use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class Issue131Test extends \PHPUnit_Framework_TestCase
+class Issue131Test extends PHPUnit_Framework_TestCase
 {
 
-    public function testInternalVariableArgument()
+    public function testInternalVariableArgument(): void
     {
 
 
@@ -47,12 +48,10 @@ class Issue131Test extends \PHPUnit_Framework_TestCase
                                 ]
                             ]))
                         ],
-                        'resolve' => function ($source, $args) {
-                            return [
-                                'id' => '1',
-                                'name' => sprintf('Meeting with %d beans', count($args['related_beans'])),
-                            ];
-                        }
+                        'resolve' => fn($source, $args): array => [
+                            'id' => '1',
+                            'name' => sprintf('Meeting with %d beans', is_countable($args['related_beans']) ? count($args['related_beans']) : 0),
+                        ]
                     ]
                 ]
             ])

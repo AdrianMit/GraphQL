@@ -2,18 +2,19 @@
 
 namespace Youshido\Tests\Issues\Issue99;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 
 /**
  * User: m-naw
  * Date: 2/02/17
  */
-class Issue99Test extends \PHPUnit_Framework_TestCase
+class Issue99Test extends PHPUnit_Framework_TestCase
 {
-    const BUG_NOT_EXISTS_VALUE = 'bug not exists';
-    const BUG_EXISTS_VALUE = 'bug exists';
+    public const BUG_NOT_EXISTS_VALUE = 'bug not exists';
+    public const BUG_EXISTS_VALUE = 'bug exists';
 
-    public function testQueryDateTimeTypeWithDateParameter()
+    public function testQueryDateTimeTypeWithDateParameter(): void
     {
         $schema = new Issue99Schema();
         $processor = new Processor($schema);

@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Performance;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\ListType\ListType;
@@ -17,7 +18,7 @@ use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class NPlusOneTest extends \PHPUnit_Framework_TestCase
+class NPlusOneTest extends PHPUnit_Framework_TestCase
 {
 
     private function getDataForPosts()
@@ -43,7 +44,7 @@ class NPlusOneTest extends \PHPUnit_Framework_TestCase
         return $posts;
     }
 
-    public function testHigherResolver()
+    public function testHigherResolver(): void
     {
         $authorType = new ObjectType([
             'name'   => 'Author',
@@ -67,9 +68,7 @@ class NPlusOneTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'posts' => [
                         'type'    => new ListType($postType),
-                        'resolve' => function ($source, $args, $info) {
-                            return $this->getDataForPosts();
-                        }
+                        'resolve' => fn($source, $args, $info) => $this->getDataForPosts()
                     ]
                 ]
             ])

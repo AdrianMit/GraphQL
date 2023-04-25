@@ -24,7 +24,7 @@ class TypesField extends AbstractField
     /**
      * @return AbstractObjectType
      */
-    public function getType()
+    public function getType(): ListType
     {
         return new ListType(new QueryType());
     }
@@ -34,7 +34,7 @@ class TypesField extends AbstractField
         return 'types';
     }
 
-    public function resolve($value, array $args, ResolveInfo $info)
+    public function resolve($value, array $args, ResolveInfo $info): array
     {
         /** @var $value AbstractSchema $a */
         $this->types = [];

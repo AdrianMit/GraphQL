@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Schema;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\ListType\ListType;
@@ -10,9 +11,9 @@ use Youshido\GraphQL\Type\Object\ObjectType;
 use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class VariablesTest extends \PHPUnit_Framework_TestCase
+class VariablesTest extends PHPUnit_Framework_TestCase
 {
-    public function testInvalidNullableList()
+    public function testInvalidNullableList(): void
     {
         $schema = new Schema([
             'query' => new ObjectType([
@@ -23,9 +24,7 @@ class VariablesTest extends \PHPUnit_Framework_TestCase
                         'args'    => [
                             'ids' => new ListType(new NonNullType(new IdType())),
                         ],
-                        'resolve' => function () {
-                            return 'item';
-                        },
+                        'resolve' => fn(): string => 'item',
                     ],
                 ],
             ]),
@@ -89,7 +88,7 @@ class VariablesTest extends \PHPUnit_Framework_TestCase
      * @param $expected
      * @param $variables
      */
-    public function testVariables($query, $expected, $variables)
+    public function testVariables($query, $expected, $variables): void
     {
         $schema = new Schema([
             'query' => new ObjectType([
@@ -100,9 +99,7 @@ class VariablesTest extends \PHPUnit_Framework_TestCase
                         'args'    => [
                             'sortOrder' => new StringType(),
                         ],
-                        'resolve' => function ($args) {
-                            return sprintf('Result with %s order', empty($args['sortOrder']) ? 'default' : $args['sortOrder']);
-                        },
+                        'resolve' => fn($args): string => sprintf('Result with %s order', empty($args['sortOrder']) ? 'default' : $args['sortOrder']),
                     ],
                 ],
             ]),

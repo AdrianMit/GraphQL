@@ -22,15 +22,10 @@ use Youshido\GraphQL\Type\Scalar\IdType;
 class NodeField extends AbstractField
 {
 
-    /** @var  FetcherInterface */
-    protected $fetcher;
+    protected NodeInterfaceType $type;
 
-    /** @var NodeInterfaceType */
-    protected $type;
-
-    public function __construct(FetcherInterface $fetcher)
+    public function __construct(protected FetcherInterface $fetcher)
     {
-        $this->fetcher = $fetcher;
         $this->type    = (new NodeInterfaceType())->setFetcher($this->fetcher);
 
         parent::__construct([]);
@@ -62,7 +57,7 @@ class NodeField extends AbstractField
 
     public function resolve($value, array $args, ResolveInfo $info)
     {
-        list($type, $id) = Node::fromGlobalId($args['id']);
+        [$type, $id] = Node::fromGlobalId($args['id']);
 
         return $this->fetcher->resolveNode($type, $id);
     }

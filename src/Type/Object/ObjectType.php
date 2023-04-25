@@ -23,7 +23,7 @@ final class ObjectType extends AbstractObjectType
      * 
      * @codeCoverageIgnore
      */
-    public function build($config) { }
+    public function build($config): void { }
 
     public function getName()
     {

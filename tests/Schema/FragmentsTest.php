@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Schema;
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Config\Object\InterfaceTypeConfig;
 use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
 use Youshido\GraphQL\Execution\Processor;
@@ -19,7 +20,7 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 
 class UserType extends AbstractObjectType
 {
-    public function build($config)
+    public function build($config): void
     {
         $config->addFields([
             'id'           => new IdType(),
@@ -32,7 +33,7 @@ class UserType extends AbstractObjectType
 class CourtReservation extends AbstractObjectType
 {
 
-    public function build($config)
+    public function build($config): void
     {
         $config->addFields([
             'id'      => new IdType(),
@@ -55,7 +56,7 @@ class CourtReservation extends AbstractObjectType
 
 class ClassReservation extends AbstractObjectType
 {
-    public function build($config)
+    public function build($config): void
     {
         $config->addFields([
             'id'   => new IdType(),
@@ -73,10 +74,10 @@ class ReservationInterface extends AbstractInterfaceType
 {
     public function resolveType($object)
     {
-        return strpos($object['id'], 'cl') === false ? new CourtReservation() : new ClassReservation();
+        return !str_contains($object['id'], 'cl') ? new CourtReservation() : new ClassReservation();
     }
 
-    public function build($config)
+    public function build($config): void
     {
         $config->addFields([
             'id' => new IdType()
@@ -85,7 +86,7 @@ class ReservationInterface extends AbstractInterfaceType
 
 }
 
-class FragmentsTest extends \PHPUnit_Framework_TestCase
+class FragmentsTest extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -95,7 +96,7 @@ class FragmentsTest extends \PHPUnit_Framework_TestCase
      * @param $expected
      * @param $variables
      */
-    public function testVariables($query, $expected, $variables)
+    public function testVariables($query, $expected, $variables): void
     {
         $schema = new Schema([
             'query' => new ObjectType([
@@ -103,33 +104,31 @@ class FragmentsTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'user' => [
                         'type'    => new UserType(),
-                        'resolve' => function ($args) {
-                            return [
-                                'id'           => 'user-id-1',
-                                'fullName'     => 'Alex',
-                                'reservations' => [
-                                    [
-                                        'id'   => 'cl-1',
-                                        'user' => [
-                                            'id'       => 'user-id-2',
-                                            'fullName' => 'User class1'
-                                        ],
+                        'resolve' => fn($args): array => [
+                            'id'           => 'user-id-1',
+                            'fullName'     => 'Alex',
+                            'reservations' => [
+                                [
+                                    'id'   => 'cl-1',
+                                    'user' => [
+                                        'id'       => 'user-id-2',
+                                        'fullName' => 'User class1'
                                     ],
-                                    [
-                                        'id'      => 'court-1',
-                                        'players' => [
-                                            [
-                                                'id'   => 'player-id-1',
-                                                'user' => [
-                                                    'id'       => 'user-id-3',
-                                                    'fullName' => 'User court1'
-                                                ]
+                                ],
+                                [
+                                    'id'      => 'court-1',
+                                    'players' => [
+                                        [
+                                            'id'   => 'player-id-1',
+                                            'user' => [
+                                                'id'       => 'user-id-3',
+                                                'fullName' => 'User court1'
                                             ]
                                         ]
-                                    ],
-                                ]
-                            ];
-                        },
+                                    ]
+                                ],
+                            ]
+                        ],
                     ],
                 ]
             ])
@@ -209,7 +208,7 @@ class FragmentsTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function testSimpleFragment()
+    public function testSimpleFragment(): void
     {
         $schema = new Schema([
             'query' => new ObjectType([
@@ -217,12 +216,10 @@ class FragmentsTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'user' => [
                         'type'    => new UserType(),
-                        'resolve' => function ($args) {
-                            return [
-                                'id'       => 'user-id-1',
-                                'fullName' => 'Alex',
-                            ];
-                        },
+                        'resolve' => fn($args): array => [
+                            'id'       => 'user-id-1',
+                            'fullName' => 'Alex',
+                        ],
                         'args' => [
                             'id' => new IntType(),
                         ]

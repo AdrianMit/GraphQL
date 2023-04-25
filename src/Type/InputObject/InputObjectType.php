@@ -23,7 +23,7 @@ final class InputObjectType extends AbstractInputObjectType
      * 
      * @codeCoverageIgnore
      */
-    public function build($config)
+    public function build($config): void
     {
     }
 }

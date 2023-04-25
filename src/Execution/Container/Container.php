@@ -8,20 +8,16 @@
 
 namespace Youshido\GraphQL\Execution\Container;
 
+use Exception;
+use RuntimeException;
 class Container implements ContainerInterface
 {
 
-    private $keyset   = [];
-    private $values   = [];
-    private $services = [];
+    private array $keyset   = [];
+    private array $values   = [];
+    private array $services = [];
 
-
-    /**
-     * @param $id
-     * @return mixed
-     * @throws \Exception if there was no value set under specified id
-     */
-    public function get($id)
+    public function get(string $id): mixed
     {
         $this->assertIdentifierSet($id);
         if (isset($this->services['id'])) {
@@ -30,17 +26,17 @@ class Container implements ContainerInterface
         return $this->values[$id];
     }
 
-    public function set($id, $value)
+    public function set(string $id, mixed $value): mixed
     {
         $this->values[$id] = $value;
         $this->keyset[$id] = true;
         return $this;
     }
 
-    protected function setAsService($id, $service)
+    protected function setAsService(string $id, ?object $service = null): void
     {
         if (!is_object($service)) {
-            throw new \RuntimeException(sprintf('Service %s has to be an object', $id));
+            throw new RuntimeException(sprintf('Service %s has to be an object', $id));
         }
 
         $this->services[$id] = $service;
@@ -50,7 +46,7 @@ class Container implements ContainerInterface
         $this->keyset[$id]   = true;
     }
 
-    public function remove($id)
+    public function remove(string $id): void
     {
         $this->assertIdentifierSet($id);
         if (array_key_exists($id, $this->values)) {
@@ -61,15 +57,15 @@ class Container implements ContainerInterface
         }
     }
 
-    public function has($id)
+    public function has(string $id): mixed
     {
         return isset($this->keyset[$id]);
     }
 
-    private function assertIdentifierSet($id)
+    private function assertIdentifierSet(string $id): void
     {
         if (!$this->has($id)) {
-            throw new \RuntimeException(sprintf('Container item "%s" was not set', $id));
+            throw new RuntimeException(sprintf('Container item "%s" was not set', $id));
         }
     }
 }

@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Schema;
 
 
+use PHPUnit_Framework_TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\NonNullType;
@@ -19,30 +20,30 @@ use Youshido\Tests\DataProvider\TestEmptySchema;
 use Youshido\Tests\DataProvider\TestObjectType;
 use Youshido\Tests\DataProvider\TestSchema;
 
-class SchemaTest extends \PHPUnit_Framework_TestCase
+class SchemaTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testStandaloneEmptySchema()
+    public function testStandaloneEmptySchema(): void
     {
         $schema = new TestEmptySchema();
         $this->assertFalse($schema->getQueryType()->hasFields());
     }
 
-    public function testStandaloneSchema()
+    public function testStandaloneSchema(): void
     {
         $schema = new TestSchema();
         $this->assertTrue($schema->getQueryType()->hasFields());
         $this->assertTrue($schema->getMutationType()->hasFields());
 
-        $this->assertEquals(1, count($schema->getMutationType()->getFields()));
+        $this->assertEquals(1, is_countable($schema->getMutationType()->getFields()) ? count($schema->getMutationType()->getFields()) : 0);
 
-        $schema->addMutationField('changeUser', ['type' => new TestObjectType(), 'resolve' => function () {
+        $schema->addMutationField('changeUser', ['type' => new TestObjectType(), 'resolve' => function (): void {
         }]);
-        $this->assertEquals(2, count($schema->getMutationType()->getFields()));
+        $this->assertEquals(2, is_countable($schema->getMutationType()->getFields()) ? count($schema->getMutationType()->getFields()) : 0);
 
     }
 
-    public function testSchemaWithoutClosuresSerializable()
+    public function testSchemaWithoutClosuresSerializable(): void
     {
         $schema = new TestEmptySchema();
         $schema->getQueryType()->addField('randomInt', [
@@ -56,10 +57,10 @@ class SchemaTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($unserialized->getQueryType()->hasFields());
         $this->assertFalse($unserialized->getMutationType()->hasFields());
-        $this->assertEquals(1, count($unserialized->getQueryType()->getFields()));
+        $this->assertEquals(1, is_countable($unserialized->getQueryType()->getFields()) ? count($unserialized->getQueryType()->getFields()) : 0);
     }
 
-    public function testCustomTypes()
+    public function testCustomTypes(): void
     {
         $authorType = null;
 
@@ -68,9 +69,7 @@ class SchemaTest extends \PHPUnit_Framework_TestCase
             'fields'      => [
                 'name' => new StringType(),
             ],
-            'resolveType' => function () use ($authorType) {
-                return $authorType;
-            }
+            'resolveType' => fn() => $authorType
         ]);
 
         $authorType = new ObjectType([
@@ -87,11 +86,9 @@ class SchemaTest extends \PHPUnit_Framework_TestCase
                 'fields' => [
                     'user' => [
                         'type'    => $userInterface,
-                        'resolve' => function () {
-                            return [
-                                'name' => 'Alex'
-                            ];
-                        }
+                        'resolve' => fn(): array => [
+                            'name' => 'Alex'
+                        ]
                     ]
                 ]
             ])

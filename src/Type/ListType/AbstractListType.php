@@ -8,6 +8,7 @@
 namespace Youshido\GraphQL\Type\ListType;
 
 
+use Traversable;
 use Youshido\GraphQL\Config\Object\ListTypeConfig;
 use Youshido\GraphQL\Type\CompositeTypeInterface;
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
@@ -68,7 +69,7 @@ abstract class AbstractListType extends AbstractObjectType implements CompositeT
     /**
      * @inheritdoc
      */
-    public function build($config)
+    public function build($config): void
     {
     }
 
@@ -116,6 +117,6 @@ abstract class AbstractListType extends AbstractObjectType implements CompositeT
      */
     protected function isIterable($value)
     {
-        return null === $value || is_array($value) || ($value instanceof \Traversable);
+        return null === $value || is_array($value) || ($value instanceof Traversable);
     }
 }

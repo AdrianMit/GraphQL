@@ -14,20 +14,15 @@ class Directive extends AbstractAst
 {
     use AstArgumentsTrait;
 
-    /** @var string */
-    private $name;
-
 
     /**
      * @param string   $name
      * @param array    $arguments
      * @param Location $location
      */
-    public function __construct($name, array $arguments, Location $location)
+    public function __construct(private $name, array $arguments, Location $location)
     {
         parent::__construct($location);
-
-        $this->name = $name;
         $this->setArguments($arguments);
     }
 
@@ -39,10 +34,7 @@ class Directive extends AbstractAst
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
+    public function setName(mixed $name): void
     {
         $this->name = $name;
     }

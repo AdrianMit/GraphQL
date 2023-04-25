@@ -20,7 +20,7 @@ class TestInterfaceType extends AbstractInterfaceType
         return is_object($object) ? $object : new TestObjectType();
     }
 
-    public function build($config)
+    public function build($config): void
     {
         $config->addField('name', new StringType());
     }

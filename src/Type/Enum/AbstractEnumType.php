@@ -60,9 +60,7 @@ abstract class AbstractEnumType extends AbstractType
 
     public function getValidationError($value = null)
     {
-        $allowedValues             = array_map(function (array $value) {
-            return sprintf('%s (%s)', $value['name'], $value['value']);
-        }, $this->getConfig()->get('values'));
+        $allowedValues             = array_map(fn(array $value): string => sprintf('%s (%s)', $value['name'], $value['value']), $this->getConfig()->get('values'));
         return sprintf('Value must be one of the allowed ones: %s', implode(', ', $allowedValues));
     }
 
