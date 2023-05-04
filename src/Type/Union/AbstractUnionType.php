@@ -1,29 +1,23 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/5/15 12:12 AM
-*/
 
-namespace Youshido\GraphQL\Type\Union;
+namespace Dreamlabs\GraphQL\Type\Union;
 
 
-use Youshido\GraphQL\Config\Object\UnionTypeConfig;
-use Youshido\GraphQL\Config\Traits\ConfigAwareTrait;
-use Youshido\GraphQL\Type\AbstractInterfaceTypeInterface;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\AbstractScalarType;
-use Youshido\GraphQL\Type\Traits\AutoNameTrait;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\UnionTypeConfig;
+use Dreamlabs\GraphQL\Config\Traits\ConfigAwareTrait;
+use Dreamlabs\GraphQL\Type\AbstractInterfaceTypeInterface;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\AbstractScalarType;
+use Dreamlabs\GraphQL\Type\Traits\AutoNameTrait;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 abstract class AbstractUnionType extends AbstractType implements AbstractInterfaceTypeInterface
 {
 
     use ConfigAwareTrait, AutoNameTrait;
 
-    protected $isFinal = false;
+    protected bool $isFinal = false;
 
     /**
      * ObjectType constructor.
@@ -44,7 +38,7 @@ abstract class AbstractUnionType extends AbstractType implements AbstractInterfa
      */
     abstract public function getTypes();
 
-    public function getKind()
+    public function getKind(): string
     {
         return TypeMap::KIND_UNION;
     }
@@ -54,7 +48,7 @@ abstract class AbstractUnionType extends AbstractType implements AbstractInterfa
         return $this;
     }
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         return true;
     }

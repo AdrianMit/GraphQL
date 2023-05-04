@@ -1,28 +1,21 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/27/15 2:32 AM
-*/
 
-namespace Youshido\GraphQL\Config\Object;
+namespace Dreamlabs\GraphQL\Config\Object;
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Config\Traits\FieldsAwareConfigTrait;
-use Youshido\GraphQL\Config\TypeConfigInterface;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\Traits\FieldsAwareConfigTrait;
+use Dreamlabs\GraphQL\Config\TypeConfigInterface;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 /**
  * Class ObjectTypeConfig
- * @package Youshido\GraphQL\Config\Object
+ * @package Dreamlabs\GraphQL\Config\Object
  * @method setDescription(string $description)
  * @method string getDescription()
  */
 class ObjectTypeConfig extends AbstractConfig implements TypeConfigInterface
 {
-
     use FieldsAwareConfigTrait;
 
     public function getRules(): array

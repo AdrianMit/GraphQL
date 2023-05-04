@@ -1,26 +1,20 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 10:37 PM
-*/
 
-namespace Youshido\Tests\Library\Validator;
+namespace Dreamlabs\Tests\Library\Validator;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Type\TypeService;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
-use Youshido\GraphQL\Validator\ConfigValidator\Rules\TypeValidationRule;
-use Youshido\Tests\DataProvider\TestInputField;
-use Youshido\Tests\DataProvider\TestInputObjectType;
-use Youshido\Tests\DataProvider\TestObjectType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\Rules\TypeValidationRule;
+use Dreamlabs\Tests\DataProvider\TestInputField;
+use Dreamlabs\Tests\DataProvider\TestInputObjectType;
+use Dreamlabs\Tests\DataProvider\TestObjectType;
 
-class TypeValidationRuleTest extends PHPUnit_Framework_TestCase
+class TypeValidationRuleTest extends TestCase
 {
 
     /**
@@ -28,7 +22,7 @@ class TypeValidationRuleTest extends PHPUnit_Framework_TestCase
      */
     protected $rule;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->rule = new TypeValidationRule(ConfigValidator::getInstance());
     }

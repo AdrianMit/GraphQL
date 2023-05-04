@@ -1,14 +1,14 @@
 <?php
 
-namespace Youshido\Tests\Issue194;
+namespace Dreamlabs\Tests\Issue194;
 
 use PHPUnit\Framework\TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class ProcessorTest extends TestCase
 {

@@ -1,20 +1,15 @@
 <?php
-/**
- * Date: 10.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Relay\Connection;
+namespace Dreamlabs\GraphQL\Relay\Connection;
 
 
-use Youshido\GraphQL\Relay\Type\PageInfoType;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Relay\Type\PageInfoType;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 class Connection
 {

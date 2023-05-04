@@ -1,23 +1,17 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/27/15 1:22 AM
-*/
 
-namespace Youshido\GraphQL\Type\Scalar;
+namespace Dreamlabs\GraphQL\Type\Scalar;
 
 
 /**
  * Class TimestampType
- * @package Youshido\GraphQL\Type\Scalar
+ * @package Dreamlabs\GraphQL\Type\Scalar
  * @deprecated Should not be used, to be removed in 1.5
  */
 class TimestampType extends AbstractScalarType
 {
 
-    public function getName()
+    public function getName(): string
     {
         return 'Timestamp';
     }
@@ -34,7 +28,7 @@ class TimestampType extends AbstractScalarType
         return $value->getTimestamp();
     }
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         if (is_null($value) || is_object($value)) {
             return true;
@@ -43,7 +37,7 @@ class TimestampType extends AbstractScalarType
         return is_int($value);
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'DEPRECATED. Will be converted to a real timestamp';
     }

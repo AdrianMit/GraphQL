@@ -1,23 +1,17 @@
 <?php
-/**
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 4/23/17 11:09 PM
- */
 
 namespace Examples\BookStore\Schema\Field\Book;
 
 
 use Examples\BookStore\DataProvider;
 use Examples\BookStore\Schema\Type\BookType;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\AbstractField;
-use Youshido\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
 
 class RecentBooksField extends AbstractField
 {
-    public function getType()
+    public function getType(): ListType
     {
         return new ListType(new BookType());
     }
@@ -26,6 +20,4 @@ class RecentBooksField extends AbstractField
     {
         return DataProvider::getBooks();
     }
-
-
 }

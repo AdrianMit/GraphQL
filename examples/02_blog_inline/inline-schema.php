@@ -1,10 +1,10 @@
 <?php
 namespace BlogTest;
 
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\BooleanType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\BooleanType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 $rootQueryType = new ObjectType([
     'name'   => 'RootQueryType',

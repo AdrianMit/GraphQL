@@ -1,13 +1,13 @@
 <?php
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Exception;
-use Youshido\GraphQL\Directive\Directive;
-use Youshido\GraphQL\Type\SchemaDirectivesList;
+use Dreamlabs\GraphQL\Directive\Directive;
+use Dreamlabs\GraphQL\Type\SchemaDirectivesList;
 
-class SchemaDirectivesListTest extends PHPUnit_Framework_TestCase
+class SchemaDirectivesListTest extends TestCase
 {
     public function testCanAddASingleDirective(): void
     {

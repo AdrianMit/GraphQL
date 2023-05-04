@@ -1,14 +1,8 @@
 <?php
-/**
- * Date: 03.11.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
-
-namespace Youshido\GraphQL\Parser\Ast\Interfaces;
+namespace Dreamlabs\GraphQL\Parser\Ast\Interfaces;
 
 
-use Youshido\GraphQL\Parser\Ast\Argument;
+use Dreamlabs\GraphQL\Parser\Ast\Argument;
 
 interface FieldInterface extends LocatableInterface
 {

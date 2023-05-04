@@ -1,14 +1,8 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/27/15 1:24 AM
-*/
 
-namespace Youshido\GraphQL\Type\Object;
+namespace Dreamlabs\GraphQL\Type\Object;
 
-use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
 
 final class ObjectType extends AbstractObjectType
 {
@@ -23,9 +17,9 @@ final class ObjectType extends AbstractObjectType
      * 
      * @codeCoverageIgnore
      */
-    public function build($config): void { }
+    public function build(ObjectTypeConfig $config): void { }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getConfigValue('name');
     }

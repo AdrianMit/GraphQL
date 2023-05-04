@@ -1,12 +1,12 @@
 <?php
 
-namespace Youshido\Tests\Parser;
+namespace Dreamlabs\Tests\Parser;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
-use Youshido\GraphQL\Parser\Location;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Variable;
+use Dreamlabs\GraphQL\Parser\Location;
 
-class VariableTest extends PHPUnit_Framework_TestCase
+class VariableTest extends TestCase
 {
     /**
      * Test if variable value equals expected value
@@ -15,7 +15,7 @@ class VariableTest extends PHPUnit_Framework_TestCase
      */
     public function testGetValue($actual, $expected): void
     {
-        $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
+        $var = new Variable('foo', 'bar', false, false, new Location(1,1));
         $var->setValue($actual);
         $this->assertEquals($var->getValue(), $expected);
     }
@@ -26,13 +26,13 @@ class VariableTest extends PHPUnit_Framework_TestCase
      */
     public function testGetNullValueException(): void
     {
-        $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
+        $var = new Variable('foo', 'bar', false, false, new Location(1,1));
         $var->getValue();
     }
 
     public function testGetValueReturnsDefaultValueIfNoValueSet(): void
     {
-        $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
+        $var = new Variable('foo', 'bar', false, false, new Location(1,1));
         $var->setDefaultValue('default-value');
 
         $this->assertEquals(
@@ -43,7 +43,7 @@ class VariableTest extends PHPUnit_Framework_TestCase
 
     public function testGetValueReturnsSetValueEvenWithDefaultValue(): void
     {
-        $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
+        $var = new Variable('foo', 'bar', false, false, new Location(1,1));
         $var->setValue('real-value');
         $var->setDefaultValue('default-value');
 
@@ -55,7 +55,7 @@ class VariableTest extends PHPUnit_Framework_TestCase
 
     public function testIndicatesDefaultValuePresent(): void
     {
-        $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
+        $var = new Variable('foo', 'bar', false, false, new Location(1,1));
         $var->setDefaultValue('default-value');
 
         $this->assertTrue(
@@ -65,7 +65,7 @@ class VariableTest extends PHPUnit_Framework_TestCase
 
     public function testHasNoDefaultValue(): void
     {
-        $var = new Variable('foo', 'bar', false, false, true, new Location(1,1));
+        $var = new Variable('foo', 'bar', false, false, new Location(1,1));
 
         $this->assertFalse(
             $var->hasDefaultValue()

@@ -1,18 +1,19 @@
 <?php
 
-namespace Youshido\Tests\Issues\Issue193;
+namespace Dreamlabs\Tests\Issues\Issue193;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
-class Issue193Test extends PHPUnit_Framework_TestCase
+class Issue193Test extends TestCase
 {
     public function testResolvedInterfacesShouldBeRegistered(): void
     {
@@ -80,7 +81,7 @@ class Issue193Schema extends AbstractSchema
 class PostType extends AbstractObjectType
 {
 
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config->applyInterface(new ContentBlockInterface());
         $config->addFields([
@@ -96,7 +97,7 @@ class PostType extends AbstractObjectType
 
 class UndiscoveredType extends AbstractObjectType
 {
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config->applyInterface(new ContentBlockInterface());
     }
@@ -110,7 +111,7 @@ class ContentBlockInterface extends AbstractInterfaceType
         $config->addField('summary', new StringType());
     }
 
-    public function resolveType($object): \Youshido\Tests\Issues\Issue193\PostType|\Youshido\Tests\Issues\Issue193\UndiscoveredType
+    public function resolveType($object): \Dreamlabs\Tests\Issues\Issue193\PostType|\Dreamlabs\Tests\Issues\Issue193\UndiscoveredType
     {
         if (isset($object['title'])) {
             return new PostType();

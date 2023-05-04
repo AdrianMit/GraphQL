@@ -1,17 +1,17 @@
 <?php
 
-namespace Youshido\Tests\Issues\Issue90;
+namespace Dreamlabs\Tests\Issues\Issue90;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\Tests\Issues\Issue90\Issue90Schema;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\Tests\Issues\Issue90\Issue90Schema;
 
 /**
  * User: stefano.corallo
  * Date: 25/11/16
  * Time: 9.39
  */
-class Issue90Test extends PHPUnit_Framework_TestCase
+class Issue90Test extends TestCase
 {
 
     public function testQueryDateTimeTypeWithDateParameter(): void

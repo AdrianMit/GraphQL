@@ -1,15 +1,10 @@
 <?php
-/**
- * Date: 07.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\StarWars\Schema;
+namespace Dreamlabs\Tests\StarWars\Schema;
 
 
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
 
 class StarWarsSchema extends AbstractSchema
 {

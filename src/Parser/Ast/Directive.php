@@ -1,14 +1,9 @@
 <?php
-/**
- * Date: 3/17/17
- *
- * @author Volodymyr Rashchepkin <rashepkin@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser\Ast;
+namespace Dreamlabs\GraphQL\Parser\Ast;
 
 
-use Youshido\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Parser\Location;
 
 class Directive extends AbstractAst
 {

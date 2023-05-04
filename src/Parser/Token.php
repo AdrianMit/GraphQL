@@ -1,11 +1,6 @@
 <?php
-/**
- * Date: 23.11.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser;
+namespace Dreamlabs\GraphQL\Parser;
 
 class Token
 {

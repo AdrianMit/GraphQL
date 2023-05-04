@@ -1,14 +1,9 @@
 <?php
-/**
- * Date: 17.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Field;
+namespace Dreamlabs\GraphQL\Field;
 
 
-use Youshido\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
 
 interface FieldInterface extends InputFieldInterface
 {

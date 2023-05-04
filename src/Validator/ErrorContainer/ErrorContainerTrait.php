@@ -1,14 +1,10 @@
 <?php
-/**
- * Date: 01.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Validator\ErrorContainer;
+namespace Dreamlabs\GraphQL\Validator\ErrorContainer;
 
-use Youshido\GraphQL\Exception\Interfaces\ExtendedExceptionInterface;
-use Youshido\GraphQL\Exception\Interfaces\LocationableExceptionInterface;
+use Exception;
+use Dreamlabs\GraphQL\Exception\Interfaces\ExtendedExceptionInterface;
+use Dreamlabs\GraphQL\Exception\Interfaces\LocationableExceptionInterface;
 
 trait ErrorContainerTrait
 {
@@ -16,7 +12,7 @@ trait ErrorContainerTrait
     /** @var \Exception[] */
     protected $errors = [];
 
-    public function addError(\Exception $exception)
+    public function addError(Exception $exception)
     {
         $this->errors[] = $exception;
 

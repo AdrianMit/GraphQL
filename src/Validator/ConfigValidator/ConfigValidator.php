@@ -1,20 +1,14 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/28/15 2:25 AM
-*/
 
-namespace Youshido\GraphQL\Validator\ConfigValidator;
+namespace Dreamlabs\GraphQL\Validator\ConfigValidator;
 
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Exception\ConfigurationException;
-use Youshido\GraphQL\Exception\ValidationException;
-use Youshido\GraphQL\Validator\ConfigValidator\Rules\TypeValidationRule;
-use Youshido\GraphQL\Validator\ConfigValidator\Rules\ValidationRuleInterface;
-use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Exception\ValidationException;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\Rules\TypeValidationRule;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\Rules\ValidationRuleInterface;
+use Dreamlabs\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
 
 class ConfigValidator implements ConfigValidatorInterface
 {
@@ -48,7 +42,7 @@ class ConfigValidator implements ConfigValidatorInterface
     public function assertValidConfig(AbstractConfig $config): void
     {
         if (!$this->isValidConfig($config)) {
-            throw new ConfigurationException('Config is not valid for ' . ($config->getContextObject() ? get_class($config->getContextObject()) : null) . "\n" . implode("\n", $this->getErrorsArray(false)));
+            throw new ConfigurationException('Config is not valid for ' . ($config->getContextObject() ? $config->getContextObject()::class : null) . "\n" . implode("\n", $this->getErrorsArray(false)));
         }
     }
 

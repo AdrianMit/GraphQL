@@ -1,38 +1,32 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 11:02 PM 5/13/16
- */
 
-namespace Youshido\Tests\Schema;
+namespace Dreamlabs\Tests\Schema;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Container\Container;
-use Youshido\GraphQL\Execution\Context\ExecutionContext;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Execution\Visitor\MaxComplexityQueryVisitor;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Enum\EnumType;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\BooleanType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Type\Union\UnionType;
-use Youshido\Tests\DataProvider\TestEmptySchema;
-use Youshido\Tests\DataProvider\TestEnumType;
-use Youshido\Tests\DataProvider\TestInterfaceType;
-use Youshido\Tests\DataProvider\TestObjectType;
-use Youshido\Tests\DataProvider\TestSchema;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Container\Container;
+use Dreamlabs\GraphQL\Execution\Context\ExecutionContext;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Execution\Visitor\MaxComplexityQueryVisitor;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Enum\EnumType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\BooleanType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Union\UnionType;
+use Dreamlabs\Tests\DataProvider\TestEmptySchema;
+use Dreamlabs\Tests\DataProvider\TestEnumType;
+use Dreamlabs\Tests\DataProvider\TestInterfaceType;
+use Dreamlabs\Tests\DataProvider\TestObjectType;
+use Dreamlabs\Tests\DataProvider\TestSchema;
 
-class ProcessorTest extends PHPUnit_Framework_TestCase
+class ProcessorTest extends TestCase
 {
 
     private int $_counter = 0;
@@ -740,7 +734,7 @@ class ProcessorTest extends PHPUnit_Framework_TestCase
         // TODO, variables not yet supported
         /*$query = 'query costQuery ($cost: Int) { me (cost: $cost) { firstName, lastName, code, likes } }';
         foreach (range(1,5) as $cost_multiplier) {
-          $visitor = new \Youshido\GraphQL\Execution\Visitor\MaxComplexityQueryVisitor(1000); // arbitrarily high cost
+          $visitor = new \Dreamlabs\GraphQL\Execution\Visitor\MaxComplexityQueryVisitor(1000); // arbitrarily high cost
           $processor->processPayload($query, ['cost' => $cost_multiplier], [$visitor]);
           $expected = 1 + 13 * (1 + $cost_multiplier);
           $this->assertEquals($expected, $visitor->getMemo());

@@ -1,31 +1,27 @@
 <?php
-/**
- * Date: 07.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\StarWars\Schema;
+namespace Dreamlabs\Tests\StarWars\Schema;
 
 
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 class HumanType extends AbstractObjectType
 {
 
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField('id', new NonNullType(new IdType()))
             ->addField('name', new NonNullType(new StringType()))
             ->addField('friends', [
                 'type'    => new ListType(new CharacterInterface()),
-                'resolve' => fn($droid) => StarWarsData::getFriends($droid),
+                'resolve' => fn($droid): array => StarWarsData::getFriends($droid),
             ])
             ->addField('appearsIn', new ListType(new EpisodeEnum()))
             ->addField('homePlanet', TypeMap::TYPE_STRING);

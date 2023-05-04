@@ -1,32 +1,27 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/2/15 9:00 PM
-*/
 
-namespace Youshido\GraphQL\Type\InputObject;
+namespace Dreamlabs\GraphQL\Type\InputObject;
 
 
+use Dreamlabs\GraphQL\Config\AbstractConfig;
 use Exception;
-use Youshido\GraphQL\Config\Object\InputObjectTypeConfig;
-use Youshido\GraphQL\Field\InputFieldInterface;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\Traits\AutoNameTrait;
-use Youshido\GraphQL\Type\Traits\FieldsAwareObjectTrait;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\InputObjectTypeConfig;
+use Dreamlabs\GraphQL\Field\InputFieldInterface;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\InputObject;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Variable;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\Traits\AutoNameTrait;
+use Dreamlabs\GraphQL\Type\Traits\FieldsAwareObjectTrait;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 abstract class AbstractInputObjectType extends AbstractType
 {
 
     use AutoNameTrait, FieldsAwareObjectTrait;
 
-    protected $isBuilt = false;
+    protected bool $isBuilt = false;
 
-    public function getConfig()
+    public function getConfig(): AbstractConfig
     {
         if (!$this->isBuilt) {
             $this->isBuilt = true;
@@ -51,7 +46,7 @@ abstract class AbstractInputObjectType extends AbstractType
      */
     abstract public function build($config);
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         if ($value instanceof InputObject) {
             $value = $value->getValue();
@@ -92,17 +87,17 @@ abstract class AbstractInputObjectType extends AbstractType
         return !(count((array) $requiredFields) > 0);
     }
 
-    public function getKind()
+    public function getKind(): string
     {
         return TypeMap::KIND_INPUT_OBJECT;
     }
 
-    public function isInputType()
+    public function isInputType(): bool
     {
         return true;
     }
 
-    public function parseValue($value)
+    public function parseValue($value): mixed
     {
         if (is_null($value)) return null;
         if($value instanceof InputObject) {

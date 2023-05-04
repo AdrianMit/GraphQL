@@ -1,19 +1,13 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/10/16 11:23 PM
-*/
 
-namespace Youshido\GraphQL\Relay\Field;
+namespace Dreamlabs\GraphQL\Relay\Field;
 
 
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\AbstractField;
-use Youshido\GraphQL\Relay\Node;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Relay\Node;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
 
 class GlobalIdField extends AbstractField
 {
@@ -37,7 +31,7 @@ class GlobalIdField extends AbstractField
         return 'id';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'The ID of an object';
     }

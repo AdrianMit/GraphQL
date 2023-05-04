@@ -1,17 +1,11 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/5/16 9:24 PM
-*/
 
-namespace Youshido\GraphQL\Schema;
+namespace Dreamlabs\GraphQL\Schema;
 
 
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Type\SchemaTypesList;
-use Youshido\GraphQL\Type\SchemaDirectivesList;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Type\SchemaTypesList;
+use Dreamlabs\GraphQL\Type\SchemaDirectivesList;
 
 abstract class AbstractSchema
 {

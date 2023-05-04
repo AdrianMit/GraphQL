@@ -1,12 +1,6 @@
 <?php
-/**
- * This file is a part of PhpStorm project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 10/7/16 3:36 PM
- */
 
-namespace Youshido\GraphQL\Type;
+namespace Dreamlabs\GraphQL\Type;
 
 use Exception;
 class SchemaTypesList
@@ -30,7 +24,7 @@ class SchemaTypesList
         return $this;
     }
 
-    public function getTypes()
+    public function getTypes(): array
     {
         return $this->typesList;
     }

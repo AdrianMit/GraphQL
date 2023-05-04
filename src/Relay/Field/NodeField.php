@@ -1,23 +1,17 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/10/16 11:46 PM
-*/
 
-namespace Youshido\GraphQL\Relay\Field;
+namespace Dreamlabs\GraphQL\Relay\Field;
 
 
-use Youshido\GraphQL\Config\Field\FieldConfig;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\AbstractField;
-use Youshido\GraphQL\Field\InputField;
-use Youshido\GraphQL\Relay\Fetcher\FetcherInterface;
-use Youshido\GraphQL\Relay\Node;
-use Youshido\GraphQL\Relay\NodeInterfaceType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Config\Field\FieldConfig;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Relay\Fetcher\FetcherInterface;
+use Dreamlabs\GraphQL\Relay\Node;
+use Dreamlabs\GraphQL\Relay\NodeInterfaceType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
 
 class NodeField extends AbstractField
 {
@@ -36,12 +30,12 @@ class NodeField extends AbstractField
         return 'node';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Fetches an object given its ID';
     }
 
-    public function build(FieldConfig $config)
+    public function build(FieldConfig $config): void
     {
         $config->addArgument(new InputField([
             'name'        => 'id',
@@ -50,7 +44,7 @@ class NodeField extends AbstractField
         ]));
     }
 
-    public function getType()
+    public function getType(): NodeInterfaceType
     {
         return $this->type;
     }

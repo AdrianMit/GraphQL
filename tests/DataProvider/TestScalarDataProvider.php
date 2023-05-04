@@ -1,12 +1,6 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/28/15 12:05 PM
-*/
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
 use DateTime;
 class TestScalarDataProvider

@@ -1,28 +1,22 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 9:39 PM
-*/
 
-namespace Youshido\Tests\Library\Utilities;
+namespace Dreamlabs\Tests\Library\Utilities;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Exception;
-use Youshido\GraphQL\Exception\Interfaces\ExtendedExceptionInterface;
-use Youshido\GraphQL\Exception\Interfaces\LocationableExceptionInterface;
-use Youshido\GraphQL\Exception\Parser\SyntaxErrorException;
-use Youshido\GraphQL\Parser\Location;
-use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerInterface;
-use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
+use Dreamlabs\GraphQL\Exception\Interfaces\ExtendedExceptionInterface;
+use Dreamlabs\GraphQL\Exception\Interfaces\LocationableExceptionInterface;
+use Dreamlabs\GraphQL\Exception\Parser\SyntaxErrorException;
+use Dreamlabs\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Validator\ErrorContainer\ErrorContainerInterface;
+use Dreamlabs\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
 
-class ErrorContainerTraitTest extends PHPUnit_Framework_TestCase implements ErrorContainerInterface
+class ErrorContainerTraitTest extends TestCase implements ErrorContainerInterface
 {
 
     use ErrorContainerTrait;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clearErrors();
     }
@@ -119,7 +113,7 @@ class ErrorContainerTraitTest extends PHPUnit_Framework_TestCase implements Erro
 
 class ExtendedException extends Exception implements ExtendedExceptionInterface
 {
-    public function getExtensions()
+    public function getExtensions(): array
     {
         return [
             'foo' => 'foo',
@@ -130,7 +124,7 @@ class ExtendedException extends Exception implements ExtendedExceptionInterface
 
 class SuperException extends Exception implements LocationableExceptionInterface, ExtendedExceptionInterface
 {
-    public function getExtensions()
+    public function getExtensions(): array
     {
         return [
             'foo' => 'foo',
@@ -138,7 +132,7 @@ class SuperException extends Exception implements LocationableExceptionInterface
         ];
     }
 
-    public function getLocation()
+    public function getLocation(): Location
     {
         return new Location(6, 10);
     }

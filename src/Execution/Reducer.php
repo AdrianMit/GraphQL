@@ -1,25 +1,20 @@
 <?php
-/**
- * Date: 07.11.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Execution;
+namespace Dreamlabs\GraphQL\Execution;
 
 
-use Youshido\GraphQL\Execution\Context\ExecutionContextInterface;
-use Youshido\GraphQL\Execution\Visitor\AbstractQueryVisitor;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Field\FieldInterface;
-use Youshido\GraphQL\Parser\Ast\Field as FieldAst;
-use Youshido\GraphQL\Parser\Ast\FragmentReference;
-use Youshido\GraphQL\Parser\Ast\Interfaces\FragmentInterface;
-use Youshido\GraphQL\Parser\Ast\Mutation;
-use Youshido\GraphQL\Parser\Ast\Query;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Union\AbstractUnionType;
+use Dreamlabs\GraphQL\Execution\Context\ExecutionContextInterface;
+use Dreamlabs\GraphQL\Execution\Visitor\AbstractQueryVisitor;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Field\FieldInterface;
+use Dreamlabs\GraphQL\Parser\Ast\Field as FieldAst;
+use Dreamlabs\GraphQL\Parser\Ast\FragmentReference;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\FragmentInterface;
+use Dreamlabs\GraphQL\Parser\Ast\Mutation;
+use Dreamlabs\GraphQL\Parser\Ast\Query;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Union\AbstractUnionType;
 
 class Reducer
 {
@@ -44,14 +39,7 @@ class Reducer
         }
     }
 
-    /**
-     * Entry point for the `walkQuery` routine.  Execution bounces between here, where the reducer's ->visit() method
-     * is invoked, and `walkQuery` where we send in the scores from the `visit` call.
-     *
-     * @param AbstractType         $currentLevelSchema
-     * @param AbstractQueryVisitor $reducer
-     */
-    protected function doVisit(Query $query, $currentLevelSchema, $reducer)
+    protected function doVisit(Query $query, AbstractType $currentLevelSchema, AbstractQueryVisitor $reducer): void
     {
         if (!($currentLevelSchema instanceof AbstractObjectType) || !$currentLevelSchema->hasField($query->getName())) {
             return;
@@ -78,23 +66,8 @@ class Reducer
             }
         }
     }
-
-    /**
-     * Coroutine to walk the query and schema in DFS manner (see AbstractQueryVisitor docs for more info) and yield a
-     * tuple of (queryNode, schemaNode, childScore)
-     *
-     * childScore costs are accumulated via values sent into the coroutine.
-     *
-     * Most of the branching in this function is just to handle the different types in a query: Queries, Unions,
-     * Fragments (anonymous and named), and Fields.  The core of the function is simple: recurse until we hit the base
-     * case of a Field and yield that back up to the visitor up in `doVisit`.
-     *
-     * @param Query|Field|\Youshido\GraphQL\Parser\Ast\Interfaces\FragmentInterface $queryNode
-     * @param FieldInterface                                                        $currentLevelAST
-     *
-     * @return \Generator
-     */
-    protected function walkQuery(Query|\Youshido\GraphQL\Field\Field|FragmentInterface $queryNode, FieldInterface $currentLevelAST)
+    
+    protected function walkQuery(Query|Field|FragmentInterface $queryNode, FieldInterface $currentLevelAST): \Generator
     {
         $childrenScore = 0;
         if (!($queryNode instanceof FieldAst)) {

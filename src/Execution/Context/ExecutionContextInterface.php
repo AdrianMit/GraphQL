@@ -1,17 +1,12 @@
 <?php
-/**
- * Date: 5/20/16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Execution\Context;
+namespace Dreamlabs\GraphQL\Execution\Context;
 
 
-use Youshido\GraphQL\Execution\Container\ContainerInterface;
-use Youshido\GraphQL\Execution\Request;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerInterface;
+use Dreamlabs\GraphQL\Execution\Container\ContainerInterface;
+use Dreamlabs\GraphQL\Execution\Request;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Validator\ErrorContainer\ErrorContainerInterface;
 
 interface ExecutionContextInterface extends ErrorContainerInterface
 {

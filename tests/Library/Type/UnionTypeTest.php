@@ -1,22 +1,17 @@
 <?php
-/**
- * Date: 13.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Type\Union\UnionType;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
-use Youshido\Tests\DataProvider\TestObjectType;
-use Youshido\Tests\DataProvider\TestUnionType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Type\Union\UnionType;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\Tests\DataProvider\TestObjectType;
+use Dreamlabs\Tests\DataProvider\TestUnionType;
 
-class UnionTypeTest extends PHPUnit_Framework_TestCase
+class UnionTypeTest extends TestCase
 {
 
     public function testInlineCreation(): void
@@ -56,7 +51,7 @@ class UnionTypeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidTypesWithScalar(): void
     {
@@ -72,7 +67,7 @@ class UnionTypeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidTypes(): void
     {

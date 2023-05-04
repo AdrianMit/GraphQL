@@ -1,25 +1,18 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/28/15 3:53 PM
-*/
 
-namespace Youshido\GraphQL\Config\Schema;
+namespace Dreamlabs\GraphQL\Config\Schema;
 
 
 use Exception;
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\SchemaDirectivesList;
-use Youshido\GraphQL\Type\SchemaTypesList;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\SchemaDirectivesList;
+use Dreamlabs\GraphQL\Type\SchemaTypesList;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 class SchemaConfig extends AbstractConfig
 {
-
     private SchemaTypesList $typesList;
     private SchemaDirectivesList $directiveList;
 
@@ -94,5 +87,4 @@ class SchemaConfig extends AbstractConfig
     {
         return $this->directiveList;
     }
-
 }

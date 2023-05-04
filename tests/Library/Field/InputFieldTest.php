@@ -1,29 +1,23 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 2:29 PM 5/13/16
- */
 
-namespace Youshido\Tests\Library\Field;
+namespace Dreamlabs\Tests\Library\Field;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Field\InputField;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\InputObject\InputObjectType;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
-use Youshido\Tests\DataProvider\TestInputField;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\InputObject\InputObjectType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\Tests\DataProvider\TestInputField;
 
-class InputFieldTest extends PHPUnit_Framework_TestCase
+class InputFieldTest extends TestCase
 {
 
     private string $introspectionQuery = <<<TEXT
@@ -170,7 +164,7 @@ TEXT;
 
     /**
      * @dataProvider invalidInputFieldProvider
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidInputFieldParams($fieldConfig): void
     {

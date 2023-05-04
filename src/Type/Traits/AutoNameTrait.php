@@ -1,22 +1,15 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/4/16 9:18 PM
-*/
 
-namespace Youshido\GraphQL\Type\Traits;
-use Youshido\GraphQL\Field\FieldInterface;
+namespace Dreamlabs\GraphQL\Type\Traits;
+use Dreamlabs\GraphQL\Field\FieldInterface;
 
 /**
  * Class AutoNameTrait
- * @package Youshido\GraphQL\Type\Traits
+ * @package Dreamlabs\GraphQL\Type\Traits
  */
 trait AutoNameTrait
 {
-
-    public function getName()
+    public function getName(): ?string
     {
         if (!empty($this->config)) {
             return $this->config->getName();

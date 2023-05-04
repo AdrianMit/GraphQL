@@ -1,26 +1,24 @@
 <?php
-/**
- * Date: 03.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Type\ListType;
+namespace Dreamlabs\GraphQL\Type\ListType;
 
 
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
 use Traversable;
-use Youshido\GraphQL\Config\Object\ListTypeConfig;
-use Youshido\GraphQL\Type\CompositeTypeInterface;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\ListTypeConfig;
+use Dreamlabs\GraphQL\Type\CompositeTypeInterface;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 abstract class AbstractListType extends AbstractObjectType implements CompositeTypeInterface
 {
+    protected AbstractConfig $config;
+    
     /**
-     * @var ListTypeConfig
+     * @throws ConfigurationException
      */
-    protected $config;
-
     public function __construct()
     {
         $this->config = new ListTypeConfig(['itemType' => $this->getItemType()], $this);
@@ -36,7 +34,7 @@ abstract class AbstractListType extends AbstractObjectType implements CompositeT
      *
      * @return bool
      */
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         if (!$this->isIterable($value)) {
             return false;
@@ -69,7 +67,7 @@ abstract class AbstractListType extends AbstractObjectType implements CompositeT
     /**
      * @inheritdoc
      */
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
     }
 
@@ -83,7 +81,7 @@ abstract class AbstractListType extends AbstractObjectType implements CompositeT
         return $this->getItemType();
     }
 
-    final public function getKind()
+    final public function getKind(): string
     {
         return TypeMap::KIND_LIST;
     }
@@ -93,7 +91,7 @@ abstract class AbstractListType extends AbstractObjectType implements CompositeT
         return $this->getNamedType();
     }
 
-    public function parseValue($value)
+    public function parseValue($value): mixed
     {
         foreach ((array) $value as $keyValue => $valueItem) {
             $value[$keyValue] = $this->getItemType()->parseValue($valueItem);

@@ -1,5 +1,5 @@
 <?php
-namespace Youshido\GraphQL\Execution\Container;
+namespace Dreamlabs\GraphQL\Execution\Container;
 
 interface ContainerInterface
 {

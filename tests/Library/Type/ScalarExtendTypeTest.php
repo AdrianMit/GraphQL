@@ -1,22 +1,16 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 8/14/16 12:16 PM
-*/
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\Tests\DataProvider\TestTimeType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\Tests\DataProvider\TestTimeType;
 
-class ScalarExtendTypeTest extends PHPUnit_Framework_TestCase
+class ScalarExtendTypeTest extends TestCase
 {
 
     public function testType(): void

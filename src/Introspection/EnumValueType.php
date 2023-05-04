@@ -1,21 +1,21 @@
 <?php
-/**
- * Date: 03.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Introspection;
+namespace Dreamlabs\GraphQL\Introspection;
 
 
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 class EnumValueType extends AbstractObjectType
 {
-
-    public function build($config): void
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField('name', new NonNullType(TypeMap::TYPE_STRING))
@@ -27,7 +27,7 @@ class EnumValueType extends AbstractObjectType
     /**
      * @return String type name
      */
-    public function getName()
+    public function getName(): string
     {
         return '__EnumValue';
     }

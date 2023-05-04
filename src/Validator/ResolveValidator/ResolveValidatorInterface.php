@@ -1,19 +1,14 @@
 <?php
-/**
- * Date: 01.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Validator\ResolveValidator;
+namespace Dreamlabs\GraphQL\Validator\ResolveValidator;
 
 
-use Youshido\GraphQL\Execution\Request;
-use Youshido\GraphQL\Field\FieldInterface;
-use Youshido\GraphQL\Parser\Ast\Interfaces\FieldInterface as AstFieldInterface;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\Union\AbstractUnionType;
+use Dreamlabs\GraphQL\Execution\Request;
+use Dreamlabs\GraphQL\Field\FieldInterface;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\FieldInterface as AstFieldInterface;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\Union\AbstractUnionType;
 
 interface ResolveValidatorInterface
 {

@@ -1,23 +1,21 @@
 <?php
-/**
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 4/23/17 11:08 PM
- */
 
 namespace Examples\BookStore\Schema\Type;
 
 
-use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class BookType extends AbstractObjectType
 {
-    public function build($config)
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(ObjectTypeConfig $config): void
     {
         $config->addFields([
             'id'     => new IdType(),

@@ -1,26 +1,20 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/11/16 9:31 PM
-*/
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Type\TypeService;
 
-class NonNullTypeTest extends PHPUnit_Framework_TestCase
+class NonNullTypeTest extends TestCase
 {
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidParams(): void
     {

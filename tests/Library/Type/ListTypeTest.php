@@ -1,21 +1,15 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/15/16 2:46 PM
-*/
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\Tests\DataProvider\TestListType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\Tests\DataProvider\TestListType;
 
 
-class ListTypeTest extends PHPUnit_Framework_TestCase
+class ListTypeTest extends TestCase
 {
 
     public function testInline(): void

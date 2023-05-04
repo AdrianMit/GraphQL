@@ -1,21 +1,15 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 2:11 PM 5/19/16
- */
 
-namespace Youshido\Tests\Library\Relay;
+namespace Dreamlabs\Tests\Library\Relay;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Relay\RelayMutation;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Relay\RelayMutation;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
-class MutationTest extends PHPUnit_Framework_TestCase
+class MutationTest extends TestCase
 {
 
     public function testCreation(): void

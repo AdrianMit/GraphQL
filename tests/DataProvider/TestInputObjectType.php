@@ -1,17 +1,11 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 4:16 PM 5/13/16
- */
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
 
-use Youshido\GraphQL\Type\InputObject\AbstractInputObjectType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\InputObject\AbstractInputObjectType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class TestInputObjectType extends AbstractInputObjectType
 {

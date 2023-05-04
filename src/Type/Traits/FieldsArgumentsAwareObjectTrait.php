@@ -1,13 +1,10 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 5:12 PM 5/14/16
- */
 
-namespace Youshido\GraphQL\Type\Traits;
+namespace Dreamlabs\GraphQL\Type\Traits;
 
+
+use Dreamlabs\GraphQL\Field\InputFieldInterface;
+use Dreamlabs\GraphQL\Type\AbstractType;
 
 trait FieldsArgumentsAwareObjectTrait
 {
@@ -29,23 +26,23 @@ trait FieldsArgumentsAwareObjectTrait
     {
         return $this->getConfig()->addArgument($argument, $ArgumentInfo);
     }
-
-    public function getArguments()
+    
+    public function getArguments(): array
     {
         return $this->getConfig()->getArguments();
     }
 
-    public function getArgument($argumentName)
+    public function  getArgument(string $argumentName): AbstractType|InputFieldInterface
     {
         return $this->getConfig()->getArgument($argumentName);
     }
-
-    public function hasArgument($argumentName)
+    
+    public function hasArgument(string $argumentName): bool
     {
         return $this->getConfig()->hasArgument($argumentName);
     }
-
-    public function hasArguments()
+    
+    public function hasArguments(): bool
     {
         return $this->hasArgumentCache ?? ($this->hasArgumentCache = $this->getConfig()->hasArguments());
     }

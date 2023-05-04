@@ -1,23 +1,17 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 5:02 PM
-*/
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Type\InterfaceType\InterfaceType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\Tests\DataProvider\TestExtendedType;
-use Youshido\Tests\DataProvider\TestInterfaceType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Type\InterfaceType\InterfaceType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\Tests\DataProvider\TestExtendedType;
+use Dreamlabs\Tests\DataProvider\TestInterfaceType;
 
-class InterfaceTypeTest extends PHPUnit_Framework_TestCase
+class InterfaceTypeTest extends TestCase
 {
 
     public function testInterfaceMethods(): void

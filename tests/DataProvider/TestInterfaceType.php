@@ -1,16 +1,10 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 4:24 PM
-*/
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
 
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class TestInterfaceType extends AbstractInterfaceType
 {

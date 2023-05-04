@@ -1,17 +1,12 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 2:00 PM 5/15/16
- */
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
 
-use Youshido\GraphQL\Type\Object\AbstractMutationObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Type\Object\AbstractMutationObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class TestMutationObjectType extends AbstractMutationObjectType
 {
@@ -20,7 +15,7 @@ class TestMutationObjectType extends AbstractMutationObjectType
         return new StringType();
     }
 
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $this->addArgument('increment', new IntType());
     }

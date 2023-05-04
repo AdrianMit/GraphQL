@@ -1,16 +1,10 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 3:40 PM 4/29/16
- */
 
-namespace Youshido\GraphQL\Type;
+namespace Dreamlabs\GraphQL\Type;
 
 
-use Youshido\GraphQL\Config\Traits\ConfigAwareTrait;
-use Youshido\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Config\Traits\ConfigAwareTrait;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
 
 final class NonNullType extends AbstractType implements CompositeTypeInterface
 {
@@ -37,12 +31,12 @@ final class NonNullType extends AbstractType implements CompositeTypeInterface
         $this->_typeOf = $fieldType;
     }
 
-    public function getName()
+    public function getName(): ?string
     {
         return null;
     }
 
-    public function getKind()
+    public function getKind(): string
     {
         return TypeMap::KIND_NON_NULL;
     }
@@ -52,7 +46,7 @@ final class NonNullType extends AbstractType implements CompositeTypeInterface
         return $value;
     }
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         if ($value === null) {
             return false;
@@ -86,7 +80,7 @@ final class NonNullType extends AbstractType implements CompositeTypeInterface
         return $this->_typeOf;
     }
 
-    public function parseValue($value)
+    public function parseValue($value): mixed
     {
         return $this->getNullableType()->parseValue($value);
     }

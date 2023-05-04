@@ -1,31 +1,8 @@
 <?php
-/**
- * Abstract query visitor.
- *
- * The contract between this and the processor is that it will yield tuples to `visit` in DFS manner.  i.e. a query of:
- *
- * {
- *   A {
- *     B
- *     C {
- *       D
- *     }
- *     E
- *   }
- * }
- *
- * ... will visit nodes in order B, D, C, E, A.
- *
- * Implementations are able to "reduce" the query by mutating $this->memo.  A reasonable thing to do is raise an
- * exception if some limit is reached.  (see MaxComplexityQueryVisitor for example concrete implementation)
- *
- * @author Ben Roberts <bjr.roberts@gmail.com>
- * created: 7/11/16 11:03 AM
- */
 
-namespace Youshido\GraphQL\Execution\Visitor;
+namespace Dreamlabs\GraphQL\Execution\Visitor;
 
-use Youshido\GraphQL\Config\Field\FieldConfig;
+use Dreamlabs\GraphQL\Config\Field\FieldConfig;
 
 abstract class AbstractQueryVisitor
 {

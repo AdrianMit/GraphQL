@@ -1,15 +1,9 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/3/15 11:28 PM
-*/
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
 
 
 class TestEmptySchema extends AbstractSchema

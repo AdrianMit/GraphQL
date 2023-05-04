@@ -1,24 +1,20 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/19/16 9:00 AM
-*/
 
-namespace Youshido\GraphQL\Execution\Context;
+namespace Dreamlabs\GraphQL\Execution\Context;
 
 
+use Dreamlabs\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Field\FieldInterface;
 use Exception;
-use Youshido\GraphQL\Execution\Container\ContainerInterface;
-use Youshido\GraphQL\Execution\Request;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Introspection\Field\SchemaField;
-use Youshido\GraphQL\Introspection\Field\TypeDefinitionField;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
-use Youshido\GraphQL\Validator\SchemaValidator\SchemaValidator;
+use Dreamlabs\GraphQL\Execution\Container\ContainerInterface;
+use Dreamlabs\GraphQL\Execution\Request;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Introspection\Field\SchemaField;
+use Dreamlabs\GraphQL\Introspection\Field\TypeDefinitionField;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
+use Dreamlabs\GraphQL\Validator\SchemaValidator\SchemaValidator;
 
 class ExecutionContext implements ExecutionContextInterface
 {
@@ -43,7 +39,7 @@ class ExecutionContext implements ExecutionContextInterface
         $this->typeFieldLookupTable = [];
     }
 
-    public function getField(AbstractObjectType $type, string $fieldName): Field
+    public function getField(AbstractObjectType $type, string $fieldName): ?FieldInterface
     {
         $typeName = $type->getName();
 

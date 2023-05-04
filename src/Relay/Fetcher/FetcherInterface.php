@@ -1,11 +1,6 @@
 <?php
-/**
- * Date: 17.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Relay\Fetcher;
+namespace Dreamlabs\GraphQL\Relay\Fetcher;
 
 
 interface FetcherInterface

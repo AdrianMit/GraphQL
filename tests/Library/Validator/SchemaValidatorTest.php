@@ -1,29 +1,23 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/15/16 4:04 PM
-*/
 
-namespace Youshido\Tests\Library\Validator;
+namespace Dreamlabs\Tests\Library\Validator;
 
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Exception;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Validator\SchemaValidator\SchemaValidator;
-use Youshido\Tests\DataProvider\TestEmptySchema;
-use Youshido\Tests\DataProvider\TestInterfaceType;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Validator\SchemaValidator\SchemaValidator;
+use Dreamlabs\Tests\DataProvider\TestEmptySchema;
+use Dreamlabs\Tests\DataProvider\TestInterfaceType;
 
-class SchemaValidatorTest extends PHPUnit_Framework_TestCase
+class SchemaValidatorTest extends TestCase
 {
     /**
-     * @expectedException \Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException \Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidSchema(): void
     {
@@ -32,7 +26,7 @@ class SchemaValidatorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException \Dreamlabs\GraphQL\Exception\ConfigurationException
      * @expectedExceptionMessage Implementation of TestInterface is invalid for the field name
      */
     public function testInvalidInterfacesSimpleType(): void
@@ -57,7 +51,7 @@ class SchemaValidatorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException \Dreamlabs\GraphQL\Exception\ConfigurationException
      * @expectedExceptionMessage Implementation of TestInterface is invalid for the field name
      */
     public function testInvalidInterfacesCompositeType(): void
@@ -82,7 +76,7 @@ class SchemaValidatorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException \Dreamlabs\GraphQL\Exception\ConfigurationException
      * @expectedExceptionMessage Implementation of TestInterface is invalid for the field name
      */
     public function testInvalidInterfaces(): void

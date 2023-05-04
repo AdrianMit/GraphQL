@@ -1,25 +1,19 @@
 <?php
-/**
- * Date: 03/17/2017
- *
- * @author Volodymyr Rashchepkin <rashepkin@gmail.com>
- */
 
-namespace Youshido\GraphQL\Config\Directive;
+namespace Dreamlabs\GraphQL\Config\Directive;
 
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Config\Traits\ArgumentsAwareConfigTrait;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\Traits\ArgumentsAwareConfigTrait;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 /**
  * Class DirectiveConfig
  *
- * @package Youshido\GraphQL\Config\Directive
+ * @package Dreamlabs\GraphQL\Config\Directive
  */
 class DirectiveConfig extends AbstractConfig
 {
-
     use ArgumentsAwareConfigTrait;
 
     protected array $locations = [];

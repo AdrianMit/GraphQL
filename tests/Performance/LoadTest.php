@@ -6,18 +6,18 @@
  * Time: 2:17 PM
  */
 
-namespace Youshido\Tests\Performance;
+namespace Dreamlabs\Tests\Performance;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
-class LoadTest extends PHPUnit_Framework_TestCase
+class LoadTest extends TestCase
 {
 
     public function testLoad10k()
@@ -69,7 +69,6 @@ class LoadTest extends PHPUnit_Framework_TestCase
         $p->processPayload('{ posts { id, title, authors { name } } }');
         $res = $p->getResponseData();
         echo "Count: " . (is_countable($res['data']['posts']) ? count($res['data']['posts']) : 0) . "\n";
-        var_dump($res['data']['posts'][0]);
         printf("Test Time: %04f\n", microtime(true) - $time);
     }
 

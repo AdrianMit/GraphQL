@@ -1,16 +1,11 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/11/16 10:45 PM
-*/
-
-namespace Youshido\Tests\DataProvider;
 
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Type\TypeService;
+namespace Dreamlabs\Tests\DataProvider;
+
+
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 class TestConfig extends AbstractConfig
 {

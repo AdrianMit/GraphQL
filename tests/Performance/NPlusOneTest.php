@@ -1,24 +1,18 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 2/5/17 12:23 PM
-*/
 
-namespace Youshido\Tests\Performance;
+namespace Dreamlabs\Tests\Performance;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
-class NPlusOneTest extends PHPUnit_Framework_TestCase
+class NPlusOneTest extends TestCase
 {
 
     private function getDataForPosts()

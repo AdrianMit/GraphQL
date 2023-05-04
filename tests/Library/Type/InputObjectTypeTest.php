@@ -1,29 +1,23 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/15/16 3:28 PM
-*/
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\InputObject\InputObjectType;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\BooleanType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\Tests\DataProvider\TestInputObjectType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\InputObject;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\InputObject\InputObjectType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\BooleanType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\Tests\DataProvider\TestInputObjectType;
 
-class InputObjectTypeTest extends PHPUnit_Framework_TestCase
+class InputObjectTypeTest extends TestCase
 {
 
     public function testInternal(): void

@@ -1,19 +1,18 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Philipp Melab <philipp.melab@gmail.com>
-*/
 
-namespace Youshido\GraphQL\Config\Traits;
+
+namespace Dreamlabs\GraphQL\Config\Traits;
 
 use Exception;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 trait ResolvableObjectTrait
 {
+    /**
+     * @throws Exception
+     */
     public function resolve(mixed $value, array $args, ResolveInfo $info)
     {
         if ($resolveFunction = $this->getConfig()->getResolveFunction()) {

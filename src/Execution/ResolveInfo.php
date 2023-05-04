@@ -1,57 +1,36 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/19/16 8:58 AM
-*/
 
-namespace Youshido\GraphQL\Execution;
+namespace Dreamlabs\GraphQL\Execution;
 
-use Youshido\GraphQL\Execution\Context\ExecutionContextInterface;
-use Youshido\GraphQL\Field\FieldInterface;
-use Youshido\GraphQL\Parser\Ast\Field;
-use Youshido\GraphQL\Parser\Ast\Query;
-use Youshido\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Execution\Container\ContainerInterface;
+use Dreamlabs\GraphQL\Execution\Context\ExecutionContextInterface;
+use Dreamlabs\GraphQL\Field\FieldInterface;
+use Dreamlabs\GraphQL\Parser\Ast\Field;
+use Dreamlabs\GraphQL\Parser\Ast\Query;
+use Dreamlabs\GraphQL\Type\AbstractType;
 
 class ResolveInfo
 {
-    /**
-     * This property is to be used for DI in various scenario
-     * Added to original class to keep backward compatibility
-     * because of the way AbstractField::resolve has been declared
-     *
-     * @var mixed $container
-     */
-    protected $container;
+    protected mixed $container;
 
     /**
-     * @param \Youshido\GraphQL\Parser\Ast\Field[] $fieldASTList
+     * @param Field[] $fieldASTList
      */
     public function __construct(protected FieldInterface $field, protected array $fieldASTList, protected ExecutionContextInterface $executionContext)
     {
     }
 
-    /**
-     * @return ExecutionContextInterface
-     */
-    public function getExecutionContext()
+    public function getExecutionContext(): ExecutionContextInterface
     {
         return $this->executionContext;
     }
 
-    /**
-     * @return FieldInterface
-     */
-    public function getField()
+    public function getField(): ?FieldInterface
     {
         return $this->field;
     }
 
-    /**
-     * @param string $fieldName
-     */
-    public function getFieldAST($fieldName): null|Query|Field
+    public function getFieldAST(string $fieldName): null|Query|Field
     {
         $field = null;
         foreach ($this->getFieldASTList() as $fieldAST) {
@@ -67,7 +46,7 @@ class ResolveInfo
     /**
      * @return Field[]
      */
-    public function getFieldASTList()
+    public function getFieldASTList(): array
     {
         return $this->fieldASTList;
     }
@@ -75,12 +54,12 @@ class ResolveInfo
     /**
      * @return AbstractType
      */
-    public function getReturnType()
+    public function getReturnType(): AbstractType
     {
         return $this->field->getType();
     }
 
-    public function getContainer()
+    public function getContainer(): ContainerInterface
     {
         return $this->executionContext->getContainer();
     }

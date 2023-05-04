@@ -1,14 +1,9 @@
 <?php
-/**
- * Date: 13.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
 
-use Youshido\GraphQL\Type\Union\AbstractUnionType;
+use Dreamlabs\GraphQL\Type\Union\AbstractUnionType;
 
 class TestUnionType extends AbstractUnionType
 {
@@ -25,7 +20,7 @@ class TestUnionType extends AbstractUnionType
         return $object;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Union collect cars types';
     }

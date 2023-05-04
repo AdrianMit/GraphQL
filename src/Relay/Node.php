@@ -1,11 +1,6 @@
 <?php
-/**
- * Date: 10.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Relay;
+namespace Dreamlabs\GraphQL\Relay;
 
 use InvalidArgumentException;
 class Node

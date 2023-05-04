@@ -1,15 +1,15 @@
 <?php
-namespace Youshido\Tests\Issues\Issue99;
+namespace Dreamlabs\Tests\Issues\Issue99;
 
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\InputObject\InputObjectType;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\InputObject\InputObjectType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class Issue99Schema extends AbstractSchema
 {

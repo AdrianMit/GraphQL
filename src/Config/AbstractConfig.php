@@ -1,27 +1,20 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/27/15 2:31 AM
-*/
 
-namespace Youshido\GraphQL\Config;
+namespace Dreamlabs\GraphQL\Config;
 
 
 use Exception;
-use Youshido\GraphQL\Exception\ConfigurationException;
-use Youshido\GraphQL\Exception\ValidationException;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Exception\ValidationException;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
 
 /**
  * Class Config
  *
- * @package Youshido\GraphQL\Config
+ * @package Dreamlabs\GraphQL\Config
  */
 abstract class AbstractConfig
 {
-    
     protected array $data;
     
     protected ?bool $extraFieldsAllowed = null;

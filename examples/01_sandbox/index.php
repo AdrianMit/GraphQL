@@ -2,10 +2,10 @@
 
 namespace Sandbox;
 
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 if(file_exists(__DIR__ . '/../../../../../vendor/autoload.php')) {
     require_once __DIR__ . '/../../../../../vendor/autoload.php';

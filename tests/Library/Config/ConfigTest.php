@@ -1,29 +1,23 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/11/16 10:41 PM
-*/
 
-namespace Youshido\Tests\Library\Config;
+namespace Dreamlabs\Tests\Library\Config;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Type\Enum\EnumType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\TypeService;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
-use Youshido\Tests\DataProvider\TestConfig;
-use Youshido\Tests\DataProvider\TestConfigExtraFields;
-use Youshido\Tests\DataProvider\TestConfigInvalidRule;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Type\Enum\EnumType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\Tests\DataProvider\TestConfig;
+use Dreamlabs\Tests\DataProvider\TestConfigExtraFields;
+use Dreamlabs\Tests\DataProvider\TestConfigInvalidRule;
 
-class ConfigTest extends PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testEmptyParams(): void
     {
@@ -31,7 +25,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidParams(): void
     {
@@ -97,7 +91,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testFinalRule(): void
     {
@@ -105,7 +99,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidRule(): void
     {
@@ -115,7 +109,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testEnumConfig(): void
     {

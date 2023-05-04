@@ -1,24 +1,18 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/19/16 1:28 PM
-*/
 
-namespace Youshido\Tests\Schema;
+namespace Dreamlabs\Tests\Schema;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Context\ExecutionContext;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Parser\Ast\Field as FieldAST;
-use Youshido\GraphQL\Parser\Location;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\Tests\DataProvider\TestSchema;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Context\ExecutionContext;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Parser\Ast\Field as FieldAST;
+use Dreamlabs\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\Tests\DataProvider\TestSchema;
 
-class ResolveInfoTest extends PHPUnit_Framework_TestCase
+class ResolveInfoTest extends TestCase
 {
     public function testMethods(): void
     {

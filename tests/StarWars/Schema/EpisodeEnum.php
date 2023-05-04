@@ -1,14 +1,9 @@
 <?php
-/**
- * Date: 07.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\StarWars\Schema;
+namespace Dreamlabs\Tests\StarWars\Schema;
 
 
-use Youshido\GraphQL\Type\Enum\AbstractEnumType;
+use Dreamlabs\GraphQL\Type\Enum\AbstractEnumType;
 
 class EpisodeEnum extends AbstractEnumType
 {
@@ -37,7 +32,7 @@ class EpisodeEnum extends AbstractEnumType
     /**
      * @return String type name
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Episode';
     }

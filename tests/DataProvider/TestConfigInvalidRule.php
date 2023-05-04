@@ -1,10 +1,10 @@
 <?php
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 class TestConfigInvalidRule extends AbstractConfig
 {

@@ -5,19 +5,18 @@
 
 namespace Examples\Blog\Schema;
 
-
-use Youshido\GraphQL\Type\Union\AbstractUnionType;
+use Dreamlabs\GraphQL\Type\Union\AbstractUnionType;
 
 class ContentBlockUnion extends AbstractUnionType
 {
-    public function getTypes()
+    public function getTypes(): array
     {
         return [new PostType(), new BannerType()];
     }
 
-    public function resolveType($object)
+    public function resolveType($object): BannerType|PostType|null
     {
-        return empty($object['id']) ? null : (strpos($object['id'], 'post') !== false ? new PostType() : new BannerType());
+        return empty($object['id']) ? null : (str_contains($object['id'], 'post') ? new PostType() : new BannerType());
     }
 
 }

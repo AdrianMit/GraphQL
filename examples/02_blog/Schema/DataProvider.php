@@ -7,7 +7,7 @@ namespace Examples\Blog\Schema;
 
 class DataProvider
 {
-    public static function getPost($id)
+    public static function getPost($id): array
     {
         return [
             "id"        => "post-" . $id,
@@ -18,7 +18,7 @@ class DataProvider
         ];
     }
 
-    public static function getBanner($id)
+    public static function getBanner($id): array
     {
         return [
             'id'        => "banner-" . $id,

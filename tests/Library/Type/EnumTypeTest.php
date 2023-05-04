@@ -1,24 +1,19 @@
 <?php
-/**
- * Date: 12.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Type\Enum\EnumType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
-use Youshido\Tests\DataProvider\TestEnumType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Type\Enum\EnumType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\Tests\DataProvider\TestEnumType;
 
-class EnumTypeTest extends PHPUnit_Framework_TestCase
+class EnumTypeTest extends TestCase
 {
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidInlineCreation(): void
     {
@@ -26,7 +21,7 @@ class EnumTypeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidEmptyParams(): void
     {
@@ -38,7 +33,7 @@ class EnumTypeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidValueParams(): void
     {
@@ -52,7 +47,7 @@ class EnumTypeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testExistingNameParams(): void
     {
@@ -68,7 +63,7 @@ class EnumTypeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidNameParams(): void
     {
@@ -84,7 +79,7 @@ class EnumTypeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testWithoutValueParams(): void
     {

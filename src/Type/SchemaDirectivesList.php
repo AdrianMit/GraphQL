@@ -1,14 +1,9 @@
 <?php
-/**
- * Date: 3/24/17
- *
- * @author Volodymyr Rashchepkin <rashepkin@gmail.com>
- */
 
-namespace Youshido\GraphQL\Type;
+namespace Dreamlabs\GraphQL\Type;
 
 use Exception;
-use Youshido\GraphQL\Directive\DirectiveInterface;
+use Dreamlabs\GraphQL\Directive\DirectiveInterface;
 
 
 class SchemaDirectivesList
@@ -61,7 +56,7 @@ class SchemaDirectivesList
         return (isset($this->directivesList[$directiveName]));
     }
 
-    public function getDirectives()
+    public function getDirectives(): array
     {
         return $this->directivesList;
     }

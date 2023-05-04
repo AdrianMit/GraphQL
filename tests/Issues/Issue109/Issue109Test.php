@@ -1,11 +1,11 @@
 <?php
 
-namespace Youshido\Tests\Issues\Issue109;
+namespace Dreamlabs\Tests\Issues\Issue109;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
 
-class Issue109Test extends PHPUnit_Framework_TestCase
+class Issue109Test extends TestCase
 {
 
     public function testInternalVariableArgument(): void

@@ -1,21 +1,16 @@
 <?php
-/**
- * Date: 03.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Introspection\Field;
+namespace Dreamlabs\GraphQL\Introspection\Field;
 
-use Youshido\GraphQL\Config\Field\FieldConfig;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\AbstractField;
-use Youshido\GraphQL\Field\InputField;
-use Youshido\GraphQL\Introspection\QueryType;
-use Youshido\GraphQL\Introspection\Traits\TypeCollectorTrait;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Field\FieldConfig;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Introspection\QueryType;
+use Dreamlabs\GraphQL\Introspection\Traits\TypeCollectorTrait;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class TypeDefinitionField extends AbstractField
 {

@@ -1,16 +1,11 @@
 <?php
-/**
- * Date: 23.11.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser\Ast\ArgumentValue;
+namespace Dreamlabs\GraphQL\Parser\Ast\ArgumentValue;
 
 use LogicException;
-use Youshido\GraphQL\Parser\Ast\AbstractAst;
-use Youshido\GraphQL\Parser\Ast\Interfaces\ValueInterface;
-use Youshido\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Parser\Ast\AbstractAst;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\ValueInterface;
+use Dreamlabs\GraphQL\Parser\Location;
 
 class Variable extends AbstractAst implements ValueInterface
 {
@@ -33,7 +28,7 @@ class Variable extends AbstractAst implements ValueInterface
      * @param bool     $arrayElementNullable
      * @param Location $location
      */
-    public function __construct(private $name, private $type, private $nullable, private $isArray, Location $location, private $arrayElementNullable = true)
+    public function __construct(private $name, private $type, private $nullable, private $isArray, Location $location, private bool $arrayElementNullable = true)
     {
         parent::__construct($location);
     }
@@ -127,10 +122,7 @@ class Variable extends AbstractAst implements ValueInterface
         $this->nullable = $nullable;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasDefaultValue()
+    public function hasDefaultValue(): bool
     {
         return $this->hasDefaultValue;
     }
@@ -150,10 +142,7 @@ class Variable extends AbstractAst implements ValueInterface
         $this->defaultValue = $defaultValue;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isUsed()
+    public function isUsed(): bool
     {
         return $this->used;
     }

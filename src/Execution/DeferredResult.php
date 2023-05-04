@@ -1,12 +1,6 @@
 <?php
-/**
- * This file is a part of GraphQL project.
- *
- * @author Philipp Melab <philipp.melab@amazee.com>
- * created: 7/25/17 12:34 PM
- */
 
-namespace Youshido\GraphQL\Execution;
+namespace Dreamlabs\GraphQL\Execution;
 
 
 /**
@@ -17,7 +11,6 @@ namespace Youshido\GraphQL\Execution;
  */
 class DeferredResult implements DeferredResolverInterface {
 
-    /** @var $callback callable */
     protected $callback;
 
     public mixed $result;

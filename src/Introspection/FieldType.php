@@ -1,27 +1,25 @@
 <?php
-/**
- * Date: 03.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Introspection;
+namespace Dreamlabs\GraphQL\Introspection;
 
-use Youshido\GraphQL\Field\FieldInterface;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Field\FieldInterface;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 class FieldType extends AbstractObjectType
 {
 
-    public function resolveType(FieldInterface $value)
+    public function resolveType(FieldInterface $value): AbstractType
     {
         return $value->getType();
     }
 
-    public function resolveArgs(FieldInterface $value)
+    public function resolveArgs(FieldInterface $value): array
     {
         if ($value->hasArguments()) {
             return $value->getArguments();
@@ -29,8 +27,11 @@ class FieldType extends AbstractObjectType
 
         return [];
     }
-
-    public function build($config): void
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField('name', new NonNullType(TypeMap::TYPE_STRING))
@@ -47,7 +48,7 @@ class FieldType extends AbstractObjectType
             ]);
     }
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         return $value instanceof FieldInterface;
     }
@@ -55,7 +56,7 @@ class FieldType extends AbstractObjectType
     /**
      * @return String type name
      */
-    public function getName()
+    public function getName(): string
     {
         return '__Field';
     }

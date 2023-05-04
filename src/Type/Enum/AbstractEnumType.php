@@ -1,18 +1,13 @@
 <?php
-/**
- * Date: 07.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Type\Enum;
+namespace Dreamlabs\GraphQL\Type\Enum;
 
 
-use Youshido\GraphQL\Config\Object\EnumTypeConfig;
-use Youshido\GraphQL\Config\Traits\ConfigAwareTrait;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\Traits\AutoNameTrait;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\EnumTypeConfig;
+use Dreamlabs\GraphQL\Config\Traits\ConfigAwareTrait;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\Traits\AutoNameTrait;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 abstract class AbstractEnumType extends AbstractType
 {
@@ -36,7 +31,7 @@ abstract class AbstractEnumType extends AbstractType
     /**
      * @return String predefined type kind
      */
-    public function getKind()
+    public function getKind(): string
     {
         return TypeMap::KIND_ENUM;
     }
@@ -46,7 +41,7 @@ abstract class AbstractEnumType extends AbstractType
      *
      * @return bool
      */
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         if (is_null($value)) return true;
         foreach ($this->getConfig()->get('values') as $item) {
@@ -69,7 +64,7 @@ abstract class AbstractEnumType extends AbstractType
      */
     abstract public function getValues();
 
-    public function serialize($value)
+    public function serialize($value): mixed
     {
         foreach ($this->getConfig()->get('values') as $valueItem) {
             if ($value === $valueItem['value']) {
@@ -80,7 +75,7 @@ abstract class AbstractEnumType extends AbstractType
         return null;
     }
 
-    public function parseValue($value)
+    public function parseValue($value): mixed
     {
         foreach ($this->getConfig()->get('values') as $valueItem) {
             if ($value === $valueItem['name']) {

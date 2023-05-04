@@ -1,12 +1,13 @@
 <?php
 
-namespace Youshido\Tests\Issues\Issue220;
+namespace Dreamlabs\Tests\Issues\Issue220;
 
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
 use PHPUnit\Framework\TestCase;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\Tests\DataProvider\TestResolveInfo;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\Tests\DataProvider\TestResolveInfo;
 
 class Issue220Test extends TestCase
 {
@@ -50,7 +51,7 @@ class Issue220Test extends TestCase
 
 class ArticleType extends AbstractObjectType
 {
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config->addFields([
             'title' => new StringType(),

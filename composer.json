@@ -1,15 +1,11 @@
 {
   "name": "dreamlabs/graphql",
-  "description": "Pure PHP GraphQL",
+  "description": "Dreamlabs PHP GraphQL",
   "license": "MIT",
   "authors": [
     {
-      "name": "Alexandr Viniychuk",
-      "email": "a@viniychuk.com"
-    },
-    {
-      "name": "Portey Vasil",
-      "email": "portey@gmail.com"
+      "name": "Adrian Mitroiu",
+      "email": "adrianm@dreamlbas.ro"
     }
   ],
   "require": {
@@ -23,12 +19,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Youshido\\GraphQL\\": "src"
+      "Dreamlabs\\GraphQL\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Youshido\\Tests\\": "tests"
+      "Dreamlabs\\Tests\\": "tests"
     }
   }
 }

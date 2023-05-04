@@ -1,19 +1,10 @@
 <?php
-/*
-* Concrete implementation of query visitor.
-*
-* Enforces maximum complexity on a query, computed from "cost" functions on
-* the fields touched by that query.
-*
-* @author Ben Roberts <bjr.roberts@gmail.com>
-* created: 7/11/16 11:05 AM
-*/
 
-namespace Youshido\GraphQL\Execution\Visitor;
+namespace Dreamlabs\GraphQL\Execution\Visitor;
 
 
 use Exception;
-use Youshido\GraphQL\Config\Field\FieldConfig;
+use Dreamlabs\GraphQL\Config\Field\FieldConfig;
 
 class MaxComplexityQueryVisitor extends AbstractQueryVisitor
 {

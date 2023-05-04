@@ -1,11 +1,6 @@
 <?php
-/**
- * Date: 07.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\StarWars\Schema;
+namespace Dreamlabs\Tests\StarWars\Schema;
 
 
 class StarWarsData

@@ -1,22 +1,16 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 10:39 PM 5/18/16
- */
 
-namespace Youshido\Tests\Library\Relay;
+namespace Dreamlabs\Tests\Library\Relay;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Relay\Connection\Connection;
-use Youshido\GraphQL\Relay\Type\PageInfoType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\Tests\DataProvider\TestObjectType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Relay\Connection\Connection;
+use Dreamlabs\GraphQL\Relay\Type\PageInfoType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\Tests\DataProvider\TestObjectType;
 
-class ConnectionTest extends PHPUnit_Framework_TestCase
+class ConnectionTest extends TestCase
 {
 
     public function testConnectionArgs(): void

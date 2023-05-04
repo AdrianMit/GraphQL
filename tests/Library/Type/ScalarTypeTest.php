@@ -1,26 +1,20 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/27/15 1:11 AM
-*/
 
-namespace Youshido\Tests\Library\Type;
+namespace Dreamlabs\Tests\Library\Type;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\Tests\DataProvider\TestScalarDataProvider;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\Tests\DataProvider\TestScalarDataProvider;
 use Exception;
 use DateTimeImmutable;
 use DateTime;
-use Youshido\GraphQL\Type\Scalar\AbstractScalarType;
-use Youshido\GraphQL\Type\Scalar\DateTimeType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Type\TypeFactory;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Type\Scalar\AbstractScalarType;
+use Dreamlabs\GraphQL\Type\Scalar\DateTimeType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\TypeFactory;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Type\TypeService;
 
-class ScalarTypeTest extends PHPUnit_Framework_TestCase
+class ScalarTypeTest extends TestCase
 {
 
     public function testScalarPrimitives(): void

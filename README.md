@@ -8,11 +8,11 @@ Please, PM @viniychuk if you are interested in taking over.
 
 # GraphQL
 
-[![Join the chat at https://gitter.im/Youshido/GraphQL](https://badges.gitter.im/Youshido/GraphQL.svg)](https://gitter.im/Youshido/GraphQL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Latest Stable Version](https://poser.pugx.org/youshido/graphql/v/stable)](https://packagist.org/packages/youshido/graphql)
-[![Build Status](https://travis-ci.org/youshido-php/GraphQL.svg?branch=master)](https://travis-ci.org/youshido-php/GraphQL)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Youshido/GraphQL/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Youshido/GraphQL/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/Youshido/GraphQL/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Youshido/GraphQL/?branch=master)
+[![Join the chat at https://gitter.im/Dreamlabs/GraphQL](https://badges.gitter.im/Dreamlabs/GraphQL.svg)](https://gitter.im/Dreamlabs/GraphQL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Latest Stable Version](https://poser.pugx.org/Dreamlabs/graphql/v/stable)](https://packagist.org/packages/Dreamlabs/graphql)
+[![Build Status](https://travis-ci.org/Dreamlabs-php/GraphQL.svg?branch=master)](https://travis-ci.org/Dreamlabs-php/GraphQL)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Dreamlabs/GraphQL/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Dreamlabs/GraphQL/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Dreamlabs/GraphQL/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Dreamlabs/GraphQL/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/8b8ab2a2-32fb-4298-a986-b75ca523c7c9/mini.png)](https://insight.sensiolabs.com/projects/8b8ab2a2-32fb-4298-a986-b75ca523c7c9)
 
 This is a pure PHP realization of the GraphQL protocol based on the working draft of the official GraphQL Specification located on http://facebook.github.io/graphql/.
@@ -28,9 +28,9 @@ GraphQL advanced in many ways and has fundamental quality improvements:
 
 > Current package is and will be trying to be kept up to date with the latest revision of the official GraphQL Specification which is now of April 2016.
 
-> Symfony bundle is available by the link – [http://github.com/Youshido/GraphqlBundle](http://github.com/Youshido/GraphqlBundle)
+> Symfony bundle is available by the link – [http://github.com/Dreamlabs/GraphqlBundle](http://github.com/Dreamlabs/GraphqlBundle)
 
-> If you have any questions or suggestions – let's talk on [GraphQL Gitter channel](https://gitter.im/Youshido/GraphQL)
+> If you have any questions or suggestions – let's talk on [GraphQL Gitter channel](https://gitter.im/Dreamlabs/GraphQL)
 
 ## Table of Contents
 
@@ -59,34 +59,34 @@ GraphQL advanced in many ways and has fundamental quality improvements:
 ## Getting Started
 
 You should be better off starting with some examples and "Star Wars" become a somewhat "Hello world" for the GraphQL implementations.
-If you're looking just for that – you can get it via this link – [Star Wars example](https://github.com/Youshido/GraphQL/tree/master/Tests/StarWars).
+If you're looking just for that – you can get it via this link – [Star Wars example](https://github.com/Dreamlabs/GraphQL/tree/master/Tests/StarWars).
 On the other hand, we prepared a step-by-step guide for those who wants to get up to speed bit by bit.
 
 ### Installation
 
 Install GraphQL package using composer. If you're not familiar with it, you should check out their [manual](https://getcomposer.org/doc/00-intro.md).
-Run `composer require youshido/graphql`.
+Run `composer require Dreamlabs/graphql`.
 
 Alternatively you can run the following commands:
 ```sh
 mkdir graphql-test && cd graphql-test
 composer init -n
-composer require youshido/graphql
+composer require Dreamlabs/graphql
 ```
 
 Now you're ready to create your `GraphQL Schema` and check if everything works fine.
 Your first GraphQL app will be able to receive `currentTime` request and response with a formatted time string.
-> you can find this example in the examples directory – [01_sandbox](https://github.com/Youshido/GraphQL/tree/master/examples/01_sandbox).
+> you can find this example in the examples directory – [01_sandbox](https://github.com/Dreamlabs/GraphQL/tree/master/examples/01_sandbox).
 
 Create an `index.php` file with the following content:
 ```php
 <?php
 namespace Sandbox;
 
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 require_once 'vendor/autoload.php';
 
@@ -121,13 +121,13 @@ If you're having any troubles – here're some troubleshooting points:
 * make sure your `index.php` file has been created in the same directory that you have `vendor` folder in (presumably it's `graphql-test` folder)
 * last but not least, check that you have php-cli installed and running and it's version >= 5.5 (`php -v`)
 
-Also, you can always check if script from the [examples folder](https://github.com/Youshido/GraphQL/tree/master/examples/01_sandbox) work.
+Also, you can always check if script from the [examples folder](https://github.com/Dreamlabs/GraphQL/tree/master/examples/01_sandbox) work.
 
 ## Tutorial – Creating Blog Schema
 
 For our learning example we'll architect a GraphQL Schema for a Blog.
-You'll probably be using our package along with your favorite framework (we have a Symfony version [here](http://github.com/Youshido/GraphqlBundle)), but for the purpose of this tutorial we're keeping it all examples as plain php code.
->> (Complete example of the Blog schema available by the following link https://github.com/Youshido/GraphQL/tree/master/examples/02_blog)
+You'll probably be using our package along with your favorite framework (we have a Symfony version [here](http://github.com/Dreamlabs/GraphqlBundle)), but for the purpose of this tutorial we're keeping it all examples as plain php code.
+>> (Complete example of the Blog schema available by the following link https://github.com/Dreamlabs/GraphQL/tree/master/examples/02_blog)
 
 Our Blog will have `Users` who can write `Posts` and leave `Comments`. Also, there will be a `LikePost` operation that could be performed by anyone.
 Let's start with `Post`. Take a look at the query that returns `title` and `summary` of the latest Post:
@@ -170,10 +170,10 @@ You can create `inline-index.php` file in your project folder and paste the foll
 <?php
 namespace InlineSchema;
 
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 // including autoloader
 require_once __DIR__ . '/vendor/autoload.php';
@@ -235,8 +235,8 @@ Create a file `Schema/PostType.php` and put the following code in there:
 <?php
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class PostType extends AbstractObjectType   // extending abstract Object type
 {
@@ -263,9 +263,9 @@ Now let's create the main entry point for this example – `index.php`:
 namespace Examples\Blog;
 
 use Examples\Blog\Schema\PostType;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/Schema/PostType.php';       // including PostType definition
@@ -304,8 +304,8 @@ Next step would be to create a separate class for the latestPostField by extendi
 
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\AbstractField;
 
 class LatestPostField extends AbstractField
 {
@@ -330,9 +330,9 @@ And now we can update our `index.php`:
 namespace Examples\Blog;
 
 use Examples\Blog\Schema\LatestPostField;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/Schema/PostType.php';       // including PostType definition
@@ -407,11 +407,11 @@ Of course in real life you'll more likely have a response of type `Post` for suc
 namespace Examples\Blog;
 
 use Examples\Blog\Schema\LatestPostField;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/Schema/PostType.php';       // including PostType definition
@@ -464,9 +464,9 @@ First, we'll add `likesCount` field to the `PostType`:
 <?php
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class PostType extends AbstractObjectType
 {
@@ -580,10 +580,10 @@ Let's take a closer look at the structure of `PostType` and see what parameters 
 <?php
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\BooleanType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\BooleanType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class PostType extends AbstractObjectType
 {
@@ -628,9 +628,9 @@ Let's create a `ContentBlockInterface` that can represent a piece of content for
  */
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class ContentBlockInterface extends AbstractInterfaceType
 {
@@ -656,9 +656,9 @@ In order to associate this Interface to the `PostType` we have to override it's 
 */
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class PostType extends AbstractObjectType
 {
@@ -698,8 +698,8 @@ For the convenience we also created `$config->applyInterface()` method that coul
  */
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
 
 class PostType extends AbstractObjectType
 {
@@ -732,7 +732,7 @@ To show you how Enums work we're going to create a new class - `PostStatus`:
  */
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Enum\AbstractEnumType;
+use Dreamlabs\GraphQL\Type\Enum\AbstractEnumType;
 
 class PostStatus extends AbstractEnumType
 {
@@ -759,10 +759,10 @@ Now, add a status field to the `PostType`:
  */
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class PostType extends AbstractObjectType
 {
@@ -789,8 +789,8 @@ and update the resolve function inside latestPost field:
 
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\AbstractField;
 
 class LatestPostField extends AbstractField
 {
@@ -835,8 +835,8 @@ Create a `BannerType`:
  */
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class BannerType extends AbstractObjectType
 {
@@ -858,7 +858,7 @@ Each `UnionType` needs to define a list of types it unites by implementing the `
 
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Union\AbstractUnionType;
+use Dreamlabs\GraphQL\Type\Union\AbstractUnionType;
 
 class ContentBlockUnion extends AbstractUnionType
 {
@@ -916,9 +916,9 @@ As we're getting our schema bigger we'd like to extract it to a separate file as
  */
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
 
 class BlogSchema extends AbstractSchema
 {
@@ -953,7 +953,7 @@ Having this separate schema file you should update your `index.php` to look like
 namespace Examples\Blog;
 
 use Examples\Blog\Schema\BlogSchema;
-use Youshido\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Execution\Processor;
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/Schema/PostType.php';
@@ -996,9 +996,9 @@ Let's go ahead and add `ListType` field to our BlogSchema.
  */
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
 
 class BlogSchema extends AbstractSchema
 {
@@ -1053,10 +1053,10 @@ To fix this we just need to add `ContentBlockInterface` by implementing `getInte
 
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Config\TypeConfigInterface;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Config\TypeConfigInterface;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class BannerType extends AbstractObjectType
 {
@@ -1100,10 +1100,10 @@ Let's develop a `PostInputType` that could be used to create a new Post in our s
 
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\Config\InputTypeConfigInterface;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\InputObject\AbstractInputObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\Config\InputTypeConfigInterface;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\InputObject\AbstractInputObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class PostInputType extends AbstractInputObjectType
 {
@@ -1195,4 +1195,4 @@ This section will be updating on a regular basis with the useful links and refer
 To improve our testing experience even more we suggest to start using GraphiQL client, that's included in our examples. It's a JavaScript GraphQL Schema Explorer.
 To use it – run the `server.sh` from the `examples/02_blog/` folder and open the `examples/GraphiQL/index.html` file in your browser.
 You'll see a nice looking editor that has an autocomplete function and contains all information about your current Schema on the right side in the Docs sidebar:
-![GraphiQL Interface](https://raw.githubusercontent.com/Youshido/GraphQL/master/examples/GraphiQL/screenshot.png)
+![GraphiQL Interface](https://raw.githubusercontent.com/Dreamlabs/GraphQL/master/examples/GraphiQL/screenshot.png)

@@ -1,15 +1,10 @@
 <?php
-/**
- * Date: 23.11.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser\Ast;
+namespace Dreamlabs\GraphQL\Parser\Ast;
 
 
-use Youshido\GraphQL\Parser\Ast\Interfaces\FragmentInterface;
-use Youshido\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\FragmentInterface;
+use Dreamlabs\GraphQL\Parser\Location;
 
 class TypedFragmentReference extends AbstractAst implements FragmentInterface
 {
@@ -30,7 +25,7 @@ class TypedFragmentReference extends AbstractAst implements FragmentInterface
     /**
      * @return Field[]|Query[]
      */
-    public function getFields()
+    public function getFields(): array
     {
         return $this->fields;
     }

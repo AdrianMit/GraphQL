@@ -1,35 +1,29 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Portey Vasil <portey@gmail.com>
-* created: 11/23/15 1:22 AM
-*/
 
-namespace Youshido\GraphQL\Parser;
+namespace Dreamlabs\GraphQL\Parser;
 
 
-use Youshido\GraphQL\Exception\Parser\SyntaxErrorException;
-use Youshido\GraphQL\Parser\Ast\Argument;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputList;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Literal;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\VariableReference;
-use Youshido\GraphQL\Parser\Ast\Directive;
-use Youshido\GraphQL\Parser\Ast\Field;
-use Youshido\GraphQL\Parser\Ast\Fragment;
-use Youshido\GraphQL\Parser\Ast\FragmentReference;
-use Youshido\GraphQL\Parser\Ast\Mutation;
-use Youshido\GraphQL\Parser\Ast\Query;
-use Youshido\GraphQL\Parser\Ast\TypedFragmentReference;
+use Dreamlabs\GraphQL\Exception\Parser\SyntaxErrorException;
+use Dreamlabs\GraphQL\Parser\Ast\Argument;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\InputList;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\InputObject;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Literal;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Variable;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\VariableReference;
+use Dreamlabs\GraphQL\Parser\Ast\Directive;
+use Dreamlabs\GraphQL\Parser\Ast\Field;
+use Dreamlabs\GraphQL\Parser\Ast\Fragment;
+use Dreamlabs\GraphQL\Parser\Ast\FragmentReference;
+use Dreamlabs\GraphQL\Parser\Ast\Mutation;
+use Dreamlabs\GraphQL\Parser\Ast\Query;
+use Dreamlabs\GraphQL\Parser\Ast\TypedFragmentReference;
 
 class Parser extends Tokenizer
 {
 
     private array $data = [];
 
-    public function parse($source = null)
+    public function parse($source = null): array
     {
         $this->init($source);
 
@@ -323,7 +317,10 @@ class Parser extends Tokenizer
 
         return $args;
     }
-
+    
+    /**
+     * @throws SyntaxErrorException
+     */
     protected function parseArgument(): Argument
     {
         $nameToken = $this->eatIdentifierToken();

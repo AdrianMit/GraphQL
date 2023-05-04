@@ -1,22 +1,17 @@
 <?php
-/**
- * Date: 17.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Relay;
+namespace Dreamlabs\GraphQL\Relay;
 
 
 use Exception;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Field\InputField;
-use Youshido\GraphQL\Type\InputObject\InputObjectType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Type\InputObject\InputObjectType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class RelayMutation
 {

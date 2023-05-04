@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_URI'] == '/graphiql.css') {
 }
 
 use Examples\BookStore\Schema\BookStoreSchema;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
 
 require_once __DIR__ . '/schema-bootstrap.php';
 /** @var Schema $schema */

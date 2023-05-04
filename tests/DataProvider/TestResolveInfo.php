@@ -1,16 +1,10 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/20/16 12:41 AM
-*/
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
 
-use Youshido\GraphQL\Execution\Context\ExecutionContext;
-use Youshido\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Execution\Context\ExecutionContext;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
 
 class TestResolveInfo
 {

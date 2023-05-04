@@ -1,24 +1,18 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/5/15 12:18 AM
-*/
 
-namespace Youshido\GraphQL\Config\Object;
+namespace Dreamlabs\GraphQL\Config\Object;
 
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Config\Traits\ArgumentsAwareConfigTrait;
-use Youshido\GraphQL\Config\Traits\FieldsAwareConfigTrait;
-use Youshido\GraphQL\Config\TypeConfigInterface;
-use Youshido\GraphQL\Exception\ConfigurationException;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\Traits\ArgumentsAwareConfigTrait;
+use Dreamlabs\GraphQL\Config\Traits\FieldsAwareConfigTrait;
+use Dreamlabs\GraphQL\Config\TypeConfigInterface;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 /**
  * Class InterfaceTypeConfig
- * @package Youshido\GraphQL\Config\Object
+ * @package Dreamlabs\GraphQL\Config\Object
  * @method $this setDescription(string $description)
  */
 class InterfaceTypeConfig extends AbstractConfig implements TypeConfigInterface

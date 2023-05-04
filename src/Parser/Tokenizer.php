@@ -1,13 +1,8 @@
 <?php
-/**
- * Date: 23.11.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser;
+namespace Dreamlabs\GraphQL\Parser;
 
-use Youshido\GraphQL\Exception\Parser\SyntaxErrorException;
+use Dreamlabs\GraphQL\Exception\Parser\SyntaxErrorException;
 
 class Tokenizer
 {
@@ -362,7 +357,7 @@ class Tokenizer
         return $this->createUnexpectedTokenTypeException($token->getType());
     }
 
-    protected function createUnexpectedTokenTypeException($tokenType)
+    protected function createUnexpectedTokenTypeException($tokenType): SyntaxErrorException
     {
         return $this->createException(sprintf('Unexpected token "%s"', Token::tokenName($tokenType)));
     }

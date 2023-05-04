@@ -1,28 +1,23 @@
 <?php
-/**
- * Date: 01.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\Parser;
+namespace Dreamlabs\Tests\Parser;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Parser\Ast\Argument;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputList;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Literal;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\VariableReference;
-use Youshido\GraphQL\Parser\Ast\Field;
-use Youshido\GraphQL\Parser\Ast\Fragment;
-use Youshido\GraphQL\Parser\Ast\FragmentReference;
-use Youshido\GraphQL\Parser\Ast\Mutation;
-use Youshido\GraphQL\Parser\Ast\Query;
-use Youshido\GraphQL\Parser\Ast\TypedFragmentReference;
-use Youshido\GraphQL\Parser\Location;
-use Youshido\GraphQL\Parser\Parser;
-use Youshido\GraphQL\Parser\Token;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Parser\Ast\Argument;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\InputList;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\InputObject;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Literal;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Variable;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\VariableReference;
+use Dreamlabs\GraphQL\Parser\Ast\Field;
+use Dreamlabs\GraphQL\Parser\Ast\Fragment;
+use Dreamlabs\GraphQL\Parser\Ast\FragmentReference;
+use Dreamlabs\GraphQL\Parser\Ast\Mutation;
+use Dreamlabs\GraphQL\Parser\Ast\Query;
+use Dreamlabs\GraphQL\Parser\Ast\TypedFragmentReference;
+use Dreamlabs\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Parser\Parser;
+use Dreamlabs\GraphQL\Parser\Token;
 
 class TokenizerTestingParser extends Parser {
     public function initTokenizerForTesting($source): void {
@@ -34,7 +29,7 @@ class TokenizerTestingParser extends Parser {
     }
 }
 
-class ParserTest extends PHPUnit_Framework_TestCase
+class ParserTest extends TestCase
 {
 
     public function testEmptyParser(): void
@@ -52,7 +47,7 @@ class ParserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\Parser\SyntaxErrorException
+     * @expectedException Dreamlabs\GraphQL\Exception\Parser\SyntaxErrorException
      */
     public function testInvalidSelection(): void
     {
@@ -142,7 +137,7 @@ GRAPHQL;
      * @param $query string
      *
      * @dataProvider wrongQueriesProvider
-     * @expectedException Youshido\GraphQL\Exception\Parser\SyntaxErrorException
+     * @expectedException Dreamlabs\GraphQL\Exception\Parser\SyntaxErrorException
      */
     public function testWrongQueries($query): void
     {
@@ -471,7 +466,7 @@ GRAPHQL;
                     'queries'            => [
                         new Query('query', null,
                             [
-                                new Argument('teas', new VariableReference('variable', (new Variable('variable', 'Int', false, false, true, new Location(1, 8)))->setUsed(true), new Location(1, 39)), new Location(1, 33)),
+                                new Argument('teas', new VariableReference('variable', (new Variable('variable', 'Int', false, false, new Location(1, 8)))->setUsed(true), new Location(1, 39)), new Location(1, 33)),
                             ],
                             [
                                 new Field('name', 'alias', [], [], new Location(1, 60)),
@@ -481,10 +476,10 @@ GRAPHQL;
                     'fragments'          => [],
                     'fragmentReferences' => [],
                     'variables'          => [
-                        (new Variable('variable', 'Int', false, false, true, new Location(1, 8)))->setUsed(true),
+                        (new Variable('variable', 'Int', false, false, new Location(1, 8)))->setUsed(true),
                     ],
                     'variableReferences' => [
-                        new VariableReference('variable', (new Variable('variable', 'Int', false, false, true, new Location(1, 8)))->setUsed(true), new Location(1, 39)),
+                        new VariableReference('variable', (new Variable('variable', 'Int', false, false, new Location(1, 8)))->setUsed(true), new Location(1, 39)),
                     ],
                 ],
             ],

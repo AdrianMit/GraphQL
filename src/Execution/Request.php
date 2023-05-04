@@ -1,19 +1,15 @@
 <?php
-/**
- * Date: 23.11.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Execution;
+namespace Dreamlabs\GraphQL\Execution;
 
-use Youshido\GraphQL\Exception\Parser\InvalidRequestException;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\VariableReference;
-use Youshido\GraphQL\Parser\Ast\Fragment;
-use Youshido\GraphQL\Parser\Ast\FragmentReference;
-use Youshido\GraphQL\Parser\Ast\Mutation;
-use Youshido\GraphQL\Parser\Ast\Query;
+use Dreamlabs\GraphQL\Exception\Parser\InvalidRequestException;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Variable;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\VariableReference;
+use Dreamlabs\GraphQL\Parser\Ast\Fragment;
+use Dreamlabs\GraphQL\Parser\Ast\FragmentReference;
+use Dreamlabs\GraphQL\Parser\Ast\Mutation;
+use Dreamlabs\GraphQL\Parser\Ast\Query;
+use JsonException;
 
 class Request
 {
@@ -130,7 +126,7 @@ class Request
     /**
      * @return Query[]
      */
-    public function getQueries()
+    public function getQueries(): array
     {
         return $this->queries;
     }
@@ -138,7 +134,7 @@ class Request
     /**
      * @return Fragment[]
      */
-    public function getFragments()
+    public function getFragments(): array
     {
         return $this->fragments;
     }
@@ -165,7 +161,7 @@ class Request
     /**
      * @return Mutation[]
      */
-    public function getMutations()
+    public function getMutations(): array
     {
         return $this->mutations;
     }
@@ -194,18 +190,15 @@ class Request
         return (bool)count($this->fragments);
     }
 
-    /**
-     * @return array
-     */
-    public function getVariables()
+    public function getVariables(): array
     {
         return $this->variables;
     }
-
+    
     /**
-     * @return $this
+     * @throws JsonException
      */
-    public function setVariables(array|string $variables)
+    public function setVariables(array|string $variables): static
     {
         if (!is_array($variables)) {
             $variables = json_decode($variables, true, 512, JSON_THROW_ON_ERROR);
@@ -240,31 +233,22 @@ class Request
     /**
      * @return array|Variable[]
      */
-    public function getQueryVariables()
+    public function getQueryVariables(): array
     {
         return $this->queryVariables;
     }
 
-    /**
-     * @param array $queryVariables
-     */
-    public function setQueryVariables($queryVariables): void
+    public function setQueryVariables(array $queryVariables): void
     {
         $this->queryVariables = $queryVariables;
     }
 
-    /**
-     * @return array|FragmentReference[]
-     */
-    public function getFragmentReferences()
+    public function getFragmentReferences(): array
     {
         return $this->fragmentReferences;
     }
-
-    /**
-     * @param array $fragmentReferences
-     */
-    public function setFragmentReferences($fragmentReferences): void
+    
+    public function setFragmentReferences(array $fragmentReferences): void
     {
         $this->fragmentReferences = $fragmentReferences;
     }
@@ -272,7 +256,7 @@ class Request
     /**
      * @return array|VariableReference[]
      */
-    public function getVariableReferences()
+    public function getVariableReferences(): array
     {
         return $this->variableReferences;
     }

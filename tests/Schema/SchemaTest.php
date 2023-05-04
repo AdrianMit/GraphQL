@@ -1,26 +1,20 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 10:11 PM
-*/
 
-namespace Youshido\Tests\Schema;
+namespace Dreamlabs\Tests\Schema;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\Tests\DataProvider\TestEmptySchema;
-use Youshido\Tests\DataProvider\TestObjectType;
-use Youshido\Tests\DataProvider\TestSchema;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\Tests\DataProvider\TestEmptySchema;
+use Dreamlabs\Tests\DataProvider\TestObjectType;
+use Dreamlabs\Tests\DataProvider\TestSchema;
 
-class SchemaTest extends PHPUnit_Framework_TestCase
+class SchemaTest extends TestCase
 {
 
     public function testStandaloneEmptySchema(): void

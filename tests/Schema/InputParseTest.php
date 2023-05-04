@@ -1,16 +1,16 @@
 <?php
 
-namespace Youshido\Tests\Schema;
+namespace Dreamlabs\Tests\Schema;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\DateTimeType;
-use Youshido\GraphQL\Type\Scalar\DateTimeTzType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\DateTimeType;
+use Dreamlabs\GraphQL\Type\Scalar\DateTimeTzType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
-class InputParseTest extends PHPUnit_Framework_TestCase
+class InputParseTest extends TestCase
 {
 
     /**

@@ -1,9 +1,9 @@
 <?php
 
-namespace Youshido\Tests\Issues\Issue210;
+namespace Dreamlabs\Tests\Issues\Issue210;
 
 use PHPUnit\Framework\TestCase;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 class TypeServiceTest extends TestCase
 {

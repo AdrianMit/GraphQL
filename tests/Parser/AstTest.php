@@ -1,27 +1,22 @@
 <?php
-/**
- * Date: 13.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\Parser;
+namespace Dreamlabs\Tests\Parser;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Parser\Ast\Argument;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputList;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Literal;
-use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
-use Youshido\GraphQL\Parser\Ast\Field;
-use Youshido\GraphQL\Parser\Ast\Fragment;
-use Youshido\GraphQL\Parser\Ast\FragmentReference;
-use Youshido\GraphQL\Parser\Ast\Query;
-use Youshido\GraphQL\Parser\Ast\TypedFragmentReference;
-use Youshido\GraphQL\Parser\Location;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Parser\Ast\Argument;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\InputList;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\InputObject;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Literal;
+use Dreamlabs\GraphQL\Parser\Ast\ArgumentValue\Variable;
+use Dreamlabs\GraphQL\Parser\Ast\Field;
+use Dreamlabs\GraphQL\Parser\Ast\Fragment;
+use Dreamlabs\GraphQL\Parser\Ast\FragmentReference;
+use Dreamlabs\GraphQL\Parser\Ast\Query;
+use Dreamlabs\GraphQL\Parser\Ast\TypedFragmentReference;
+use Dreamlabs\GraphQL\Parser\Location;
 
-class AstTest extends PHPUnit_Framework_TestCase
+class AstTest extends TestCase
 {
 
     public function testArgument(): void
@@ -172,7 +167,7 @@ class AstTest extends PHPUnit_Framework_TestCase
 
     public function testVariable(): void
     {
-        $variable = new Variable('id', 'int', false, false, true, new Location(1,1));
+        $variable = new Variable('id', 'int', false, false, new Location(1,1));
 
         $this->assertEquals('id', $variable->getName());
         $this->assertEquals('int', $variable->getTypeName());
@@ -200,7 +195,7 @@ class AstTest extends PHPUnit_Framework_TestCase
      */
     public function testVariableLogicException(): void
     {
-        $variable = new Variable('id', 'int', false, false, true, new Location(1,1));
+        $variable = new Variable('id', 'int', false, false, new Location(1,1));
         $variable->getValue();
     }
 }

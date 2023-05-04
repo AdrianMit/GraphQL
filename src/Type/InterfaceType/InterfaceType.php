@@ -1,14 +1,8 @@
 <?php
-/**
- * Date: 12.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
-
-namespace Youshido\GraphQL\Type\InterfaceType;
+namespace Dreamlabs\GraphQL\Type\InterfaceType;
 
 
-use Youshido\GraphQL\Config\Object\InterfaceTypeConfig;
+use Dreamlabs\GraphQL\Config\Object\InterfaceTypeConfig;
 
 final class InterfaceType extends AbstractInterfaceType
 {

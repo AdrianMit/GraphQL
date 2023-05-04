@@ -1,32 +1,26 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/15/16 7:52 AM
-*/
 
-namespace Youshido\Tests\Schema;
+namespace Dreamlabs\Tests\Schema;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Directive\Directive;
-use Youshido\GraphQL\Directive\DirectiveLocation;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Field\InputField;
-use Youshido\GraphQL\Type\Enum\EnumType;
-use Youshido\GraphQL\Type\InterfaceType\InterfaceType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\BooleanType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Type\Union\UnionType;
-use Youshido\Tests\DataProvider\TestEmptySchema;
-use Youshido\Tests\DataProvider\TestSchema;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Directive\Directive;
+use Dreamlabs\GraphQL\Directive\DirectiveLocation;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Type\Enum\EnumType;
+use Dreamlabs\GraphQL\Type\InterfaceType\InterfaceType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\BooleanType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Type\Union\UnionType;
+use Dreamlabs\Tests\DataProvider\TestEmptySchema;
+use Dreamlabs\Tests\DataProvider\TestSchema;
 
-class IntrospectionTest extends PHPUnit_Framework_TestCase
+class IntrospectionTest extends TestCase
 {
     private string $introspectionQuery = <<<TEXT
 query IntrospectionQuery {

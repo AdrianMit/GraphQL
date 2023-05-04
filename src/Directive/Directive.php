@@ -1,20 +1,15 @@
 <?php
-/**
- * Date: 3/17/17
- *
- * @author Volodymyr Rashchepkin <rashepkin@gmail.com>
- */
 
-namespace Youshido\GraphQL\Directive;
+namespace Dreamlabs\GraphQL\Directive;
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Config\Directive\DirectiveConfig;
-use Youshido\GraphQL\Config\Field\FieldConfig;
-use Youshido\GraphQL\Config\Field\InputFieldConfig;
-use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
-use Youshido\GraphQL\Exception\ConfigurationException;
-use Youshido\GraphQL\Type\Traits\ArgumentsAwareObjectTrait;
-use Youshido\GraphQL\Type\Traits\AutoNameTrait;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\Directive\DirectiveConfig;
+use Dreamlabs\GraphQL\Config\Field\FieldConfig;
+use Dreamlabs\GraphQL\Config\Field\InputFieldConfig;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Type\Traits\ArgumentsAwareObjectTrait;
+use Dreamlabs\GraphQL\Type\Traits\AutoNameTrait;
 
 class Directive implements DirectiveInterface
 {

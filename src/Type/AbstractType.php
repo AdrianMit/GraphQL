@@ -1,16 +1,10 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/27/15 2:05 AM
-*/
 
-namespace Youshido\GraphQL\Type;
+namespace Dreamlabs\GraphQL\Type;
 
 
 use Stringable;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
 
 abstract class AbstractType implements TypeInterface, Stringable
 {
@@ -44,11 +38,11 @@ abstract class AbstractType implements TypeInterface, Stringable
     {
         return $this->lastValidationError;
     }
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         return true;
     }
-    public function parseValue($value)
+    public function parseValue(mixed $value): mixed
     {
         return $value;
     }
@@ -56,7 +50,7 @@ abstract class AbstractType implements TypeInterface, Stringable
     {
         return $this->parseValue($value);
     }
-    public function serialize($value)
+    public function serialize($value): mixed
     {
         return $value;
     }

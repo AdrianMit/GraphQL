@@ -1,20 +1,14 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/11/16 9:19 PM
-*/
 
-namespace Youshido\GraphQL\Type;
+namespace Dreamlabs\GraphQL\Type;
 
 
-use Youshido\GraphQL\Exception\ConfigurationException;
-use Youshido\GraphQL\Type\Scalar\AbstractScalarType;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Type\Scalar\AbstractScalarType;
 
 class TypeFactory
 {
-    private static $objectsHash = [];
+    private static array $objectsHash = [];
 
     /**
      * @param string $type
@@ -34,7 +28,7 @@ class TypeFactory
                 $name = $name == 'Datetime' ? 'DateTime' : $name;
                 $name = $name == 'Datetimetz' ? 'DateTimeTz' : $name;
 
-                $className                = 'Youshido\GraphQL\Type\Scalar\\' . $name . 'Type';
+                $className                = 'Dreamlabs\GraphQL\Type\Scalar\\' . $name . 'Type';
                 self::$objectsHash[$type] = new $className();
             }
 

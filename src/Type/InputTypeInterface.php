@@ -1,58 +1,54 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 9/29/16 10:41 PM
-*/
 
-namespace Youshido\GraphQL\Type;
+namespace Dreamlabs\GraphQL\Type;
 
 
-use Youshido\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
 
 interface InputTypeInterface
 {
     /**
-     * @return String type name
+     * @return string|null type name
      */
-    public function getName();
+    public function getName(): ?string;
 
     /**
      * @return String predefined type kind
      */
-    public function getKind();
+    public function getKind(): string;
 
     /**
      * @return String type description
      */
-    public function getDescription();
-
+    public function getDescription(): string;
+    
     /**
      * Coercing value received as input to current type
      *
-     * @param $value
+     * @param mixed $value
+     *
      * @return mixed
      */
-    public function parseValue($value);
-
+    public function parseValue(mixed $value): mixed;
+    
     /**
      * Coercing result to current type
      *
-     * @param $value
+     * @param mixed $value
+     *
      * @return mixed
      */
-    public function serialize($value);
+    public function serialize(mixed $value): mixed;
 
     /**
-     * @param $value mixed
+     * @param mixed $value
      *
      * @return bool
      */
-    public function isValidValue($value);
+    public function isValidValue(mixed $value): bool;
 
     /**
      * @return AbstractConfig
      */
-    public function getConfig();
+    public function getConfig(): AbstractConfig;
 }

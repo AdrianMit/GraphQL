@@ -1,11 +1,6 @@
 <?php
-/**
- * Date: 3/24/17
- *
- * @author Volodymyr Rashchepkin <rashepkin@gmail.com>
- */
 
-namespace Youshido\GraphQL\Directive;
+namespace Dreamlabs\GraphQL\Directive;
 
 
 class DirectiveLocation

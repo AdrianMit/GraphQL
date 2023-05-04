@@ -1,19 +1,19 @@
 <?php
 
-namespace Youshido\Tests\Issues\Issue201;
+namespace Dreamlabs\Tests\Issues\Issue201;
 
 use PHPUnit\Framework\TestCase;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Validator\SchemaValidator\SchemaValidator;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Validator\SchemaValidator\SchemaValidator;
 
 class Issue201Test extends TestCase
 {
 
     /**
-     * @throws \Youshido\GraphQL\Exception\ConfigurationException
-     * @expectedException \Youshido\GraphQL\Exception\ConfigurationException
+     * @throws \Dreamlabs\GraphQL\Exception\ConfigurationException
+     * @expectedException \Dreamlabs\GraphQL\Exception\ConfigurationException
      * @expectedExceptionMessage Type "user" was defined more than once
      */
     public function testExceptionOnDuplicateTypeName(): void

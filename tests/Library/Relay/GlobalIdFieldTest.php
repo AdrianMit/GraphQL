@@ -1,20 +1,14 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 10:51 PM 5/18/16
- */
 
-namespace Youshido\Tests\Library\Relay;
+namespace Dreamlabs\Tests\Library\Relay;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Relay\Field\GlobalIdField;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\IdType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Relay\Field\GlobalIdField;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
 
-class GlobalIdFieldTest extends PHPUnit_Framework_TestCase
+class GlobalIdFieldTest extends TestCase
 {
 
     public function testSimpleMethods(): void

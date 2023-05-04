@@ -1,11 +1,6 @@
 <?php
-/**
- * Date: 29.02.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Exception\Parser;
+namespace Dreamlabs\GraphQL\Exception\Parser;
 
 class InvalidRequestException extends AbstractParserError
 {

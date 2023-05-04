@@ -1,18 +1,10 @@
 <?php
-/**
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 4/23/17 11:10 PM
- */
 
 namespace Examples\BookStore;
 
-
 class DataProvider
 {
-
-    static private $authors = [
+    static private array $authors = [
         '1' => [
             'id' => '1',
             'firstName' => 'Mark',
@@ -20,7 +12,7 @@ class DataProvider
         ]
     ];
 
-    public static function getBooks()
+    public static function getBooks(): array
     {
         return [
             [
@@ -33,7 +25,7 @@ class DataProvider
         ];
     }
 
-    public static function getAuthors()
+    public static function getAuthors(): array
     {
         return self::$authors;
     }

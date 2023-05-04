@@ -1,22 +1,16 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/30/15 1:30 AM
-*/
 
-namespace Youshido\GraphQL\Config\Field;
+namespace Dreamlabs\GraphQL\Config\Field;
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Config\Traits\ArgumentsAwareConfigTrait;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\TypeInterface;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\Traits\ArgumentsAwareConfigTrait;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\TypeInterface;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 /**
  * Class FieldConfig
- * @package Youshido\GraphQL\Config\Field
+ * @package Dreamlabs\GraphQL\Config\Field
  * @method $this setDescription(string $description)
  * @method $this setCost(int $cost)
  */
@@ -43,9 +37,6 @@ class FieldConfig extends AbstractConfig
         $this->buildArguments();
     }
 
-    /**
-     * @return TypeInterface|AbstractObjectType
-     */
     public function getType(): TypeInterface|AbstractObjectType
     {
         return $this->data['type'];

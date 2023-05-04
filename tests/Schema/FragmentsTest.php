@@ -1,26 +1,26 @@
 <?php
 
-namespace Youshido\Tests\Schema;
+namespace Dreamlabs\Tests\Schema;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Config\Object\InterfaceTypeConfig;
-use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\InterfaceType\InterfaceType;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Config\Object\InterfaceTypeConfig;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\InterfaceType\InterfaceType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 
 class UserType extends AbstractObjectType
 {
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config->addFields([
             'id'           => new IdType(),
@@ -33,7 +33,7 @@ class UserType extends AbstractObjectType
 class CourtReservation extends AbstractObjectType
 {
 
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config->addFields([
             'id'      => new IdType(),
@@ -56,7 +56,7 @@ class CourtReservation extends AbstractObjectType
 
 class ClassReservation extends AbstractObjectType
 {
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config->addFields([
             'id'   => new IdType(),
@@ -86,7 +86,7 @@ class ReservationInterface extends AbstractInterfaceType
 
 }
 
-class FragmentsTest extends PHPUnit_Framework_TestCase
+class FragmentsTest extends TestCase
 {
 
     /**

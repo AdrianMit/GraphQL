@@ -1,25 +1,20 @@
 <?php
-/**
- * Date: 03.11.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Validator\ResolveValidator;
+namespace Dreamlabs\GraphQL\Validator\ResolveValidator;
 
 
-use Youshido\GraphQL\Exception\ResolveException;
-use Youshido\GraphQL\Execution\Context\ExecutionContext;
-use Youshido\GraphQL\Execution\Request;
-use Youshido\GraphQL\Field\FieldInterface;
-use Youshido\GraphQL\Field\InputField;
-use Youshido\GraphQL\Parser\Ast\Interfaces\FieldInterface as AstFieldInterface;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Type\TypeService;
-use Youshido\GraphQL\Type\Union\AbstractUnionType;
+use Dreamlabs\GraphQL\Exception\ResolveException;
+use Dreamlabs\GraphQL\Execution\Context\ExecutionContext;
+use Dreamlabs\GraphQL\Execution\Request;
+use Dreamlabs\GraphQL\Field\FieldInterface;
+use Dreamlabs\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\FieldInterface as AstFieldInterface;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Type\Union\AbstractUnionType;
 
 class ResolveValidator implements ResolveValidatorInterface
 {

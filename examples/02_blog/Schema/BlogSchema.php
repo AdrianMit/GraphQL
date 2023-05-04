@@ -5,15 +5,15 @@
 
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class BlogSchema extends AbstractSchema
 {
-    public function build(SchemaConfig $config)
+    public function build(SchemaConfig $config): void
     {
         $config->getQuery()->addFields([
             'latestPost'           => [

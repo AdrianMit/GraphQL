@@ -1,19 +1,13 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/17/16 11:56 AM
-*/
 
-namespace Youshido\Tests\Library\Relay;
+namespace Dreamlabs\Tests\Library\Relay;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Relay\Fetcher\CallableFetcher;
-use Youshido\Tests\DataProvider\TestObjectType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Relay\Fetcher\CallableFetcher;
+use Dreamlabs\Tests\DataProvider\TestObjectType;
 
-class CallableFetcherTest extends PHPUnit_Framework_TestCase
+class CallableFetcherTest extends TestCase
 {
     public function testMethods(): void
     {

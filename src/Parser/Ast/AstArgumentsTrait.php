@@ -1,12 +1,6 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 2/5/17 11:31 AM
-*/
 
-namespace Youshido\GraphQL\Parser\Ast;
+namespace Dreamlabs\GraphQL\Parser\Ast;
 
 
 trait AstArgumentsTrait

@@ -1,23 +1,17 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/4/15 12:41 AM
-*/
 
-namespace Youshido\GraphQL\Type\Scalar;
+namespace Dreamlabs\GraphQL\Type\Scalar;
 
 
 class IdType extends AbstractScalarType
 {
 
-    public function getName()
+    public function getName(): string
     {
         return 'ID';
     }
 
-    public function serialize($value)
+    public function serialize($value): mixed
     {
         if (null === $value) {
             return null;
@@ -26,7 +20,7 @@ class IdType extends AbstractScalarType
         return (string)$value;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'The `ID` scalar type represents a unique identifier, often used to ' .
                'refetch an object or as key for a cache. The ID type appears in a JSON ' .

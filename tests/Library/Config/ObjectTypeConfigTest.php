@@ -1,20 +1,14 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 4:17 PM
-*/
 
-namespace Youshido\Tests\Library\Config;
+namespace Dreamlabs\Tests\Library\Config;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
-use Youshido\Tests\DataProvider\TestInterfaceType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\Tests\DataProvider\TestInterfaceType;
 
-class ObjectTypeConfigTest extends PHPUnit_Framework_TestCase
+class ObjectTypeConfigTest extends TestCase
 {
 
     public function testCreation(): void
@@ -24,7 +18,7 @@ class ObjectTypeConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidConfigNoFields(): void
     {
@@ -34,7 +28,7 @@ class ObjectTypeConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidConfigInvalidInterface(): void
     {

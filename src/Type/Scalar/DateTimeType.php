@@ -1,12 +1,6 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/27/15 1:22 AM
-*/
 
-namespace Youshido\GraphQL\Type\Scalar;
+namespace Dreamlabs\GraphQL\Type\Scalar;
 
 use DateTimeInterface;
 use DateTime;
@@ -17,12 +11,12 @@ class DateTimeType extends AbstractScalarType
     {
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'DateTime';
     }
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         if ((is_object($value) && $value instanceof DateTimeInterface) || is_null($value)) {
             return true;
@@ -35,7 +29,7 @@ class DateTimeType extends AbstractScalarType
         return $date ? true : false;
     }
 
-    public function serialize($value)
+    public function serialize($value): mixed
     {
         $date = null;
 
@@ -48,7 +42,7 @@ class DateTimeType extends AbstractScalarType
         return $date ? $date->format($this->format) : null;
     }
 
-    public function parseValue($value)
+    public function parseValue($value): mixed
     {
         if (is_string($value)) {
             $date = $this->createFromFormat($value);

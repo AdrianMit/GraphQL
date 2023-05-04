@@ -1,28 +1,23 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/5/15 12:12 AM
-*/
 
-namespace Youshido\GraphQL\Type\InterfaceType;
+namespace Dreamlabs\GraphQL\Type\InterfaceType;
 
 
-use Youshido\GraphQL\Config\Object\InterfaceTypeConfig;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\Traits\AutoNameTrait;
-use Youshido\GraphQL\Type\Traits\FieldsAwareObjectTrait;
-use Youshido\GraphQL\Type\TypeInterface;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\Object\InterfaceTypeConfig;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\Traits\AutoNameTrait;
+use Dreamlabs\GraphQL\Type\Traits\FieldsAwareObjectTrait;
+use Dreamlabs\GraphQL\Type\TypeInterface;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 abstract class AbstractInterfaceType extends AbstractType
 {
     use FieldsAwareObjectTrait, AutoNameTrait;
 
-    protected $isBuilt = false;
+    protected bool $isBuilt = false;
 
-    public function getConfig()
+    public function getConfig(): AbstractConfig
     {
         if (!$this->isBuilt) {
             $this->isBuilt = true;
@@ -53,7 +48,7 @@ abstract class AbstractInterfaceType extends AbstractType
      */
     abstract public function build($config);
 
-    public function getKind()
+    public function getKind(): string
     {
         return TypeMap::KIND_INTERFACE;
     }
@@ -63,7 +58,7 @@ abstract class AbstractInterfaceType extends AbstractType
         return $this;
     }
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         return is_array($value) || is_null($value) || is_object($value);
     }

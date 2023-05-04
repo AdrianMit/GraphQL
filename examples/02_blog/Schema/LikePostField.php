@@ -5,33 +5,29 @@
 
 namespace Examples\Blog\Schema;
 
-
-use Youshido\GraphQL\Config\Field\FieldConfig;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\AbstractField;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Config\Field\FieldConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
 
 class LikePostField extends AbstractField
 {
-
-    /**
-     * @param null        $value
-     * @param array       $args
-     * @param ResolveInfo $info
-     * @return mixed
-     */
-    public function resolve($value, array $args, ResolveInfo $info)
+    public function resolve($value, array $args, ResolveInfo $info): mixed
     {
         return $info->getReturnType()->getOne($args['id']);
     }
 
-    public function getType()
+    public function getType(): PostType
     {
         return new PostType();
     }
-
-    public function build(FieldConfig $config)
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(FieldConfig $config): void
     {
         $config->addArgument('id', new NonNullType(new IntType()));
     }

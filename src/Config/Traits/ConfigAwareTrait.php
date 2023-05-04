@@ -1,17 +1,11 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 2:02 PM 5/13/16
- */
 
-namespace Youshido\GraphQL\Config\Traits;
+namespace Dreamlabs\GraphQL\Config\Traits;
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Config\Field\FieldConfig;
-use Youshido\GraphQL\Config\Field\InputFieldConfig;
-use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Config\Field\FieldConfig;
+use Dreamlabs\GraphQL\Config\Field\InputFieldConfig;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
 
 trait ConfigAwareTrait
 {
@@ -32,7 +26,7 @@ trait ConfigAwareTrait
         return $this->configCache[$key];
     }
 
-    public function getDescription(): mixed
+    public function getDescription(): string
     {
         return $this->getConfigValue('description');
     }

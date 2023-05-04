@@ -1,22 +1,17 @@
 <?php
-/**
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 2/23/17 4:19 PM
- */
 
-namespace Youshido\GraphQL\Relay\Type;
+namespace Dreamlabs\GraphQL\Relay\Type;
 
 
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\BooleanType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\BooleanType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class PageInfoType extends AbstractObjectType
 {
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config->addFields([
             'hasNextPage'     => [
@@ -38,7 +33,7 @@ class PageInfoType extends AbstractObjectType
         ]);
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return "Information about pagination in a connection.";
     }

@@ -5,19 +5,22 @@
 
 namespace Examples\Blog\Schema;
 
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\BooleanType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\BooleanType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class PostType extends AbstractObjectType
 {
     /**
-     * @param \Youshido\GraphQL\Config\Object\ObjectTypeConfig $config
-     * @throws \Youshido\GraphQL\Exception\ConfigurationException
+     * @param ObjectTypeConfig $config
+     *
+     * @throws ConfigurationException
      */
-    public function build($config)
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField('oldTitle', [
@@ -44,12 +47,12 @@ class PostType extends AbstractObjectType
             ->addField('likeCount', new IntType());
     }
 
-    public function getOne($id)
+    public function getOne($id): array
     {
         return DataProvider::getPost($id);
     }
 
-    public function getInterfaces()
+    public function getInterfaces(): array
     {
         return [new ContentBlockInterface()];
     }

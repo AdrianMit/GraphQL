@@ -1,15 +1,10 @@
 <?php
-/**
- * Date: 23.11.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser\Ast;
+namespace Dreamlabs\GraphQL\Parser\Ast;
 
 
-use Youshido\GraphQL\Parser\Ast\Interfaces\ValueInterface;
-use Youshido\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\ValueInterface;
+use Dreamlabs\GraphQL\Parser\Location;
 
 class Argument extends AbstractAst
 {
@@ -37,18 +32,13 @@ class Argument extends AbstractAst
         $this->name = $name;
     }
 
-    /**
-     * @return \Youshido\GraphQL\Parser\Ast\Interfaces\ValueInterface
-     */
-    public function getValue()
+    public function getValue(): ValueInterface
     {
         return $this->value;
     }
 
-    public function setValue(mixed $value): void
+    public function setValue(ValueInterface $value): void
     {
         $this->value = $value;
     }
-
-
 }

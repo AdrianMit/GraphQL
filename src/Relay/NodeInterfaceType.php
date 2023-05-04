@@ -1,17 +1,11 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/10/16 11:32 PM
-*/
 
-namespace Youshido\GraphQL\Relay;
+namespace Dreamlabs\GraphQL\Relay;
 
 
-use Youshido\GraphQL\Relay\Fetcher\FetcherInterface;
-use Youshido\GraphQL\Relay\Field\GlobalIdField;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Relay\Fetcher\FetcherInterface;
+use Dreamlabs\GraphQL\Relay\Field\GlobalIdField;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
 
 class NodeInterfaceType extends AbstractInterfaceType
 {
@@ -19,7 +13,7 @@ class NodeInterfaceType extends AbstractInterfaceType
     /** @var  FetcherInterface */ //todo: maybe there are better solution
     protected $fetcher;
 
-    public function getName()
+    public function getName(): string
     {
         return 'NodeInterface';
     }

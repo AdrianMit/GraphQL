@@ -1,16 +1,11 @@
 <?php
-/**
- * Date: 10/24/16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser\Ast\ArgumentValue;
+namespace Dreamlabs\GraphQL\Parser\Ast\ArgumentValue;
 
 
-use Youshido\GraphQL\Parser\Ast\AbstractAst;
-use Youshido\GraphQL\Parser\Ast\Interfaces\ValueInterface;
-use Youshido\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Parser\Ast\AbstractAst;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\ValueInterface;
+use Dreamlabs\GraphQL\Parser\Location;
 
 class VariableReference extends AbstractAst implements ValueInterface
 {
@@ -28,7 +23,7 @@ class VariableReference extends AbstractAst implements ValueInterface
         parent::__construct($location);
     }
 
-    public function getVariable()
+    public function getVariable(): ?Variable
     {
         return $this->variable;
     }

@@ -1,18 +1,13 @@
 <?php
-/**
- * Date: 07.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\StarWars;
+namespace Dreamlabs\Tests\StarWars;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\Tests\StarWars\Schema\StarWarsSchema;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\Tests\StarWars\Schema\StarWarsSchema;
 
-class StarWarsTest extends PHPUnit_Framework_TestCase
+class StarWarsTest extends TestCase
 {
 
     /**

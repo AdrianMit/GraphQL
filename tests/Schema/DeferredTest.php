@@ -1,23 +1,18 @@
 <?php
-/**
- * This file is a part of GraphQL project.
- *
- * @author Philipp Melab <philipp.melab@amazee.com>
- * created: 6/14/17 8:16 PM
- */
 
-namespace Youshido\Tests\Schema;
+namespace Dreamlabs\Tests\Schema;
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Execution\DeferredResolver;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Execution\DeferredResolver;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 /**
  * Interface definition for a database service that will be mocked.
@@ -88,7 +83,7 @@ class DeferredUserType extends AbstractObjectType
     }
 
 
-    public function build($config): void
+    public function build(ObjectTypeConfig $config): void
     {
         $config->addField(
           new Field(
@@ -168,7 +163,7 @@ class DeferredSchema extends AbstractSchema
 /**
  * Test the deferred resolving under different circumstances.
  */
-class DeferredTest extends PHPUnit_Framework_TestCase
+class DeferredTest extends TestCase
 {
 
     /**

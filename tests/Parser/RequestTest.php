@@ -1,20 +1,14 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/15/16 3:51 PM
-*/
 
-namespace Youshido\Tests\Parser;
+namespace Dreamlabs\Tests\Parser;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Execution\Request;
-use Youshido\GraphQL\Parser\Ast\Fragment;
-use Youshido\GraphQL\Parser\Location;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Execution\Request;
+use Dreamlabs\GraphQL\Parser\Ast\Fragment;
+use Dreamlabs\GraphQL\Parser\Location;
 
-class RequestTest extends PHPUnit_Framework_TestCase
+class RequestTest extends TestCase
 {
 
     public function testMethods(): void

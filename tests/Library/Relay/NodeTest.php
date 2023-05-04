@@ -1,19 +1,13 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 3:59 PM 5/17/16
- */
 
-namespace Youshido\Tests\Library\Relay;
+namespace Dreamlabs\Tests\Library\Relay;
 
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
-use Youshido\GraphQL\Relay\Node;
+use Dreamlabs\GraphQL\Relay\Node;
 
-class NodeTest extends PHPUnit_Framework_TestCase
+class NodeTest extends TestCase
 {
     public function testMethods(): void
     {

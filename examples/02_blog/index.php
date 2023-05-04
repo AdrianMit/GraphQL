@@ -3,8 +3,8 @@
 namespace BlogTest;
 
 use Examples\Blog\Schema\BlogSchema;
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema\Schema;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema\Schema;
 
 require_once __DIR__ . '/schema-bootstrap.php';
 /** @var Schema $schema */

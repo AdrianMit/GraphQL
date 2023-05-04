@@ -1,18 +1,12 @@
 <?php
-namespace Youshido\Tests\Library\Relay;
+namespace Dreamlabs\Tests\Library\Relay;
 
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/17/16 11:49 AM
-*/
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Relay\Fetcher\CallableFetcher;
-use Youshido\GraphQL\Relay\NodeInterfaceType;
-use Youshido\Tests\DataProvider\TestObjectType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Relay\Fetcher\CallableFetcher;
+use Dreamlabs\GraphQL\Relay\NodeInterfaceType;
+use Dreamlabs\Tests\DataProvider\TestObjectType;
 
-class NodeInterfaceTypeTest extends PHPUnit_Framework_TestCase
+class NodeInterfaceTypeTest extends TestCase
 {
 
     public function testMethods(): void

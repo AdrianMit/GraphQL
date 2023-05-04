@@ -1,18 +1,12 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/6/15 11:15 PM
-*/
 
-namespace Youshido\Tests\StarWars\Schema;
+namespace Dreamlabs\Tests\StarWars\Schema;
 
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
 class CharacterInterface extends AbstractInterfaceType
 {
@@ -28,12 +22,12 @@ class CharacterInterface extends AbstractInterfaceType
             ->addField('appearsIn', new ListType(new EpisodeEnum()));
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'A character in the Star Wars Trilogy';
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'Character';
     }

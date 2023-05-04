@@ -1,42 +1,38 @@
 <?php
-/**
- * Date: 03.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Introspection;
+namespace Dreamlabs\GraphQL\Introspection;
 
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\TypeInterface;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\TypeInterface;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use JsonException;
 
 class InputValueType extends AbstractObjectType
 {
-    /**
-     * @return TypeInterface
-     */
-    public function resolveType(AbstractSchema|Field $value)
+
+    public function resolveType(AbstractSchema|Field $value): TypeInterface
     {
         return $value->getConfig()->getType();
     }
-
+    
     /**
-     * @param AbstractSchema|Field $value
-     *
-     *
-     * //todo implement value printer
+     * @throws JsonException
      */
     public function resolveDefaultValue(AbstractSchema|Field $value): ?string
     {
         $resolvedValue = $value->getConfig()->getDefaultValue();
         return $resolvedValue === null ? $resolvedValue : str_replace('"', '', json_encode($resolvedValue, JSON_THROW_ON_ERROR));
     }
-
-    public function build($config): void
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField('name', new NonNullType(TypeMap::TYPE_STRING))
@@ -57,7 +53,7 @@ class InputValueType extends AbstractObjectType
     /**
      * @return string type name
      */
-    public function getName()
+    public function getName(): string
     {
         return '__InputValue';
     }

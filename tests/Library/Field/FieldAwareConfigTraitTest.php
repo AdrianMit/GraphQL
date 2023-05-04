@@ -1,21 +1,15 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 7:46 PM
-*/
 
-namespace Youshido\Tests\Library\Field;
+namespace Dreamlabs\Tests\Library\Field;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
 
-class FieldAwareConfigTraitTest extends PHPUnit_Framework_TestCase
+class FieldAwareConfigTraitTest extends TestCase
 {
 
     public function testAddField(): void

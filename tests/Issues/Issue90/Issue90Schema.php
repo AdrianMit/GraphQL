@@ -1,10 +1,10 @@
 <?php
-namespace Youshido\Tests\Issues\Issue90;
+namespace Dreamlabs\Tests\Issues\Issue90;
 
-use Youshido\GraphQL\Config\Schema\SchemaConfig;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\DateTimeType;
+use Dreamlabs\GraphQL\Config\Schema\SchemaConfig;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\DateTimeType;
 
 class Issue90Schema extends AbstractSchema
 {

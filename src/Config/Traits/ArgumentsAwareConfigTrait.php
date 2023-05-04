@@ -1,20 +1,15 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/1/15 11:07 PM
-*/
 
-namespace Youshido\GraphQL\Config\Traits;
+namespace Dreamlabs\GraphQL\Config\Traits;
 
 
-use Youshido\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Field\InputField;
 
 trait ArgumentsAwareConfigTrait
 {
     protected array $arguments = [];
-    protected bool $_isArgumentsBuilt;
+    protected ?bool $_isArgumentsBuilt = null;
 
     public function buildArguments(): void
     {
@@ -41,8 +36,11 @@ trait ArgumentsAwareConfigTrait
 
         return $this;
     }
-
-    public function addArgument(object $argument, mixed $argumentInfo = null): static
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function addArgument(InputField|string $argument, mixed $argumentInfo = null): static
     {
         if (!($argument instanceof InputField)) {
             $argument = new InputField($this->buildConfig($argument, $argumentInfo));
@@ -52,7 +50,7 @@ trait ArgumentsAwareConfigTrait
         return $this;
     }
 
-    protected function buildConfig(mixed $name, mixed $info = null): array
+    protected function buildConfig(string $name, mixed $info = null): array
     {
         if (!is_array($info)) {
             return [

@@ -1,84 +1,44 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 11/28/15 6:07 PM
-*/
 
-namespace Youshido\GraphQL\Validator\ConfigValidator\Rules;
+namespace Dreamlabs\GraphQL\Validator\ConfigValidator\Rules;
 
 
-use Youshido\GraphQL\Field\FieldInterface;
-use Youshido\GraphQL\Field\InputFieldInterface;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\TypeFactory;
-use Youshido\GraphQL\Type\TypeService;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\GraphQL\Field\FieldInterface;
+use Dreamlabs\GraphQL\Field\InputFieldInterface;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\TypeFactory;
+use Dreamlabs\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
 
 class TypeValidationRule implements ValidationRuleInterface
 {
 
-    private $configValidator;
-
-    public function __construct(ConfigValidator $validator)
+    public function __construct(private ConfigValidator $configValidator)
     {
-        $this->configValidator = $validator;
     }
 
     public function validate($data, $ruleInfo)
     {
         if (!is_string($ruleInfo)) return false;
 
-        switch ($ruleInfo) {
-            case TypeService::TYPE_ANY:
-                return true;
-
-            case TypeService::TYPE_ANY_OBJECT:
-                return is_object($data);
-
-            case TypeService::TYPE_CALLABLE:
-                return is_callable($data);
-
-            case TypeService::TYPE_BOOLEAN:
-                return is_bool($data);
-
-            case TypeService::TYPE_ARRAY:
-                return is_array($data);
-
-            case TypeService::TYPE_STRING:
-                return TypeFactory::getScalarType($ruleInfo)->isValidValue($data);
-
-            case TypeService::TYPE_GRAPHQL_TYPE:
-                return TypeService::isGraphQLType($data);
-
-            case TypeService::TYPE_OBJECT_TYPE:
-                return TypeService::isObjectType($data);
-
-            case TypeService::TYPE_ARRAY_OF_OBJECT_TYPES:
-                return $this->isArrayOfObjectTypes($data);
-
-            case TypeService::TYPE_ARRAY_OF_FIELDS_CONFIG:
-                return $this->isArrayOfFields($data);
-
-            case TypeService::TYPE_OBJECT_INPUT_TYPE:
-                return TypeService::isInputObjectType($data);
-
-            case TypeService::TYPE_ENUM_VALUES:
-                return $this->isEnumValues($data);
-
-            case TypeService::TYPE_ARRAY_OF_INPUT_FIELDS:
-                return $this->isArrayOfInputFields($data);
-
-            case TypeService::TYPE_ANY_INPUT:
-                return TypeService::isInputType($data);
-
-            case TypeService::TYPE_ARRAY_OF_INTERFACES:
-                return $this->isArrayOfInterfaces($data);
-
-            default:
-                return false;
-        }
+        return match ($ruleInfo) {
+            TypeService::TYPE_ANY => true,
+            TypeService::TYPE_ANY_OBJECT => is_object($data),
+            TypeService::TYPE_CALLABLE => is_callable($data),
+            TypeService::TYPE_BOOLEAN => is_bool($data),
+            TypeService::TYPE_ARRAY => is_array($data),
+            TypeService::TYPE_STRING => TypeFactory::getScalarType($ruleInfo)->isValidValue($data),
+            TypeService::TYPE_GRAPHQL_TYPE => TypeService::isGraphQLType($data),
+            TypeService::TYPE_OBJECT_TYPE => TypeService::isObjectType($data),
+            TypeService::TYPE_ARRAY_OF_OBJECT_TYPES => $this->isArrayOfObjectTypes($data),
+            TypeService::TYPE_ARRAY_OF_FIELDS_CONFIG => $this->isArrayOfFields($data),
+            TypeService::TYPE_OBJECT_INPUT_TYPE => TypeService::isInputObjectType($data),
+            TypeService::TYPE_ENUM_VALUES => $this->isEnumValues($data),
+            TypeService::TYPE_ARRAY_OF_INPUT_FIELDS => $this->isArrayOfInputFields($data),
+            TypeService::TYPE_ANY_INPUT => TypeService::isInputType($data),
+            TypeService::TYPE_ARRAY_OF_INTERFACES => self::isArrayOfInterfaces($data),
+            default => false,
+        };
     }
 
     private function isArrayOfObjectTypes($data)

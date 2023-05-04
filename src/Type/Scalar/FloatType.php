@@ -1,22 +1,16 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/3/15 10:10 PM
-*/
 
-namespace Youshido\GraphQL\Type\Scalar;
+namespace Dreamlabs\GraphQL\Type\Scalar;
 
 class FloatType extends AbstractScalarType
 {
 
-    public function getName()
+    public function getName(): string
     {
         return 'Float';
     }
 
-    public function serialize($value)
+    public function serialize($value): mixed
     {
         if ($value === null) {
             return null;
@@ -25,12 +19,12 @@ class FloatType extends AbstractScalarType
         }
     }
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         return is_null($value) || is_float($value) || is_int($value);
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'The `Float` scalar type represents signed double-precision fractional ' .
                'values as specified by ' .

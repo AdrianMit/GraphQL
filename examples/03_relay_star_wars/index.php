@@ -2,8 +2,8 @@
 
 namespace Examples\StarWars;
 
-use Youshido\GraphQL\Execution\Processor;
-use Youshido\GraphQL\Schema;
+use Dreamlabs\GraphQL\Execution\Processor;
+use Dreamlabs\GraphQL\Schema;
 
 require_once __DIR__ . '/schema-bootstrap.php';
 /** @var Schema\AbstractSchema $schema */

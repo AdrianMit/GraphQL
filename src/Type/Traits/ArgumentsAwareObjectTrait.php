@@ -1,23 +1,14 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 5:07 PM 5/14/16
- */
 
-namespace Youshido\GraphQL\Type\Traits;
+namespace Dreamlabs\GraphQL\Type\Traits;
 
-
-use Youshido\GraphQL\Config\Traits\ConfigAwareTrait;
-use Youshido\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Config\Traits\ConfigAwareTrait;
+use Dreamlabs\GraphQL\Field\InputField;
 
 /**
  * Class ArgumentsAwareObjectTrait
- * @package    Youshido\GraphQL\Type\Traits
+ * @package    Dreamlabs\GraphQL\Type\Traits
  * @codeCoverageIgnore
- *
- * @deprecated To be removed during the release optimization
  */
 trait ArgumentsAwareObjectTrait
 {

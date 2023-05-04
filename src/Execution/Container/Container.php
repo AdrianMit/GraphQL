@@ -1,12 +1,6 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 9/22/16 7:00 PM
-*/
 
-namespace Youshido\GraphQL\Execution\Container;
+namespace Dreamlabs\GraphQL\Execution\Container;
 
 use Exception;
 use RuntimeException;
@@ -26,7 +20,7 @@ class Container implements ContainerInterface
         return $this->values[$id];
     }
 
-    public function set(string $id, mixed $value): mixed
+    public function set(string $id, mixed $value): static
     {
         $this->values[$id] = $value;
         $this->keyset[$id] = true;
@@ -57,7 +51,7 @@ class Container implements ContainerInterface
         }
     }
 
-    public function has(string $id): mixed
+    public function has(string $id): bool
     {
         return isset($this->keyset[$id]);
     }

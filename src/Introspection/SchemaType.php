@@ -1,17 +1,14 @@
 <?php
-/**
- * Date: 03.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Introspection;
+namespace Dreamlabs\GraphQL\Introspection;
 
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Introspection\Field\TypesField;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Introspection\Field\TypesField;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
 
 class SchemaType extends AbstractObjectType
 {
@@ -19,7 +16,7 @@ class SchemaType extends AbstractObjectType
     /**
      * @return String type name
      */
-    public function getName()
+    public function getName(): string
     {
         return '__Schema';
     }
@@ -47,8 +44,11 @@ class SchemaType extends AbstractObjectType
         $dirs = $value->getDirectiveList()->getDirectives();
         return $dirs;
     }
-
-    public function build($config): void
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField(new Field([

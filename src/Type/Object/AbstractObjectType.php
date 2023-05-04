@@ -1,25 +1,20 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/2/15 8:57 PM
-*/
 
-namespace Youshido\GraphQL\Type\Object;
+namespace Dreamlabs\GraphQL\Type\Object;
 
 
+use Dreamlabs\GraphQL\Config\AbstractConfig;
 use InvalidArgumentException;
-use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\Traits\AutoNameTrait;
-use Youshido\GraphQL\Type\Traits\FieldsArgumentsAwareObjectTrait;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\Traits\AutoNameTrait;
+use Dreamlabs\GraphQL\Type\Traits\FieldsArgumentsAwareObjectTrait;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 /**
  * Class AbstractObjectType
- * @package Youshido\GraphQL\Type\Object
+ * @package Dreamlabs\GraphQL\Type\Object
  */
 abstract class AbstractObjectType extends AbstractType
 {
@@ -27,7 +22,7 @@ abstract class AbstractObjectType extends AbstractType
 
     protected $isBuilt = false;
 
-    public function getConfig()
+    public function getConfig(): AbstractConfig
     {
         if (!$this->isBuilt) {
             $this->isBuilt = true;
@@ -51,12 +46,12 @@ abstract class AbstractObjectType extends AbstractType
         $this->config = new ObjectTypeConfig($config, $this);
     }
 
-    final public function serialize($value)
+    final public function serialize($value): mixed
     {
         throw new InvalidArgumentException('You can not serialize object value directly');
     }
 
-    public function getKind()
+    public function getKind(): string
     {
         return TypeMap::KIND_OBJECT;
     }
@@ -70,11 +65,8 @@ abstract class AbstractObjectType extends AbstractType
     {
         return $this;
     }
-
-    /**
-     * @param ObjectTypeConfig $config
-     */
-    abstract public function build($config);
+    
+    abstract public function build(ObjectTypeConfig $config);
 
     /**
      * @return AbstractInterfaceType[]
@@ -84,7 +76,7 @@ abstract class AbstractObjectType extends AbstractType
         return $this->getConfigValue('interfaces', []);
     }
 
-    public function isValidValue($value)
+    public function isValidValue(mixed $value): bool
     {
         return is_array($value) || is_null($value) || is_object($value);
     }

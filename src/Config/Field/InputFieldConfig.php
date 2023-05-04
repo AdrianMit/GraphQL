@@ -1,20 +1,14 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/1/15 11:28 PM
-*/
 
-namespace Youshido\GraphQL\Config\Field;
+namespace Dreamlabs\GraphQL\Config\Field;
 
 
-use Youshido\GraphQL\Config\AbstractConfig;
-use Youshido\GraphQL\Type\TypeService;
+use Dreamlabs\GraphQL\Config\AbstractConfig;
+use Dreamlabs\GraphQL\Type\TypeService;
 
 /**
  * Class InputFieldConfig
- * @package Youshido\GraphQL\Config\Field
+ * @package Dreamlabs\GraphQL\Config\Field
  * @method $this setDescription(string $description)
  */
 class InputFieldConfig extends AbstractConfig

@@ -1,19 +1,13 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 4/30/16 9:11 PM
-*/
 
-namespace Youshido\GraphQL\Validator\SchemaValidator;
+namespace Dreamlabs\GraphQL\Validator\SchemaValidator;
 
-use Youshido\GraphQL\Exception\ConfigurationException;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Schema\AbstractSchema;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Schema\AbstractSchema;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
 
 class SchemaValidator
 {

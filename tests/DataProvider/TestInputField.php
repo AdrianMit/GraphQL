@@ -1,16 +1,11 @@
 <?php
-/**
- * Date: 13.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\Tests\DataProvider;
+namespace Dreamlabs\Tests\DataProvider;
 
 
-use Youshido\GraphQL\Field\AbstractInputField;
-use Youshido\GraphQL\Type\InputTypeInterface;
-use Youshido\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Field\AbstractInputField;
+use Dreamlabs\GraphQL\Type\InputTypeInterface;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
 
 class TestInputField extends AbstractInputField
 {
@@ -23,7 +18,7 @@ class TestInputField extends AbstractInputField
         return new IntType();
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'description';
     }

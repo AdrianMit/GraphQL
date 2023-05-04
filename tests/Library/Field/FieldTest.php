@@ -1,28 +1,22 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 7:14 PM
-*/
 
-namespace Youshido\Tests\Library\Field;
+namespace Dreamlabs\Tests\Library\Field;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Config\Field\FieldConfig;
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Field\InputField;
-use Youshido\GraphQL\Type\Scalar\IdType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
-use Youshido\Tests\DataProvider\TestField;
-use Youshido\Tests\DataProvider\TestResolveInfo;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Config\Field\FieldConfig;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Type\Scalar\IdType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\Tests\DataProvider\TestField;
+use Dreamlabs\Tests\DataProvider\TestResolveInfo;
 
-class FieldTest extends PHPUnit_Framework_TestCase
+class FieldTest extends TestCase
 {
 
     public function testInlineFieldCreation(): void
@@ -86,7 +80,7 @@ class FieldTest extends PHPUnit_Framework_TestCase
      * @param $fieldConfig
      *
      * @dataProvider invalidFieldProvider
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testInvalidFieldParams($fieldConfig): void
     {

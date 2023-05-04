@@ -1,38 +1,29 @@
 <?php
-/**
- * Date: 27.11.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Field;
+namespace Dreamlabs\GraphQL\Field;
 
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\AbstractType;
 
 /**
  * Class Field
- * @package Youshido\GraphQL\Type\Field
+ *
+ * @package Dreamlabs\GraphQL\Type\Field
  *
  */
 final class Field extends AbstractField
 {
-
-    protected $isFinal = true;
-
-    protected $_typeCache = null;
-    protected $_nameCache = null;
-
-    /**
-     * @return AbstractObjectType
-     */
-    public function getType()
+    protected bool $isFinal = true;
+    protected mixed $_typeCache = null;
+    protected mixed $_nameCache = null;
+    
+    public function getType(): AbstractType
     {
         return $this->_typeCache ?: ($this->_typeCache = $this->getConfigValue('type'));
     }
-
+    
     public function getName()
     {
         return $this->_nameCache ?: ($this->_nameCache = $this->getConfigValue('name'));
     }
-
+    
 }

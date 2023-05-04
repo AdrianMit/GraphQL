@@ -1,25 +1,16 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/1/15 11:26 PM
-*/
 
-namespace Youshido\GraphQL\Field;
+namespace Dreamlabs\GraphQL\Field;
 
 
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\AbstractType;
 
 final class InputField extends AbstractInputField
 {
 
-    protected $isFinal = false;
+    protected bool $isFinal = false;
 
-    /**
-     * @return AbstractObjectType
-     */
-    public function getType()
+    public function getType(): AbstractType
     {
         return $this->getConfigValue('type');
     }

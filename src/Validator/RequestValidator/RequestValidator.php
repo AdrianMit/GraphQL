@@ -1,15 +1,10 @@
 <?php
-/**
- * Date: 10/24/16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Validator\RequestValidator;
+namespace Dreamlabs\GraphQL\Validator\RequestValidator;
 
 
-use Youshido\GraphQL\Exception\Parser\InvalidRequestException;
-use Youshido\GraphQL\Execution\Request;
+use Dreamlabs\GraphQL\Exception\Parser\InvalidRequestException;
+use Dreamlabs\GraphQL\Execution\Request;
 
 class RequestValidator implements RequestValidatorInterface
 {

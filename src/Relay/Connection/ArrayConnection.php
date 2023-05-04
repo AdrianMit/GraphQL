@@ -1,11 +1,6 @@
 <?php
-/**
- * Date: 17.05.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Relay\Connection;
+namespace Dreamlabs\GraphQL\Relay\Connection;
 
 
 class ArrayConnection
@@ -23,11 +18,10 @@ class ArrayConnection
 
     /**
      * @param $offset int
-     * @return string
      * @deprecated
      *   Use keyToCursor instead.
      */
-    public static function offsetToCursor($offset)
+    public static function offsetToCursor($offset): string
     {
       return self::keyToCursor($offset);
     }

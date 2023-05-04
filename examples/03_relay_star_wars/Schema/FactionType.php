@@ -1,28 +1,26 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/10/16 11:53 PM
-*/
 
 namespace Examples\StarWars;
 
 
-use Youshido\GraphQL\Relay\Connection\ArrayConnection;
-use Youshido\GraphQL\Relay\Connection\Connection;
-use Youshido\GraphQL\Relay\Field\GlobalIdField;
-use Youshido\GraphQL\Relay\NodeInterfaceType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Relay\Connection\ArrayConnection;
+use Dreamlabs\GraphQL\Relay\Connection\Connection;
+use Dreamlabs\GraphQL\Relay\Field\GlobalIdField;
+use Dreamlabs\GraphQL\Relay\NodeInterfaceType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 class FactionType extends AbstractObjectType
 {
-
-    const TYPE_KEY = 'faction';
-
-    public function build($config)
+    public const TYPE_KEY = 'faction';
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField(new GlobalIdField(self::TYPE_KEY))
@@ -49,17 +47,17 @@ class FactionType extends AbstractObjectType
 
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'A faction in the Star Wars saga';
     }
 
-    public function getOne($id)
+    public function getOne($id): ?array
     {
         return TestDataProvider::getFaction($id);
     }
 
-    public function getInterfaces()
+    public function getInterfaces(): array
     {
         return [new NodeInterfaceType()];
     }

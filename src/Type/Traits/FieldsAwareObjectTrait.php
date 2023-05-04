@@ -1,15 +1,10 @@
 <?php
-/*
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 5:07 PM 5/14/16
- */
 
-namespace Youshido\GraphQL\Type\Traits;
+namespace Dreamlabs\GraphQL\Type\Traits;
 
 
-use Youshido\GraphQL\Config\Traits\ConfigAwareTrait;
+use Dreamlabs\GraphQL\Config\Traits\ConfigAwareTrait;
+use Dreamlabs\GraphQL\Field\FieldInterface;
 
 trait FieldsAwareObjectTrait
 {
@@ -34,7 +29,7 @@ trait FieldsAwareObjectTrait
         return $this->getConfig()->getFields();
     }
 
-    public function getField($fieldName)
+    public function getField($fieldName): ?FieldInterface
     {
         return $this->getConfig()->getField($fieldName);
     }

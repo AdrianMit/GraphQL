@@ -1,23 +1,17 @@
 <?php
-/*
-* This file is a part of GraphQL project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 5/12/16 4:17 PM
-*/
 
-namespace Youshido\Tests\Library\Config;
+namespace Dreamlabs\Tests\Library\Config;
 
 
-use PHPUnit_Framework_TestCase;
-use Youshido\GraphQL\Config\Object\InterfaceTypeConfig;
-use Youshido\GraphQL\Type\Object\ObjectType;
-use Youshido\GraphQL\Type\Scalar\IntType;
-use Youshido\GraphQL\Type\Scalar\StringType;
-use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
-use Youshido\Tests\DataProvider\TestInterfaceType;
+use PHPUnit\Framework\TestCase;
+use Dreamlabs\GraphQL\Config\Object\InterfaceTypeConfig;
+use Dreamlabs\GraphQL\Type\Object\ObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\IntType;
+use Dreamlabs\GraphQL\Type\Scalar\StringType;
+use Dreamlabs\GraphQL\Validator\ConfigValidator\ConfigValidator;
+use Dreamlabs\Tests\DataProvider\TestInterfaceType;
 
-class InterfaceTypeConfigTest extends PHPUnit_Framework_TestCase
+class InterfaceTypeConfigTest extends TestCase
 {
 
     public function testCreation(): void
@@ -27,7 +21,7 @@ class InterfaceTypeConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testConfigNoFields(): void
     {
@@ -37,7 +31,7 @@ class InterfaceTypeConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testConfigNoResolve(): void
     {
@@ -47,7 +41,7 @@ class InterfaceTypeConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Youshido\GraphQL\Exception\ConfigurationException
+     * @expectedException Dreamlabs\GraphQL\Exception\ConfigurationException
      */
     public function testConfigInvalidResolve(): void
     {

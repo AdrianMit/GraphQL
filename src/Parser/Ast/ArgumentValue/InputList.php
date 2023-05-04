@@ -1,16 +1,11 @@
 <?php
-/**
- * Date: 01.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser\Ast\ArgumentValue;
+namespace Dreamlabs\GraphQL\Parser\Ast\ArgumentValue;
 
 
-use Youshido\GraphQL\Parser\Ast\AbstractAst;
-use Youshido\GraphQL\Parser\Ast\Interfaces\ValueInterface;
-use Youshido\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Parser\Ast\AbstractAst;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\ValueInterface;
+use Dreamlabs\GraphQL\Parser\Location;
 
 class InputList extends AbstractAst implements ValueInterface
 {
@@ -24,10 +19,7 @@ class InputList extends AbstractAst implements ValueInterface
         parent::__construct($location);
     }
 
-    /**
-     * @return array
-     */
-    public function getValue()
+    public function getValue(): array
     {
         return $this->list;
     }

@@ -1,15 +1,11 @@
 <?php
-/**
- * Date: 03/17/2017
- *
- * @author Volodymyr Rashchepkin <rashepkin@gmail.com>
- */
 
-namespace Youshido\GraphQL\Config\Traits;
+namespace Dreamlabs\GraphQL\Config\Traits;
 
 
-use Youshido\GraphQL\Directive\Directive;
-use Youshido\GraphQL\Field\InputField;
+use Dreamlabs\GraphQL\Directive\Directive;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Field\InputField;
 
 trait DirectivesAwareConfigTrait
 {
@@ -27,7 +23,10 @@ trait DirectivesAwareConfigTrait
         }
         $this->_isDirectivesBuilt = true;
     }
-
+    
+    /**
+     * @throws ConfigurationException
+     */
     public function addDirectives(array $directiveList): static
     {
         foreach ($directiveList as $directiveName => $directiveInfo) {
@@ -41,7 +40,10 @@ trait DirectivesAwareConfigTrait
 
         return $this;
     }
-
+    
+    /**
+     * @throws ConfigurationException
+     */
     public function addDirective(mixed $directive, mixed $directiveInfo = null): static
     {
         if (!($directive instanceof Directive)) {

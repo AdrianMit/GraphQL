@@ -1,16 +1,11 @@
 <?php
-/**
- * Date: 23.11.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Parser\Ast\ArgumentValue;
+namespace Dreamlabs\GraphQL\Parser\Ast\ArgumentValue;
 
 
-use Youshido\GraphQL\Parser\Ast\AbstractAst;
-use Youshido\GraphQL\Parser\Ast\Interfaces\ValueInterface;
-use Youshido\GraphQL\Parser\Location;
+use Dreamlabs\GraphQL\Parser\Ast\AbstractAst;
+use Dreamlabs\GraphQL\Parser\Ast\Interfaces\ValueInterface;
+use Dreamlabs\GraphQL\Parser\Location;
 
 class Literal extends AbstractAst implements ValueInterface
 {

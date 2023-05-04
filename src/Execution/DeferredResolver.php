@@ -1,27 +1,19 @@
 <?php
-/**
- * This file is a part of GraphQL project.
- *
- * @author Alexandr Viniychuk <a@viniychuk.com>
- * created: 4/24/17 11:50 PM
- */
 
-namespace Youshido\GraphQL\Execution;
+namespace Dreamlabs\GraphQL\Execution;
 
 
 /**
  * Default implementation of DeferredResolverInterface
  *
- * @package Youshido\GraphQL\Execution
+ * @package Dreamlabs\GraphQL\Execution
  */
 class DeferredResolver implements DeferredResolverInterface {
 
-    /** @var $resolver callable */
-    private $resolver;
-
-    public function __construct($resolver)
+    public function __construct(
+        private $resolver
+    )
     {
-        $this->resolver = $resolver;
     }
 
     public function resolve(): mixed

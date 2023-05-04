@@ -1,26 +1,23 @@
 <?php
-/**
- * Date: 03.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Introspection;
+namespace Dreamlabs\GraphQL\Introspection;
 
-use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Introspection\Traits\TypeCollectorTrait;
-use Youshido\GraphQL\Type\AbstractType;
-use Youshido\GraphQL\Type\CompositeTypeInterface;
-use Youshido\GraphQL\Type\Enum\AbstractEnumType;
-use Youshido\GraphQL\Type\InputObject\AbstractInputObjectType;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\Scalar\BooleanType;
-use Youshido\GraphQL\Type\TypeMap;
-use Youshido\GraphQL\Type\Union\AbstractUnionType;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Execution\ResolveInfo;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Introspection\Traits\TypeCollectorTrait;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\CompositeTypeInterface;
+use Dreamlabs\GraphQL\Type\Enum\AbstractEnumType;
+use Dreamlabs\GraphQL\Type\InputObject\AbstractInputObjectType;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\Scalar\BooleanType;
+use Dreamlabs\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Type\Union\AbstractUnionType;
 
 class QueryType extends AbstractObjectType
 {
@@ -30,7 +27,7 @@ class QueryType extends AbstractObjectType
     /**
      * @return String type name
      */
-    public function getName()
+    public function getName(): string
     {
         return '__Type';
     }
@@ -44,7 +41,7 @@ class QueryType extends AbstractObjectType
         return null;
     }
 
-    public function resolveInputFields($value)
+    public function resolveInputFields($value): ?array
     {
         if ($value instanceof AbstractInputObjectType) {
             /** @var AbstractObjectType $value */
@@ -54,7 +51,7 @@ class QueryType extends AbstractObjectType
         return null;
     }
 
-    public function resolveEnumValues($value, $args)
+    public function resolveEnumValues($value, $args): ?array
     {
         /** @var $value AbstractType|AbstractEnumType */
         if ($value && $value->getKind() == TypeMap::KIND_ENUM) {
@@ -83,7 +80,7 @@ class QueryType extends AbstractObjectType
         return null;
     }
 
-    public function resolveFields($value, $args)
+    public function resolveFields($value, $args): ?array
     {
         /** @var AbstractType $value */
         if (!$value ||
@@ -103,7 +100,7 @@ class QueryType extends AbstractObjectType
         });
     }
 
-    public function resolveInterfaces($value)
+    public function resolveInterfaces($value): ?array
     {
         /** @var $value AbstractType */
         if ($value->getKind() == TypeMap::KIND_OBJECT) {
@@ -114,7 +111,7 @@ class QueryType extends AbstractObjectType
         return null;
     }
 
-    public function resolvePossibleTypes($value, $args, ResolveInfo $info)
+    public function resolvePossibleTypes($value, $args, ResolveInfo $info): ?array
     {
         /** @var $value AbstractObjectType */
         if ($value->getKind() == TypeMap::KIND_INTERFACE) {
@@ -154,8 +151,11 @@ class QueryType extends AbstractObjectType
 
         return null;
     }
-
-    public function build($config): void
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField('name', TypeMap::TYPE_STRING)

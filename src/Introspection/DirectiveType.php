@@ -1,19 +1,16 @@
 <?php
-/**
- * Date: 16.12.15
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Introspection;
+namespace Dreamlabs\GraphQL\Introspection;
 
-use Youshido\GraphQL\Config\Directive\DirectiveConfig;
-use Youshido\GraphQL\Directive\Directive;
-use Youshido\GraphQL\Directive\DirectiveInterface;
-use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Object\AbstractObjectType;
-use Youshido\GraphQL\Type\TypeMap;
+use Dreamlabs\GraphQL\Config\Directive\DirectiveConfig;
+use Dreamlabs\GraphQL\Config\Object\ObjectTypeConfig;
+use Dreamlabs\GraphQL\Directive\Directive;
+use Dreamlabs\GraphQL\Directive\DirectiveInterface;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Type\ListType\ListType;
+use Dreamlabs\GraphQL\Type\NonNullType;
+use Dreamlabs\GraphQL\Type\Object\AbstractObjectType;
+use Dreamlabs\GraphQL\Type\TypeMap;
 
 class DirectiveType extends AbstractObjectType
 {
@@ -21,12 +18,12 @@ class DirectiveType extends AbstractObjectType
     /**
      * @return String type name
      */
-    public function getName()
+    public function getName(): string
     {
         return '__Directive';
     }
 
-    public function resolveArgs(DirectiveInterface $value)
+    public function resolveArgs(DirectiveInterface $value): array
     {
         if ($value->hasArguments()) {
             return $value->getArguments();
@@ -34,13 +31,8 @@ class DirectiveType extends AbstractObjectType
 
         return [];
     }
-
-    /**
-     * @param DirectiveInterface|Directive $value
-     *
-     * @return mixed
-     */
-    public function resolveLocations(DirectiveInterface|Directive $value)
+    
+    public function resolveLocations(DirectiveInterface|Directive $value): array
     {
         /** @var DirectiveConfig $directiveConfig */
         $directiveConfig = $value->getConfig();
@@ -49,8 +41,11 @@ class DirectiveType extends AbstractObjectType
 
         return $locations;
     }
-
-    public function build($config): void
+    
+    /**
+     * @throws ConfigurationException
+     */
+    public function build(ObjectTypeConfig $config): void
     {
         $config
             ->addField('name', new NonNullType(TypeMap::TYPE_STRING))

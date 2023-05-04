@@ -1,11 +1,6 @@
 <?php
-/**
- * Date: 14.01.16
- *
- * @author Portey Vasil <portey@gmail.com>
- */
 
-namespace Youshido\GraphQL\Type\Object;
+namespace Dreamlabs\GraphQL\Type\Object;
 
 abstract class AbstractMutationObjectType extends AbstractObjectType
 {

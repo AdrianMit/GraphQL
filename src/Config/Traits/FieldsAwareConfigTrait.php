@@ -1,39 +1,37 @@
 <?php
-/*
-* This file is a part of graphql-youshido project.
-*
-* @author Alexandr Viniychuk <a@viniychuk.com>
-* created: 12/1/15 11:05 PM
-*/
 
-namespace Youshido\GraphQL\Config\Traits;
+namespace Dreamlabs\GraphQL\Config\Traits;
 
 
-use Youshido\GraphQL\Exception\ConfigurationException;
-use Youshido\GraphQL\Exception\ValidationException;
-use Youshido\GraphQL\Field\Field;
-use Youshido\GraphQL\Field\FieldInterface;
-use Youshido\GraphQL\Field\InputFieldInterface;
-use Youshido\GraphQL\Type\InterfaceType\AbstractInterfaceType;
+use Dreamlabs\GraphQL\Exception\ConfigurationException;
+use Dreamlabs\GraphQL\Exception\ValidationException;
+use Dreamlabs\GraphQL\Field\AbstractField;
+use Dreamlabs\GraphQL\Field\Field;
+use Dreamlabs\GraphQL\Field\FieldInterface;
+use Dreamlabs\GraphQL\Field\InputFieldInterface;
+use Dreamlabs\GraphQL\Type\AbstractType;
+use Dreamlabs\GraphQL\Type\InterfaceType\AbstractInterfaceType;
 
 /**
  * Class FieldsAwareTrait
- * @package Youshido\GraphQL\Config\Traits
+ * @package Dreamlabs\GraphQL\Config\Traits
  */
 trait FieldsAwareConfigTrait
 {
     protected array $fields = [];
-
+    
+    /**
+     * @throws ConfigurationException
+     */
     public function buildFields(): void
     {
         if (!empty($this->data['fields'])) {
             $this->addFields($this->data['fields']);
         }
     }
-
+    
     /**
-     * Add fields from passed interface
-     * @return $this
+     * @throws ConfigurationException
      */
     public function applyInterface(AbstractInterfaceType $interfaceType): static
     {
@@ -66,7 +64,7 @@ trait FieldsAwareConfigTrait
     /**
      * @throws ConfigurationException
      */
-    public function addField(Field|string $field, array $fieldInfo = null): static
+    public function addField(AbstractField|string $field, AbstractType|array|string|null $fieldInfo = null): static
     {
         if (!($field instanceof FieldInterface)) {
             $field = new Field($this->buildFieldConfig($field, $fieldInfo));
@@ -95,7 +93,7 @@ trait FieldsAwareConfigTrait
         return $info;
     }
     
-    public function getField(string $name): ?Field
+    public function getField(string $name): ?FieldInterface
     {
         return $this->hasField($name) ? $this->fields[$name] : null;
     }
